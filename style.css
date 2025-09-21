@@ -1,0 +1,56 @@
+body {
+    background-image: url(images/themLines.png);
+    box-sizing: border-box;
+    background-color: black;
+    font-family: 'Nunito Sans', sans-serif;
+    color: rgba(255, 255, 255, 0.87);
+    margin: 0;
+}
+
+header {
+    position: sticky;
+    top: 0;       
+    z-index: 10;   
+    margin: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: center; 
+    height: 60px;
+    max-width: 100%;
+    backdrop-filter: saturate(140%) blur(6px); 
+}
+
+header h1 { 
+  margin: 0; 
+  line-height: 60px; 
+}
+
+#header_container {
+    max-width: 1000px;
+    margin: 0 auto;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    background-color: black;
+}
+
+#main_container {
+    display:flex;
+    background-color: black;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2%;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: lowercase;
+    letter-spacing: 2px;
+}
+
+#hero {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 0 0 20px 0;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: lowercase;
+    letter-spacing: 2px;
+}
