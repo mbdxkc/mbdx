@@ -1,65 +1,80 @@
-*, *::before, *::after {
-  box-sizing: inherit;
+/* --------- tokens --------- */
+:root{
+  --bg:#000;
+  --text:rgba(255,255,255,.87);
+  --muted:rgba(255,255,255,.7);
+
+  --blue:#008DDA;
+  --pink:#FF2DF1;
+  --yellow:#FFFF00;
+
+  --grad-start:#3aa9e5;
+  --grad-end:#0174c6;
+
+  --radius-lg:20px;
+  --radius-xl:28px;
+  --container:1100px;
+
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+  --grid-line:rgba(255,255,255,.06);
 }
 
-body {
-    background: url(images/themLines.png) repeat;
-    background-size: 10%; 
-    background-position: top-left;
-    margin: 0;
-    min-height: 100vh;  
-    box-sizing: border-box;
-    background-color: black;
-    font-family: 'Nunito Sans', sans-serif;
-    color: rgba(255, 255, 255, 0.87);
-    margin: 0;
+/* --------- base --------- */
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family: 'Nunito Sans', sans-serif;
 }
+.container{max-width:var(--container);margin:0 auto;padding:0 1rem}
 
-header {
-    position: sticky;
-    top: 0;       
-    z-index: 10;   
-    margin: 0;
-   /*border-bottom: 1px solid rgba(255, 255, 255, 0.12);*/
-    text-align: center; 
-    max-width: 100%;
-    backdrop-filter: saturate(140%) blur(6px); 
-    -webkit-backdrop-filter: saturate(140%) blur(6px);
+/* --------- header --------- */
+.site_header{
+  position:sticky; top:0; z-index:50; height:64px;
+  backdrop-filter:saturate(140%) blur(6px);
+  -webkit-backdrop-filter:saturate(140%) blur(6px);
+  border-bottom:1px solid rgba(255,255,255,.12);
 }
-
-#header_container {
-    display: flex;             
-    align-items: center;      
-    justify-content: center;    
-    height: 60px;    
-    max-width: 1000px;
-    height: 50px;
-    margin: 0 auto;
-    font-size: 1rem;
-    letter-spacing: .05rem;
-    background-color: black;
+.header_grid{
+  height:100%;
+  display:grid; align-items:center; gap:1rem;
+  grid-template-columns:1fr 2fr 1fr;
+  padding: 0 1rem;
 }
-
-#header_container > p { 
-    margin: 0; 
+.brand{
+  justify-self: left;
+  font-size: 1rem;;
 }
-
-#main_container {
+.nav{
     display:flex;
-    flex-wrap: wrap;
-    background-color: black;
-    max-width: 1000px;
-    margin: auto;
-    padding: 2%;
-    font-size: 1rem;
-    font-weight: bold;
-    text-transform: lowercase;
-    letter-spacing: .05em;
+    gap:.75rem;
+    justify-self: center;
 }
-
-#hero {
-    height: auto;
-    font-size: 2rem;
-    font-weight: bold;
-    letter-spacing: .05rem;
+.nav a{
+    color: var(--blue);
+    text-decoration: none;
+    padding: .5rem 1rem;
+    border-radius: 6px;
+    position: relative;}
+.nav a.is-active{
+    color: var(--pink);
+}
+.nav a:hover {
+  color: var(--yellow);
+}
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 2px;
+  background: var(--pink);
+  transition: width .3s ease;
+}
+.nav a:hover::after {
+  width: 100%;
+}
+.socials{
+    display:flex;
+    gap:.5rem;
+    justify-self: end;
 }
