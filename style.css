@@ -28,6 +28,13 @@ body{
 }
 .container{max-width:var(--container);margin:0 auto;padding:0 1rem}
 
+/* --------- rive ----------- */
+  rive-player {
+    width: 360px;
+    height: 36px;
+    display: block;        /* avoids collapsing */
+  }
+
 /* --------- header --------- */
 .site_header{
   position:sticky; top:0; z-index:50; height:64px;
