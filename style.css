@@ -38,17 +38,17 @@ body{
 .header_grid{
   height:100%;
   display:grid; align-items:center; gap:1rem;
-  grid-template-columns:1fr 2fr 1fr;
+  grid-template-columns:1fr 1fr 1fr;
   padding: 0 1rem;
 }
 .brand{
-  justify-self: left;
-  font-size: 1rem;;
+  justify-self: center;
+  font-size: 1.5rem;;
 }
 .nav{
     display:flex;
     gap:.75rem;
-    justify-self: center;
+    justify-self: start;
 }
 .nav a{
     color: var(--blue);
