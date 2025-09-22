@@ -13,7 +13,7 @@
 
   --radius-lg:20px;
   --radius-xl:28px;
-  --container:1100px;
+  --container:1000px;
 
   --shadow:0 10px 30px rgba(0,0,0,.35);
   --grid-line:rgba(255,255,255,.06);
@@ -36,16 +36,26 @@ body{
   border-bottom:1px solid rgba(255,255,255,.12);
 }
 .header_grid{
+  justify-content: center;
   height:100%;
   display:grid; align-items:center; gap:1rem;
   grid-template-columns:1fr 1fr 1fr;
   padding: 0 1rem;
 }
-.mbwatermark {
+.mbwordmark {
   justify-self: center;
-  display: block;
+  margin: 0 auto;
   width: 360px;
-  height: auto;   /* keeps SVG aspect ratio */
+  height: 36px;
+  background: url("/images/mBwordmark.svg") no-repeat center/contain;
+}
+
+.mbwordmark:hover {
+  justify-self: center;
+  margin: 0 auto;
+  width: 360px;
+  height: 36px;
+  background-image: url("/images/mBwordmark2.svg");
 }
 .nav{
     display:flex;
@@ -79,4 +89,36 @@ body{
     display:flex;
     gap:.5rem;
     justify-self: end;
+}
+
+/* ------- body ------- */
+body {
+  line-height: 1.6;
+  font-size: 1rem;
+}
+h1,h2,h3,h4,h5,h6 {
+  margin: 0 0 .5em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+p {
+  margin: 0 0 1em;
+}
+small {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* ------- main -------- */
+
+/* ------- section ------- */
+
+/* ------- footer ------- */
+.footer {
+  height: 32px; 
+  backdrop-filter: saturate(140%) blur(6px);
+  -webkit-backdrop-filter: saturate(140%) blur(6px);
+  border-top: 1px solid rgba(255,255,255,.12);
+  font-size: 0.5rem;
+  text-align: center;
 }
