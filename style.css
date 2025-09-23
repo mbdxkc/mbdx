@@ -95,6 +95,10 @@ body{
 body {
   line-height: 1.6;
   font-size: 1rem;
+  background: 
+    url("/images/themlines.svg") repeat,        
+    rgba(0, 0, 0, 0.95);                          
+    background-blend-mode: screen; 
 }
 h1,h2,h3,h4,h5,h6 {
   margin: 0 0 .5em;
@@ -112,6 +116,18 @@ small {
 /* ------- main -------- */
 
 /* ------- section ------- */
+#section1 {
+  margin: 2rem 0;
+  padding: 2rem;
+  border: 2px solid rgba(255, 255, 255, .87);
+  border-radius: var(--radius-lg); /* optional rounded corners */
+  background: linear-gradient(
+    135deg,
+    var(--grad-start),
+    var(--grad-end)
+  );
+  box-shadow: var(--shadow); /* optional depth */
+}
 
 /* ------- footer ------- */
 .footer {
@@ -121,4 +137,6 @@ small {
   border-top: 1px solid rgba(255,255,255,.12);
   font-size: 0.5rem;
   text-align: center;
+  display:grid; align-items:center; gap:1rem;
+  padding: .5rem;
 }
