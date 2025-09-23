@@ -184,6 +184,14 @@ small {
 .section_right {
   justify-self: end;
 }
+.section_box_right {
+  justify-self: end;
+  margin: 10px 0 0 10px;
+}
+.section_box_left {
+  margin: 10px 10px 0 0;
+  justify-self: start;
+}
 
 /* ------- footer ------- */
 .footer {
