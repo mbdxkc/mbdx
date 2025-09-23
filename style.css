@@ -58,6 +58,7 @@ body{
   background-image: url("/images/mBwordmark2.svg");
 }
 .nav{
+    padding: .5rem;
     display:flex;
     gap:.5rem;
     justify-self: start;
@@ -86,7 +87,7 @@ body{
   width: 100%;
 }
 .socials{
-    padding: 1rem;
+    padding: 1.5rem;
     display:flex;
     gap:.5rem;
     justify-self: end;
@@ -118,7 +119,8 @@ small {
 
 
 /* ------- sections ------- */ 
-#section {
+#section1 {
+  width: 80%;
   margin: 2%;
   font-size: 1rem;
   padding: 2rem;
@@ -131,12 +133,53 @@ small {
   );
   box-shadow: var(--shadow); 
 }
-
-.section_logo {
-  float: right;  
-  width: 300px;   
-  height: auto;
-  z-index: 2;
+#section2 {
+  width: 80%;
+  margin: 2%;
+  font-size: 1rem;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, .8);
+  border-radius: var(--radius-lg); 
+  background: linear-gradient(
+    135deg,
+    var(--grad-start),
+    var(--grad-end)
+  );
+  box-shadow: var(--shadow); 
+}
+#section3 {
+  width: 80%;
+  margin: 2%;
+  font-size: 1rem;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, .8);
+  border-radius: var(--radius-lg); 
+  background: linear-gradient(
+    135deg,
+    var(--grad-start),
+    var(--grad-end)
+  );
+  box-shadow: var(--shadow); 
+}
+#section4 {
+  width: 80%;
+  margin: 2%;
+  font-size: 1rem;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, .8);
+  border-radius: var(--radius-lg); 
+  background: linear-gradient(
+    135deg,
+    var(--grad-start),
+    var(--grad-end)
+  );
+  box-shadow: var(--shadow); 
+}
+.section_left {
+  justify-self: start;
+}
+.section_right {
+  justify-self: end;
 }
 
 /* ------- footer ------- */
