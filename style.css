@@ -118,70 +118,42 @@ small {
 }
 
 /* ------- main -------- */
-
-
 /* ------- sections ------- */ 
-#section1 {
-  width: 80%;
-  margin: 2%;
-  font-size: 1rem;
+/* ---- alternating sections (place LAST) ---- */
+#main_container > .section_left,
+#main_container > .section_right {
+  display: block;          /* explicit for safety */
+  width: 75%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, .8);
-  border-radius: var(--radius-lg); 
-  background: linear-gradient(
-    135deg,
-    var(--grad-start-blue),
-    var(--grad-end-blue)
-  );
-  box-shadow: var(--shadow); 
+  border: 2px solid rgba(255,255,255,.87);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
 }
-#section2 {
-  width: 80%;
-  margin: 2%;
-  font-size: 1rem;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, .8);
-  border-radius: var(--radius-lg); 
-  background: linear-gradient(
-    135deg,
-    var(--grad-start-silver),
-    var(--grad-end-silver)
-  );
-  box-shadow: var(--shadow); 
+
+/* left = hug left + blue gradient */
+#main_container > .section_left {
+  margin-left: 0;
+  margin-right: auto;
+  background: linear-gradient(135deg, var(--grad-start-blue, #008DDA), var(--grad-end-blue, #acdffa));
 }
-#section3 {
-  width: 80%;
-  margin: 2%;
-  font-size: 1rem;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, .8);
-  border-radius: var(--radius-lg); 
-  background: linear-gradient(
-    135deg,
-    var(--grad-start-blue),
-    var(--grad-end-blue)
-  );
-  box-shadow: var(--shadow); 
+
+/* right = hug right + silver gradient */
+#main_container > .section_right {
+  margin-left: auto;
+  margin-right: 0;
+  background: linear-gradient(135deg, var(--grad-start-silver, #E5E5E5), var(--grad-end-silver, #bfbfbf));
 }
-#section4 {
-  width: 80%;
-  margin: 2%;
-  font-size: 1rem;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, .8);
-  border-radius: var(--radius-lg); 
-  background: linear-gradient(
-    135deg,
-    var(--grad-start-silver),
-    var(--grad-end-silver)
-  );
-  box-shadow: var(--shadow); 
-}
-.section_left {
-  justify-self: start;
-}
-.section_right {
-  justify-self: end;
+
+/* responsive: stack full width on small screens */
+@media (max-width: 900px){
+  #main_container > .section_left,
+  #main_container > .section_right {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 /* ------- footer ------- */
