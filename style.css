@@ -1,6 +1,6 @@
 /* --------- tokens --------- */
 :root{
-  --bg:#000;
+  --bg:rgba(0,0,0,.9);
   --text:rgba(255,255,255,.87);
   --muted:rgba(255,255,255,.7);
 
@@ -38,7 +38,7 @@ body{
   border-bottom:1px solid rgba(255,255,255,.12);
 }
 .header_grid{
-  justify-content: center;
+  justify-items: center;
   height:100%;
   display:grid; align-items:center; gap:1rem;
   grid-template-columns:1fr 1fr 1fr;
@@ -97,8 +97,13 @@ body{
 
 /* ------- body ------- */
 body {
-  background-image: url(/images/themlines.svg) black;
-  background: repeat;
+  margin: 0;
+  color: var(--text);
+  background-color: var(--bg);
+  background-image: url("/images/themlines.svg");  
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: auto;
 }
 h1,h2,h3,h4,h5,h6 {
   margin: 0 0 .5em;
