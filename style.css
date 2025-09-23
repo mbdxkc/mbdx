@@ -116,8 +116,48 @@ small {
 
 /* ------- main -------- */
 
-/* ------- section ------- */
+
+/* ------- sections ------- */
 #section1 {
+  font-size: 1rem;
+  padding: 2rem;
+  border: 2px solid rgba(255, 255, 255, .87);
+  border-radius: var(--radius-lg); 
+  background: linear-gradient(
+    135deg,
+    var(--grad-start),
+    var(--grad-end)
+  );
+  box-shadow: var(--shadow); 
+}
+#section2 {
+  font-size: 1rem;
+  margin: 2rem 0;
+  padding: 2rem;
+  border: 2px solid rgba(255, 255, 255, .87);
+  border-radius: var(--radius-lg); 
+  background: linear-gradient(
+    135deg,
+    var(--grad-start),
+    var(--grad-end)
+  );
+  box-shadow: var(--shadow); 
+}
+#section3 {
+  font-size: 1rem;
+  margin: 2rem 0;
+  padding: 2rem;
+  border: 2px solid rgba(255, 255, 255, .87);
+  border-radius: var(--radius-lg); 
+  background: linear-gradient(
+    135deg,
+    var(--grad-start),
+    var(--grad-end)
+  );
+  box-shadow: var(--shadow); 
+}
+#section4 {
+  font-size: 1rem;
   margin: 2rem 0;
   padding: 2rem;
   border: 2px solid rgba(255, 255, 255, .87);
