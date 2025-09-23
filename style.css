@@ -99,13 +99,8 @@ body{
 body {
   line-height: 1.6;
   font-size: 1rem;
-  background-image:
-    url("/images/themlines.svg"),
-    linear-gradient(rgba(0,0,0,.95), rgba(0,0,0,.95));
-  background-repeat: repeat, repeat;
-  background-position: 0 0, 0 0;
-  background-size: auto, auto;
-  background-blend-mode: screen;  
+  background-image: url('/images/themlines.svg');
+  background-repeat: repeat;
 }
 h1,h2,h3,h4,h5,h6 {
   margin: 0 0 .5em;
