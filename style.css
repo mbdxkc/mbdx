@@ -121,6 +121,11 @@ small {
 }
 
 /* ------- main -------- */
+#main_container {
+  display: grid;
+  grid-auto-rows: auto;
+}
+
 /* ------- sections ------- */ 
 #section1 {
   width: 80%;
