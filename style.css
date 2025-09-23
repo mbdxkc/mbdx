@@ -97,10 +97,7 @@ body{
 
 /* ------- body ------- */
 body {
-  line-height: 1.6;
-  font-size: 1rem;
-  background-image: url('/images/themlines.svg');
-  background-repeat: repeat;
+  background-image: url(/images/themlines.svg);
 }
 h1,h2,h3,h4,h5,h6 {
   margin: 0 0 .5em;
