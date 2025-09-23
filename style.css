@@ -8,8 +8,10 @@
   --pink:#FF2DF1;
   --yellow:#FFFF00;
 
-  --grad-start:#3aa9e5;
-  --grad-end:#0174c6;
+  --grad-start-blue:#008DDA;
+  --grad-end-blue:#caecff;
+  --grad-start-silver:#eaeaea;
+  --grad-end-silver:#373737;
 
   --radius-lg:20px;
   --radius-xl:28px;
@@ -128,8 +130,8 @@ small {
   border-radius: var(--radius-lg); 
   background: linear-gradient(
     135deg,
-    var(--grad-start),
-    var(--grad-end)
+    var(--grad-start-blue),
+    var(--grad-end-blue)
   );
   box-shadow: var(--shadow); 
 }
@@ -142,8 +144,8 @@ small {
   border-radius: var(--radius-lg); 
   background: linear-gradient(
     135deg,
-    var(--grad-start),
-    var(--grad-end)
+    var(--grad-start-silver),
+    var(--grad-end-silver)
   );
   box-shadow: var(--shadow); 
 }
@@ -156,8 +158,8 @@ small {
   border-radius: var(--radius-lg); 
   background: linear-gradient(
     135deg,
-    var(--grad-start),
-    var(--grad-end)
+    var(--grad-start-blue),
+    var(--grad-end-blue)
   );
   box-shadow: var(--shadow); 
 }
@@ -170,8 +172,8 @@ small {
   border-radius: var(--radius-lg); 
   background: linear-gradient(
     135deg,
-    var(--grad-start),
-    var(--grad-end)
+    var(--grad-start-silver),
+    var(--grad-end-silver)
   );
   box-shadow: var(--shadow); 
 }
