@@ -122,6 +122,7 @@ small {
 #main_container {
   display: grid;
   grid-auto-rows: auto;
+  margin-bottom: 10%;
 }
 
 /* ------- sections ------- */ 
@@ -136,6 +137,7 @@ small {
   width: 80%;
   font-size: 1.2rem;
   padding: 2rem 12% 2rem 2rem;
+  margin: 2%;
   border: 1px solid rgba(255, 255, 255, .8);
   border-radius: var(--radius-lg); 
   background: linear-gradient(
@@ -150,6 +152,7 @@ small {
   z-index: 1;
   width: 80%;
   font-size: 1.2rem;
+  margin: 2%;
   padding: 2rem 2rem 2rem 12%;
   border: 1px solid rgba(255, 255, 255, .8);
   border-radius: var(--radius-lg); 
@@ -160,29 +163,16 @@ small {
   );
   box-shadow: var(--shadow); 
 }
-.section_box_logo {
-  z-index: 2;
-  margin: 10% 0 -10% -10%;
-  width: 40%;
-  height: 80%;
-  justify-self: end;
-}
 .section_box_right {
   z-index: 2;
   margin: 10% 0 -10% -10%;
-  background-color: rgba(0,0,0,.9);
-  border: 1px solid rgba(255, 255, 255, .8);
-  border-radius: var(--radius-lg); 
   width: 40%;
   height: 80%;
   justify-self: end;
 }
 .section_box_left {
   z-index: 2;
-  margin: 10% -10% 0 0;
-  background-color: rgba(0,0,0,.9);
-  border: 1px solid rgba(255, 255, 255, .8);
-  border-radius: var(--radius-lg); 
+  margin: 10% -10% -10% 0;
   width: 40%;
   height: 80%;
   justify-self: start;
@@ -203,8 +193,6 @@ small {
 /* ------- images ------- */
 .logo {
   width: 100%;
-  height: 100%;
+  height: auto%;
   object-fit: cover;
-  border: none;
-  background-color: none;
 }
