@@ -15,7 +15,7 @@
 
   --radius-lg:20px;
   --radius-xl:28px;
-  --container:1000px;
+  --container:1200px;
 
   --shadow:0 10px 30px rgba(0,0,0,.35);
   --grid-line:rgba(255,255,255,.06);
@@ -135,6 +135,7 @@ small {
   justify-self: start;
   z-index: 1;
   width: 80%;
+  min-height: 300px;
   font-size: 1.2rem;
   padding: 2rem 12% 2rem 2rem;
   margin: 2%;
