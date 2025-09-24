@@ -152,6 +152,7 @@ small {
   justify-self: end;
   z-index: 1;
   width: 80%;
+  min-height: 300px;
   font-size: 1.2rem;
   margin: 2%;
   padding: 2rem 2rem 2rem 12%;
