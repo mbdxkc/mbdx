@@ -165,14 +165,14 @@ small {
 }
 .section_box_right {
   z-index: 2;
-  margin: 5px 0 -10% -10%;
+  margin: 10px 0 -10% -10%;
   width: 40%;
   height: 80%;
   justify-self: end;
 }
 .section_box_left {
   z-index: 2;
-  margin: 5px -10% -10% 0;
+  margin: 10px -10% -10% 0;
   width: 40%;
   height: 80%;
   justify-self: start;
