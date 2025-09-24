@@ -128,11 +128,14 @@ small {
 /* ------- sections ------- */ 
 .section_container {
   display: flex;
-  justify-content:center;
+  justify-content:start;
   margin: 2%;
 }
 .section_left {
   justify-self: start;
+  justify-content: center;
+  align-items: center;    
+  text-align: left; 
   z-index: 1;
   width: 80%;
   min-height: 300px;
@@ -150,6 +153,9 @@ small {
 }
 .section_right {
   justify-self: end;
+  justify-content: center;
+  align-items: center;    
+  text-align: left; 
   z-index: 1;
   width: 80%;
   min-height: 300px;
@@ -167,14 +173,14 @@ small {
 }
 .section_box_right {
   z-index: 2;
-  margin: 10px 0 -10% -10%;
+  margin: 0 0 -10% -10%;
   width: 40%;
   height: 80%;
   justify-self: end;
 }
 .section_box_left {
   z-index: 2;
-  margin: 10px -10% -10% 0;
+  margin: 0 -10% -10% 0;
   width: 40%;
   height: 80%;
   justify-self: start;
@@ -194,6 +200,11 @@ small {
 
 /* ------- images ------- */
 .logo {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.section_image {
   width: 100%;
   height: auto;
   object-fit: cover;
