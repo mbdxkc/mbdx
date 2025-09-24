@@ -122,14 +122,14 @@ small {
 #main_container {
   display: grid;
   grid-auto-rows: auto;
-  margin-bottom: 10%;
+  /*margin-bottom: 10%;*/
 }
 
 /* ------- sections ------- */ 
 .section_container {
-  margin: 2%;
   display: flex;
   justify-content:center;
+  margin: 2%;
 }
 .section_left {
   justify-self: start;
@@ -165,14 +165,14 @@ small {
 }
 .section_box_right {
   z-index: 2;
-  margin: 10% 0 -10% -10%;
+  margin: 5px 0 -10% -10%;
   width: 40%;
   height: 80%;
   justify-self: end;
 }
 .section_box_left {
   z-index: 2;
-  margin: 10% -10% -10% 0;
+  margin: 5px -10% -10% 0;
   width: 40%;
   height: 80%;
   justify-self: start;
@@ -193,6 +193,6 @@ small {
 /* ------- images ------- */
 .logo {
   width: 100%;
-  height: auto%;
+  height: auto;
   object-fit: cover;
 }
