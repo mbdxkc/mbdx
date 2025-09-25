@@ -30,6 +30,13 @@ body{
 }
 .container{max-width:var(--container);margin:0 auto;padding:0 1rem}
 
+/* ------- breakpoints ------- */
+@media(max-width:480) {
+  .section_container {
+    flex-direction: column;
+  }
+}
+
 /* --------- header --------- */
 .site_header{
   position:sticky; top:0; z-index:50; height:64px;
