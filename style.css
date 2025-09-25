@@ -24,16 +24,14 @@
 /* --------- base --------- */
 *,*::before,*::after{box-sizing:border-box}
 html,body{height:100%}
-body{
-  margin:0; background:var(--bg); color:var(--text);
-  font-family: 'Nunito Sans', sans-serif;
-}
-.container{max-width:var(--container);margin:0 auto;padding:0 1rem}
 
 /* ------- breakpoints ------- */
-@media(max-width:480) {
+@media(max-width:100%) {
   .section_container {
     flex-direction: column;
+    padding: 0 1rem;
+  }
+  #main_container {
     max-width: 100vw;
   }
   
@@ -56,16 +54,12 @@ body{
 .mbwordmark {
   justify-self: center;
   margin: 0 auto;
-  width: 360px;
-  height: 36px;
+  width: clamp(200px, 60vw, 340px);
+  aspect-ratio: 340 / 36; 
   background: url("/images/mBwordmark.svg") no-repeat center/contain;
 }
 
 .mbwordmark:hover {
-  justify-self: center;
-  margin: 0 auto;
-  width: 360px;
-  height: 36px;
   background-image: url("/images/mBwordmark2.svg");
 }
 .nav{
@@ -105,14 +99,11 @@ body{
 }
 
 /* ------- body ------- */
-body {
-  margin: 0;
-  color: var(--text);
-  background-color: var(--bg);
-  background-image: url("/images/themlines.png");  
-  background-repeat: repeat;
-  background-position: top left;
-  background-size: auto;
+body{
+  margin:0;
+  color:var(--text);
+  background: var(--bg) url("/images/themlines.png") top left / auto repeat;
+  font-family:'Nunito Sans', sans-serif;
 }
 h1,h2,h3,h4,h5,h6 {
   margin: 0 0 .5em;
@@ -129,6 +120,7 @@ small {
 
 /* ------- main -------- */
 #main_container {
+  max-width:var(--container);margin:0 auto;padding:0 1rem;
   display: grid;
   grid-auto-rows: auto;
   /*margin-bottom: 10%;*/
@@ -208,6 +200,7 @@ small {
 }
 
 /* ------- images ------- */
+img { display:block; max-width:100%; height:auto; }
 .logo {
   width: 100%;
   height: auto;
