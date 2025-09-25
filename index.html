@@ -10,7 +10,6 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
-        <script src="https://unpkg.com/@rive-app/canvas@latest/rive.min.js"></script>
     </head>
 
     <body>
@@ -22,9 +21,7 @@
                     <a href="#">link</a>
                     <a href="#">link</a>
                 </nav>
-                <div>
-                    <canvas id="riveCanvas" width="340" height="36"></canvas>
-                </div>                
+                <div class="mbwordmark" aria-label="mediosBrillantes design studio logo"></div>                
                 <div class="socials">
                     <span class="circle">social</span>
                     <span class="circle">social</span>
@@ -91,26 +88,6 @@
     <footer class="footer">
         <p>© 2025 mediosBrillantes</p>
     </footer>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const r = new rive.Rive({
-            src: "/media/mb_wordmark.riv",
-            canvas: document.getElementById("riveCanvas"), // Corrected ID
-            autoplay: true,
-            stateMachines: "State Machine 1", // Replace with your state machine's name
-            onLoad: () => {
-                // Resize the animation to fit the canvas on load and on window resize
-                r.resizeDrawingSurfaceToCanvas();
-            },
-        });
-
-        // Add an event listener to handle window resizing
-        window.addEventListener("resize", () => {
-            r.resizeDrawingSurfaceToCanvas();
-        });
-    });
-</script>
 
     </body>
 
