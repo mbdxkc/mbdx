@@ -31,17 +31,12 @@ body{
 .container{max-width:var(--container);margin:0 auto;padding:0 1rem}
 
 /* ------- breakpoints ------- */
-@media (max-width: 480px) {
+@media(max-width:480) {
   .section_container {
-    display: flex;              /* make sure it's flex */
-    flex-direction: column;     /* stack items vertically */
-    align-items: center;        /* center horizontally */
-    justify-content: center;    /* optional: center vertically if there's extra space */
-    max-width: 100vw;           /* limit to device screen width */
-    margin: 0 auto;             /* center container itself */
-    padding: 0 1rem;            /* optional: side padding so content isn't flush */
-    box-sizing: border-box;     /* include padding in width calculation */
+    flex-direction: column;
+    max-width: 100vw;
   }
+  
 }
 
 /* --------- header --------- */
