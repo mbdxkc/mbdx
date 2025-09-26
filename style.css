@@ -57,6 +57,12 @@ html,body{height:100%}
   max-width: 340px;
   height: auto;
 }
+#mb_wordmark {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 340 / 36;
+}
 .nav{
     padding: .5rem;
     display:flex;
