@@ -34,6 +34,9 @@ html,body{height:100%}
   #main_container {
     max-width: 100vw;
   }
+  .mb_wordmark {
+    display: hidden;
+  }
   
 }
 
@@ -51,7 +54,7 @@ html,body{height:100%}
   grid-template-columns:1fr 1fr 1fr;
   padding: 0 1rem;
 }
-.mbwordmark {
+#mb_wordmark {
   justify-self: center;
   margin: 0 auto;
   max-width: 340px;
