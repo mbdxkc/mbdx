@@ -13,6 +13,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
     </head>
 
     <body>
@@ -24,8 +25,10 @@
                     <a href="#">link</a>
                     <a href="#">link</a>
                 </nav>
-                <div>
-                    <a href="/index.html"><img class="mbwordmark" src="/images/link_mask.png" aria-label="mediosBrillantes home" alt=""></a>
+                <div class="mb_wordmark">
+                    <a href="/index.html">
+                    <canvas id="mb_wordmark" width="340" height="36"></canvas>
+                    </a>
                 </div>                
                 <div class="socials">
                     <span class="circle">social</span>
@@ -93,6 +96,18 @@
     <footer class="footer" role="contentinfo">
         <p>© 2025 mediosBrillantes</p>
     </footer>
+
+    <script>
+        new rive.Rive({
+            src: "/media/mb_wordmark.riv", 
+            canvas: document.getElementById("mb_wordmark"),
+            autoplay: true,
+            stateMachines: "State Machine 1", 
+            onLoad: () => {
+            console.log("rive animation loaded!");
+            }
+        });
+    </script>
 
     </body>
 

@@ -54,13 +54,8 @@ html,body{height:100%}
 .mbwordmark {
   justify-self: center;
   margin: 0 auto;
-  width: clamp(200px, 60vw, 340px);
-  aspect-ratio: 340 / 36; 
-  background: url("/images/mBwordmark.svg") no-repeat center/contain;
-}
-
-.mbwordmark:hover {
-  background-image: url("/images/mBwordmark2.svg");
+  max-width: 340px;
+  height: auto;
 }
 .nav{
     padding: .5rem;
