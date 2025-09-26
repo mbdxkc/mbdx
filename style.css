@@ -96,6 +96,18 @@ html,body{height:100%}
     gap:.5rem;
     justify-self: end;
 }
+a[href*="instagram"] img:hover {
+  content: url("/images/instagram_bright.svg");
+}
+a[href*="dribbble"] img:hover {
+  content: url("/images/dribbble_bright.svg");
+}
+a[href*="x.com"] img:hover {
+  content: url("/images/twitter_bright.svg");
+}
+a[href*="github"] img:hover {
+  content: url("/images/github_bright.svg");
+}
 
 /* ------- body ------- */
 body{
