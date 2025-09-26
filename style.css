@@ -28,7 +28,7 @@ html,body{height:100%}
 /* ------- breakpoints ------- */
 @media(max-width:450px) {
   .mb_wordmark {
-    display: none;
+    visibility: hidden;
   }
 }
 
