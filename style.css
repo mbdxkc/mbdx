@@ -111,6 +111,14 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: 700;
   line-height: 1.2;
 }
+a {
+  color: var(--pink);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--yellow);
+  text-decoration: none;
+}
 p {
   margin: 0 0 1em;
 }
@@ -195,8 +203,10 @@ small {
   -webkit-backdrop-filter: saturate(140%) blur(6px);
   border-top: 1px solid rgba(255,255,255,.12);
   font-size: 0.5rem;
-  text-align: center;
-  display:grid; align-items:center; gap:1rem;
+  display: flex;              
+  justify-content: center;   
+  align-items: center;       
+  gap: 1rem;                
   padding: .5rem;
 }
 

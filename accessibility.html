@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+    <head>
+        <title>accessibility statement</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css?v=9">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/mb.png">
+        <link rel="apple-touch-icon" href="/images/mb.png">
+        <link rel="shortcut icon" href="/images/mb.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
+    </head>
+
+    <body>
+        
+        <header class="site_header" role="banner">
+            <div class="header_grid container">
+                <nav class="nav" role="navigation">
+                    <a href="#" class="is-active">link</a>
+                    <a href="#">link</a>
+                    <a href="#">link</a>
+                </nav>
+                <div class="mb_wordmark">
+                    <a href="/index.html" aria-label="medios brillantes home">
+                    <canvas id="mb_wordmark" width="340" height="36"></canvas>
+                    </a>
+                </div>                
+                <div class="socials">
+                    <span class="circle">social</span>
+                    <span class="circle">social</span>
+                    <span class="circle">social</span>
+                </div>            
+            </div>
+        </header>
+
+        <div id="main_container" class="container" role="main">
+            <div id="section1" class="section_container">
+                <div class="section_left">
+                    <h1>accessibility statement</h1>
+                        <p>
+                        This statement was last updated on May 6, 2025.
+                        </p>
+                        <p>We at medios brillantes are committed to ensuring that our website, https://www.mediosbrillantes.com, 
+                        is accessible to people with disabilities. We are actively working to improve the user experience for everyone, 
+                        and we aim to comply with relevant accessibility standards, including the Web Content Accessibility Guidelines (WCAG) 2.1.
+                        </p>
+                        <p>
+                        If you experience any difficulty accessing content on this site, or if you have suggestions for how we can improve accessibility, 
+                        please contact us at <a href="https://www.mediosbrillantes.com/contact.html">mediosbrillantes.com/contact.html</a>. We value your feedback 
+                        and will do our best to accommodate your needs.
+                        </p>
+                    <h2>What web accessibility is</h2>
+                        <p>An accessible site allows visitors with disabilities to browse the site with the same or a similar level of ease and enjoyment 
+                        as other visitors. This can be achieved with the capabilities of the system on which the site is operating, and through assistive 
+                        technologies.
+                        </p>
+                    <h2>Accessibility adjustments on this site</h2>
+                        <p>We have adapted this site in accordance with WCAG 2.1 guidelines and have made the site accessible to the level of AA. The site’s 
+                        content is designed to work with assistive technologies such as screen readers and keyboard navigation. 
+                        </p>
+                    <h2>We have implemented the following measures to enhance accessibility:</h2>
+                        <ul>
+                            <li>Aligned the site with WCAG 2.1 Level AA standards</li>
+                            <li>Ensured compatibility with assistive technologies (e.g., screen readers, keyboard navigation)</li>
+                            <li>Defined a clear and consistent heading structure</li>
+                            <li>Set the site’s default language for assistive software</li>
+                            <li>Organized content in a logical reading order</li>
+                            <li>Added descriptive alternative text to all images</li>
+                            <li>Used high-contrast, accessible color combinations</li>
+                            <li>Minimized the use of motion and animations</li>
+                            <li>Made videos, audio files, and downloadable documents accessible</li>
+                        </ul>
+                </div>
+                <div class="section_box_right">
+                    <img class="logo" src="/images/mB.svg" alt="mediosBrillantes" aria-label="medios brillantes logo">
+                </div>
+            </div>
+        </div>
+    <footer class="footer" role="contentinfo">
+        <p>© 2025 mediosBrillantes</p>
+        <p><a href="/accessibility.html">accessibility statement</a></p>
+        <p><a href="/privacy.html">privacy policy</a></p>
+    </footer>
+
+    <script>
+        new rive.Rive({
+            src: "/media/mb_wordmark.riv", 
+            canvas: document.getElementById("mb_wordmark"),
+            autoplay: true,
+            stateMachines: "State Machine 1", 
+            onLoad: () => {
+            console.log("rive animation loaded!");
+            }
+        });
+    </script>
+
+    </body>
+
+</html>
