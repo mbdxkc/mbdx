@@ -27,18 +27,9 @@ html,body{height:100%}
 
 /* ------- breakpoints ------- */
 @media(max-width:450px) {
-  .section_container {
-    flex-direction: column;
-    padding: 0 1rem;
-  }
-  #main_container {
-    max-width: 100vw;
-    width: 100%;
-  }
   .mb_wordmark {
     display: none;
   }
-  
 }
 
 /* --------- header --------- */
