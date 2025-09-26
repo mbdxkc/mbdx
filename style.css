@@ -30,6 +30,10 @@ html,body{height:100%}
   .mb_wordmark {
     visibility: hidden;
   }
+  .socials img {
+  width: 48px;
+  height: auto; 
+  }
 }
 
 /* --------- header --------- */
