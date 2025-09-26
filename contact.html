@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+    <head>
+        <title>contact</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css?v=9">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/mb.png">
+        <link rel="apple-touch-icon" href="/images/mb.png">
+        <link rel="shortcut icon" href="/images/mb.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
+    </head>
+
+    <body>
+        
+        <header class="site_header" role="banner">
+            <div class="header_grid container">
+                <nav class="nav" role="navigation">
+                    <a href="#" class="is-active">link</a>
+                    <a href="#">link</a>
+                    <a href="#">link</a>
+                </nav>
+                <div class="mb_wordmark">
+                    <a href="/index.html" aria-label="medios brillantes home">
+                    <canvas id="mb_wordmark" width="340" height="36"></canvas>
+                    </a>
+                </div>                
+                <div class="socials">
+                    <span class="circle">social</span>
+                    <span class="circle">social</span>
+                    <span class="circle">social</span>
+                </div>            
+            </div>
+        </header>
+
+        <div id="main_container" class="container" role="main">
+            <div id="section1" class="section_container">
+                <div class="section_left">
+                    <h1>contact mediosBrillantes</h1>
+                    <p>¿Qué sucede cuando lo has perdido todo? ¿Angustia, desesperación, depresión? Quizás. Pero 
+                        cuando no te queda nada, también puedes tenerlo todo. Esto es lo que mi apartamento ha 
+                        representado para mí durante el año pasado.
+                    </p>
+                </div>
+                <div class="section_box_right">
+                    <img class="logo" src="/images/mB.svg" alt="mediosBrillantes" aria-label="medios brillantes logo">
+                </div>
+            </div>
+        </div>
+
+    <footer class="footer" role="contentinfo">
+        <p><a href="/index.html">© 2025 mediosBrillantes</a></p>
+        <p><a href="/accessibility.html">accessibility statement</a></p>
+        <p><a href="/privacy.html">privacy policy</a></p>
+    </footer>
+
+    <script>
+        new rive.Rive({
+            src: "/media/mb_wordmark.riv", 
+            canvas: document.getElementById("mb_wordmark"),
+            autoplay: true,
+            stateMachines: "State Machine 1", 
+            onLoad: () => {
+            console.log("rive animation loaded!");
+            }
+        });
+    </script>
+
+    </body>
+
+</html>
