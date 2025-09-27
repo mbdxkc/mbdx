@@ -1,110 +1,43 @@
 /* --------- tokens --------- */
 :root{
-  /* ===== Colors ===== */
-  --bg: rgba(0,0,0,.9);             /* page background */
-  --text: rgba(255,255,255,.87);    /* default body text */
-  --muted: rgba(255,255,255,.7);    /* secondary / muted text */
+  --bg:rgba(0,0,0,.9);
+  --text:rgba(255,255,255,.87);
+  --muted:rgba(255,255,255,.7);
 
-  --blue: #008DDA;                  /* primary accent (links, nav, etc.) */
-  --pink: #FF2DF1;                  /* secondary accent (active link, underline) */
-  --yellow: #FFFF00;                /* highlight / hover accent */
+  --blue:#008DDA;
+  --pink:#FF2DF1;
+  --yellow:#FFFF00;
 
-  --grad-start-blue: #008DDA;       /* gradient start for blue sections */
-  --grad-end-blue: #caecff;         /* gradient end for blue sections */
-  --grad-start-silver: #eaeaea;     /* gradient start for silver sections */
-  --grad-end-silver: #373737;       /* gradient end for silver sections */
+  --grad-start-blue:#008DDA;
+  --grad-end-blue:#caecff;
+  --grad-start-silver:#eaeaea;
+  --grad-end-silver:#373737;
 
-  /* ===== Radii (rounded corners) ===== */
-  --radius-sm: 12px;                /* small corner rounding */
-  --radius-lg: 20px;                /* medium corner rounding (used on sections) */
-  --radius-xl: 28px;                /* large corner rounding */
+  --radius-lg:20px;
+  --radius-xl:28px;
+  --container:1200px;
 
-  /* ===== Layout ===== */
-  --container: 1200px;              /* max width for main content */
-  --container-pad-x: 1rem;          /* horizontal padding inside container */
-  --section-gap: 2rem;              /* gap between major sections */
+  --shadow:6px 4px 4px 2px rgba(255,255,255,.2);
+  --shadow-left:-6px 4px 4px 2px rgba(255,255,255,.2);
 
-  /* ===== Spacing scale ===== */
-  --space-0: 0;                     /* no space */
-  --space-1: .25rem;                /* 4px */
-  --space-2: .5rem;                 /* 8px */
-  --space-3: .75rem;                /* 12px */
-  --space-4: 1rem;                  /* 16px */
-  --space-6: 1.5rem;                /* 24px */
-  --space-8: 2rem;                  /* 32px */
-
-  /* ===== Typography ===== */
-  --font-sans: 'Nunito Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;  
-                                     /* base font stack */
-  --fs-sm: .875rem;                 /* small text (≈14px) */
-  --fs-base: 1rem;                  /* base text size (16px) */
-  --fs-lg: 1.125rem;                /* large text (18px) */
-  --lh-tight: 1.2;                  /* tight line-height for headings */
-  --lh-normal: 1.5;                 /* normal line-height for body text */
-
-  /* ===== Z-index layers ===== */
-  --z-base: 1;                      /* base elements */
-  --z-header: 9999;                 /* header/nav */
-  --z-overlay: 10000;               /* modals, overlays, dropdowns */
-
-  /* ===== Header ===== */
-  --header-h: 64px;                 /* fixed header height */
-  --header-bg: rgba(0,0,0,.35);     /* translucent bg tint for header */
-
-  /* ===== Icons + Navigation ===== */
-  --icon: 24px;                     /* default icon size */
-  --icon-sm: 20px;                  /* small icon size */
-  --icon-lg: 32px;                  /* large icon size (mobile/touch) */
-  --nav-gap: .5rem;                 /* spacing between nav links */
-  --underline-thickness: 2px;       /* nav link underline thickness */
-
-  /* ===== Borders & Shadows ===== */
-  --border: 1px solid rgba(255,255,255,.12);  /* default border */
-  --shadow-color: rgba(0,0,0,.35);            /* shadow base color */
-  --shadow: 0 10px 30px var(--shadow-color);  /* default shadow */
-  --shadow-left: -6px 4px 4px 2px rgba(255,255,255,.2); /* offset shadow */
-  --shadow-inset: inset 0 1px 0 rgba(255,255,255,.06);  /* subtle inset shadow */
-
-  /* ===== Motion / Transitions ===== */
-  --ease: cubic-bezier(.2,.8,.2,1); /* smooth easing curve */
-  --dur-1: .15s;                    /* quick duration */
-  --dur-2: .3s;                     /* standard duration */
-
-  /* ===== Breakpoints ===== */
-  --bp-sm: 450px;                   /* small devices (phones) */
-  --bp-md: 768px;                   /* medium devices (tablets) */
-  --bp-lg: 1200px;                  /* large devices (desktop) */
-
-  /* ===== State colors ===== */
-  --success: #16a34a;               /* green success */
-  --warning: #f59e0b;               /* yellow/orange warning */
-  --danger:  #ef4444;               /* red error */
-  --info:    #0ea5e9;               /* blue info */
-
-  /* ===== Focus ring (accessibility) ===== */
-  --focus-ring: 0 0 0 3px rgba(0,141,218,.35);  /* glow for :focus-visible */
+  --header-h: 64px;
 }
 
-/* --------- tokens --------- */
-/* (keeping your commented :root from earlier as-is) */
-
-
 /* --------- base --------- */
-*, *::before, *::after { box-sizing: border-box }
-html, body { height: 100% }
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
 
 /* ------- breakpoints ------- */
-/* changed: use tokenized breakpoint + tokenized icon sizes */
-@media (max-width: var(--bp-sm)) {                       
+@media(max-width:450px) {
   .mb_wordmark {
-    display: none;                                        
+    visibility: hidden;
   }
   .socials a {
-    width: var(--icon-lg);                            
-    height: var(--icon-lg);                        
+    width: 32px;       
+    height: 32px;       
   }
   .socials img {
-    width: var(--icon-lg);                            
+    width: 32px;       
     height: auto;
   }
 }
@@ -113,65 +46,66 @@ html, body { height: 100% }
 .site_header{
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: var(--header-h);                             
-  z-index: var(--z-header);                          
-  background: var(--header-bg);                         
-  backdrop-filter: saturate(140%) blur(6px);
-  -webkit-backdrop-filter: saturate(140%) blur(6px);
-  border-bottom: var(--border);                       
+  height: var(--header-h);
+  z-index: 9999;
+  backdrop-filter:saturate(140%) blur(6px);
+  -webkit-backdrop-filter:saturate(140%) blur(6px);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  backdrop-filter:saturate(140%) blur(6px);
+  -webkit-backdrop-filter:saturate(140%) blur(6px);
+  border-bottom:1px solid rgba(255,255,255,.12);
 }
 .header_grid{
   justify-items: center;
-  height: 100%;
-  display: grid; 
-  align-items: center; 
-  gap: var(--space-4);                               
-  grid-template-columns: 1fr 1fr 1fr;
-  padding: 0 var(--container-pad-x);             
+  height:100%;
+  display:grid; align-items:center; gap:1rem;
+  grid-template-columns:1fr 1fr 1fr;
+  padding: 0 1rem;
 }
 #mb_wordmark {
   justify-self: center;
   width: 100%;
   height: auto;
   display: block;
-  aspect-ratio: 340 / 36;                               
+  aspect-ratio: 340 / 36;
 }
-
 .nav{
-  padding: var(--space-2);                           
-  display:flex;
-  gap: var(--nav-gap);                              
-  justify-self: start;
+    padding: .5rem;
+    display:flex;
+    gap:.5rem;
+    justify-self: start;
 }
 .nav a{
-  color: var(--blue);
-  text-decoration: none;
-  padding: var(--space-2) var(--space-2);           
-  border-radius: var(--radius-sm);              
-  position: relative;
-  transition: color var(--dur-1) var(--ease);            
-}
+    color: var(--blue);
+    text-decoration: none;
+    padding: .5rem .5rem;
+    border-radius: 6px;
+    position: relative;}
 .nav a.is-active{
-  color: var(--pink);
+    color: var(--pink);
 }
-.nav a.hidden{ display: none; }
-.nav a:hover { color: var(--yellow); }
+.nav a.hidden{
+  display: none;
+}
+.nav a:hover {
+  color: var(--yellow);
+}
 .nav a::after {
   content: "";
   position: absolute;
   left: 0; bottom: 0;
-  width: 0; 
-  height: var(--underline-thickness);                
+  width: 0; height: 2px;
   background: var(--pink);
-  transition: width var(--dur-2) var(--ease);          
+  transition: width .3s ease;
 }
-.nav a:hover::after { width: 100%; }
-
+.nav a:hover::after {
+  width: 100%;
+}
 .socials{
-  padding: var(--space-6);                         
-  display:flex;
-  gap: var(--space-2);                                 
-  justify-self: end;
+    padding: 1.5rem;
+    display:flex;
+    gap:.5rem;
+    justify-self: end;
 }
 .socials a {
   display: inline-flex;
@@ -179,103 +113,115 @@ html, body { height: 100% }
   justify-content: center;
 }
 .socials img {
-  width: var(--icon);                                   
+  width: 24px;
   height: auto;
 }
-
-a[href*="instagram"] img:hover { content: url("/images/instagram_bright.svg"); }
-a[href*="dribbble"] img:hover { content: url("/images/dribbble_bright.svg"); }
-a[href*="x.com"] img:hover     { content: url("/images/twitter_bright.svg"); }
-a[href*="github"] img:hover    { content: url("/images/github_bright.svg"); }
+a[href*="instagram"] img:hover {
+  content: url("/images/instagram_bright.svg");
+}
+a[href*="dribbble"] img:hover {
+  content: url("/images/dribbble_bright.svg");
+}
+a[href*="x.com"] img:hover {
+  content: url("/images/twitter_bright.svg");
+}
+a[href*="github"] img:hover {
+  content: url("/images/github_bright.svg");
+}
 
 /* ------- body ------- */
 body{
-  margin: 0;
-  padding-top: var(--header-h);                         
-  color: var(--text);
+  margin:0;
+  padding-top: var(--header-h);
+  color:var(--text);
   background: var(--bg) url("/images/themlines.png") top left / auto repeat;
-  font-family: var(--font-sans);                      
+  font-family:'Nunito Sans', sans-serif;
 }
-h1, h2, h3, h4, h5, h6 {
-  margin: 0 0 var(--space-4);                         
+h1,h2,h3,h4,h5,h6 {
+  margin: 0 0 .5em;
   font-weight: 700;
-  line-height: var(--lh-tight);                       
-  font-size: clamp(1.75rem, 1.25rem + 2vw, 2.5rem);
+  line-height: 1.2;
 }
 a {
   color: var(--pink);
   text-decoration: none;
-  transition: color var(--dur-1) var(--ease);      
 }
 a:hover {
   color: var(--yellow);
   text-decoration: none;
 }
-p { margin: 0 0 var(--space-6); }                   
+p {
+  margin: 0 0 1em;
+}
 small {
   color: var(--muted);
-  font-size: var(--fs-sm);                    
+  font-size: 0.875rem;
 }
 
 /* ------- main -------- */
 #main_container {
-  max-width: var(--container);                       
-  margin: 0 auto;
-  padding: 0 var(--container-pad-x);              
+  max-width:var(--container);margin:0 auto;padding:0 1rem;
   display: grid;
   grid-auto-rows: auto;
-  /* margin-bottom: 10%; (left commented out) */
+  /*margin-bottom: 10%;*/
 }
 
 /* ------- sections ------- */ 
 .section_container {
   display: flex;
   justify-content:start;
-  margin: var(--space-8);                               
-  gap: var(--section-gap);                              
+  margin: 2%;
 }
 .section_left {
   justify-self: start;
   justify-content: center;
   align-items: center;    
   text-align: left; 
-  z-index: var(--z-base);                              
+  z-index: 1;
   width: 80%;
   min-height: 300px;
-  font-size: var(--fs-lg);                               
-  padding: var(--space-8) 12% var(--space-8) var(--space-8); 
-  margin: var(--space-8);                                
-  border: 1px solid rgba(255, 255, 255, .8);             
-  border-radius: var(--radius-lg);                      
-  background: linear-gradient(135deg, var(--grad-start-blue), var(--grad-end-blue));
-  box-shadow: var(--shadow-left);                      
+  font-size: 1.2rem;
+  padding: 2rem 12% 2rem 2rem;
+  margin: 2%;
+  border: 1px solid rgba(255, 255, 255, .8);
+  border-radius: var(--radius-lg); 
+  background: linear-gradient(
+    135deg,
+    var(--grad-start-blue),
+    var(--grad-end-blue)
+  );
+  box-shadow: var(--shadow-left); 
 }
 .section_right {
   justify-self: end;
   justify-content: center;
   align-items: center;    
   text-align: left; 
-  z-index: var(--z-base);                               
+  z-index: 1;
   width: 80%;
   min-height: 300px;
-  font-size: var(--fs-lg);                              
-  margin: var(--space-8);                                
-  padding: var(--space-8) var(--space-8) var(--space-8) 12%; 
+  font-size: 1.2rem;
+  margin: 2%;
+  padding: 2rem 2rem 2rem 12%;
   border: 1px solid rgba(255, 255, 255, .8);
-  border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--grad-start-silver), var(--grad-end-silver));
-  box-shadow: var(--shadow);                            
+  border-radius: var(--radius-lg); 
+  background: linear-gradient(
+    135deg,
+    var(--grad-start-silver),
+    var(--grad-end-silver)
+  );
+  box-shadow: var(--shadow); 
 }
 .section_box_right {
-  z-index: calc(var(--z-base) + 1);                       
-  margin: 0 0 -10% -10%;                                
+  z-index: 2;
+  margin: 0 0 -10% -10%;
   width: 40%;
   height: 80%;
   justify-self: end;
 }
 .section_box_left {
-  z-index: calc(var(--z-base) + 1);                       
-  margin: 0 -10% -10% 0;                                
+  z-index: 2;
+  margin: 0 -10% -10% 0;
   width: 40%;
   height: 80%;
   justify-self: start;
@@ -286,33 +232,24 @@ small {
   height: 32px; 
   backdrop-filter: saturate(140%) blur(6px);
   -webkit-backdrop-filter: saturate(140%) blur(6px);
-  border-top: var(--border);                              
-  font-size: var(--fs-sm);                               
+  border-top: 1px solid rgba(255,255,255,.12);
+  font-size: 0.5rem;
   display: flex;              
   justify-content: center;   
   align-items: center;       
-  gap: var(--space-4);                                   
-  padding: var(--space-2);                            
+  gap: 1rem;                
+  padding: .5rem;
 }
 
 /* ------- images ------- */
 img { display:block; max-width:100%; height:auto; }
-.logo, .section_image {
+.logo {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
-
-/* ===== accessibility polish ===== */
-/* added: consistent focus ring using token */
-a:focus-visible, button:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
-  border-radius: var(--radius-sm);
-}
-
-/* ===== reduced motion ===== */
-/* added: respect OS preference to reduce motion */
-@media (prefers-reduced-motion: reduce){
-  * { animation: none !important; transition: none !important; }
+.section_image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
