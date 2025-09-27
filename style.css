@@ -19,6 +19,8 @@
 
   --shadow:6px 4px 4px 2px rgba(255,255,255,.2);
   --shadow-left:-6px 4px 4px 2px rgba(255,255,255,.2);
+
+  --header-h: 64px;
 }
 
 /* --------- base --------- */
@@ -42,7 +44,13 @@ html,body{height:100%}
 
 /* --------- header --------- */
 .site_header{
-  position:sticky; top:0; z-index:50; height:64px;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-h);
+  z-index: 9999;
+  backdrop-filter:saturate(140%) blur(6px);
+  -webkit-backdrop-filter:saturate(140%) blur(6px);
+  border-bottom:1px solid rgba(255,255,255,.12);
   backdrop-filter:saturate(140%) blur(6px);
   -webkit-backdrop-filter:saturate(140%) blur(6px);
   border-bottom:1px solid rgba(255,255,255,.12);
@@ -56,11 +64,6 @@ html,body{height:100%}
 }
 #mb_wordmark {
   justify-self: center;
-  margin: 0 auto;
-  max-width: 340px;
-  height: auto;
-}
-#mb_wordmark {
   width: 100%;
   height: auto;
   display: block;
@@ -129,6 +132,7 @@ a[href*="github"] img:hover {
 /* ------- body ------- */
 body{
   margin:0;
+  padding-top: var(--header-h);
   color:var(--text);
   background: var(--bg) url("/images/themlines.png") top left / auto repeat;
   font-family:'Nunito Sans', sans-serif;
