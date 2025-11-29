@@ -50,15 +50,14 @@ html,body{height:100%}
   z-index: 9999;
   backdrop-filter:saturate(140%) blur(6px);
   -webkit-backdrop-filter:saturate(140%) blur(6px);
-  border-bottom:1px solid rgba(255,255,255,.12);
   backdrop-filter:saturate(140%) blur(6px);
-  -webkit-backdrop-filter:saturate(140%) blur(6px);
-  border-bottom:1px solid rgba(255,255,255,.12);
 }
 .header_grid{
   justify-items: center;
   height:100%;
-  display:grid; align-items:center; gap:1rem;
+  display:grid; 
+  align-items:center; 
+  gap:1rem;
   grid-template-columns:1fr 1fr 1fr;
   padding: 0 1rem;
 }
