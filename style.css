@@ -69,8 +69,9 @@ html,body{height:100%}
   aspect-ratio: 340 / 36;
 }
 #mb_logo_riv {
-  width: 100%;
+  width: min(110%, 500px); /* increase size here */
   height: auto;
+  aspect-ratio: 500 / 500;
 }
 .nav{
     padding: .5rem;
