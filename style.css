@@ -68,6 +68,10 @@ html,body{height:100%}
   display: block;
   aspect-ratio: 340 / 36;
 }
+#mb_logo_riv {
+  width: 100%;
+  height: auto;
+}
 .nav{
     padding: .5rem;
     display:flex;
