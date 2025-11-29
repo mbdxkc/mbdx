@@ -69,7 +69,7 @@ html,body{height:100%}
   aspect-ratio: 340 / 36;
 }
 #mb_logo_riv {
-  width: min(110%, 500px); /* increase size here */
+  width: min(100%, 500px);
   height: auto;
   aspect-ratio: 500 / 500;
 }
