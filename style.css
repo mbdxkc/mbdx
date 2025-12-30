@@ -5,340 +5,401 @@
 
 /* =========================================================
    1) design tokens (css variables)
+   - single source of truth for colors, sizes, spacing, etc.
+   - update these first when changing the “theme”
    ========================================================= */
 :root{
-  --bg: rgba(0,0,0,.9);
-  --text: rgba(255,255,255,.87);
-  --muted: rgba(255,255,255,.7);
+  --bg: rgba(0,0,0,.9);                 /* page background color (and base layer under the tiled image) */
+  --text: rgba(255,255,255,.87);        /* default body text color on dark bg */
+  --muted: rgba(255,255,255,.7);        /* muted/subtle text color */
 
-  --blue:   #008DDA;
-  --pink:   #FF2DF1;
-  --yellow: #FFFF00;
+  --blue:   #008DDA;                    /* brand accent: blue (links, etc.) */
+  --pink:   #FF2DF1;                    /* brand accent: pink (active link + hover underline) */
+  --yellow: #FFFF00;                    /* brand accent: yellow (hover state) */
 
-  --grad-start-blue:   #008DDA;
-  --grad-end-blue:     #caecff;
-  --grad-start-silver: #eaeaea;
-  --grad-end-silver:   #373737;
+  --grad-start-blue:   #008DDA;         /* section gradient (blue start) */
+  --grad-end-blue:     #caecff;         /* section gradient (blue end) */
+  --grad-start-silver: #eaeaea;         /* section gradient (silver start) */
+  --grad-end-silver:   #373737;         /* section gradient (silver end) */
 
-  --radius-lg: 20px;
-  --radius-xl: 28px;
-  --container: 1200px;
+  --radius-lg: 20px;                    /* standard card corner radius */
+  --radius-xl: 28px;                    /* larger corner radius (if needed elsewhere) */
+  --container: 1200px;                  /* max content width */
 
-  --shadow:       6px 4px 4px 2px rgba(255,255,255,.2);
-  --shadow-left: -6px 4px 4px 2px rgba(255,255,255,.2);
+  --shadow:       6px 4px 4px 2px rgba(255,255,255,.2);     /* “right” shadow used on silver sections */
+  --shadow-left: -6px 4px 4px 2px rgba(255,255,255,.2);     /* “left” shadow used on blue sections */
 
-  --header-h: 42px;
+  --header-h: 42px;                     /* header height on desktop */
+  /* NOTE: if items look cramped vertically, increase this slightly (ex: 56px). */
 }
 
 
 /* =========================================================
    2) base reset + global safeguards
+   - consistent box sizing
+   - prevent mobile horizontal scroll
    ========================================================= */
-*,*::before,*::after{ box-sizing:border-box; }
-html,body{ height:100%; }
-html,body{ overflow-x:hidden; } /* prevents sideways scroll on mobile */
+*,*::before,*::after{ box-sizing:border-box; } /* makes padding/borders behave predictably */
+html,body{ height:100%; }                       /* allows full-height layout patterns */
+html,body{ overflow-x:hidden; }                 /* prevents sideways scroll from wide elements on mobile */
 
 
 /* =========================================================
    3) header shell (full-width sticky bar)
-   - full width background / blur
-   - centers an inner max-width content grid
+   - keeps header pinned at top (sticky)
+   - creates glassy blur effect over content behind it
+   - does NOT center children; centering is handled inside .header-grid/.nav
    ========================================================= */
 .site-header{
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-  width: 100%;
-  height: var(--header-h);
-  backdrop-filter: saturate(140%) blur(6px);
-  -webkit-backdrop-filter: saturate(140%) blur(6px);
+  position: sticky;                             /* sticks at top as you scroll */
+  top: 0;                                       /* sticky anchor */
+  z-index: 9999;                                /* keep above page content */
+
+  width: 100%;                                  /* full-width bar */
+  height: var(--header-h);                      /* fixed bar height */
+
+  backdrop-filter: saturate(140%) blur(6px);    /* glassy blur (supported browsers) */
+  -webkit-backdrop-filter: saturate(140%) blur(6px); /* Safari version of blur */
+  /* NOTE: remove both backdrop-filter lines if you don't want the frosted/glass effect. */
 }
 
 
 /* =========================================================
-   4) header grid (inner max-width container)
-   - holds: nav-left | title | socials
-   - stretched to fill the header width, but capped at --container
+   4) header layout (grid applied to the nav *inside* header-grid)
+   - this targets the exact structure:
+       .header-grid > .nav
+   - nav becomes the 3-column grid:
+       left (1fr) | title (auto) | socials (1fr)
+   - 1fr on both sides helps keep the title visually centered
    ========================================================= */
 .header-grid > .nav{
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  width: 100%;
+  display: grid;                                /* enables grid layout for the three header chunks */
+  grid-template-columns: 1fr auto 1fr;          /* left grows | title fits content | right grows */
+  align-items: center;                          /* vertically center all three chunks */
+  width: 100%;                                  /* stretch nav to full width of its container */
+  /* NOTE: you may want height:100% here if you want nav to fill header vertically:
+     height: 100%;
+     (add it if vertical centering ever looks off) */
 }
 
-/* force each group into its column */
-.nav-left{ justify-self: start; display:flex; align-items:center; gap: .75rem; flex-wrap: nowrap; }
-.header-title{ justify-self: center; display:flex; align-items:center; }
-.socials{ justify-self: end; display:flex; align-items:center; gap: .75rem; }
+/* force each group into its column
+   - these are the “grid items” that sit in the 3 columns
+   - each also becomes a flex row to align its own children neatly */
+.nav-left{
+  justify-self: start;                          /* push the whole block to left edge of its column */
+  display:flex;                                 /* lay out the links in a row */
+  align-items:center;                           /* vertically align links in the header */
+  gap: .75rem;                                  /* spacing between links */
+  flex-wrap: nowrap;                            /* keep links on one line (prevents stacking) */
+  /* NOTE: if links ever wrap on very small screens, consider:
+     flex-wrap: wrap; (but only if you *want* wrapping instead of shrinking) */
+}
+.header-title{
+  justify-self: center;                         /* keep title centered in the middle column */
+  display:flex;                                 /* helps vertical centering of the <p> */
+  align-items:center;                           /* vertical align the title text */
+}
+.socials{
+  justify-self: end;                            /* push the socials block to right edge of its column */
+  display:flex;                                 /* lay out icons in a row */
+  align-items:center;                           /* vertical align icons */
+  gap: .75rem;                                  /* spacing between icons */
+  /* NOTE: if icons need to hug the right padding more/less, adjust padding on .socials below. */
+}
 
 
 /* =========================================================
    6) title
-   - stays centered in the middle column
+   - typography for the “mediaBrilliance” text
+   - uses clamp() for responsive sizing
    ========================================================= */
 .header-title{
-  justify-self: center;
-  min-width: 0;
+  justify-self: center;                         /* (redundant but safe) ensures title stays centered */
+  min-width: 0;                                 /* prevents overflow issues in grid/flex combos */
 }
 .dark-title{
-  margin: 0;
-  line-height: 1.05;
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 100;
-  font-size: clamp(0.5rem, 3.5vw, 2rem);
-  color: rgba(0,0,0,.5);
-  white-space: nowrap;
+  margin: 0;                                    /* remove default paragraph margin */
+  line-height: 1.05;                            /* tighter line height for compact header */
+  font-family: 'Nunito Sans', sans-serif;       /* title font */
+  font-weight: 100;                             /* thin weight */
+  font-size: clamp(0.5rem, 3.5vw, 2rem);        /* responsive scaling between 0.5rem and 2rem */
+  color: rgba(0,0,0,.5);                        /* 50% black (semi-transparent) */
+  white-space: nowrap;                          /* prevent title from wrapping */
+  /* NOTE: if the title overlaps other items, reduce max (2rem) or hide on smaller breakpoints. */
 }
 
 
 /* =========================================================
    7) left nav links
+   - styles for the “home / contact” links on the left
    ========================================================= */
 .nav-left{
-  justify-self: start;          /* positions the block in the grid */
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;  /* positions items inside the block */
-  gap: clamp(.25rem, 2vw, .75rem);
+  justify-self: start;                          /* positions the block in the grid */
+  display: flex;                                /* row layout for the links */
+  align-items: center;                          /* vertical center */
+  justify-content: flex-start;                  /* keep link row aligned to the left inside the block */
+  gap: clamp(.25rem, 2vw, .75rem);              /* responsive spacing between links */
 }
 
 .nav-left a{
-  color: var(--blue);
-  text-decoration: none;
+  color: var(--blue);                           /* default link color */
+  text-decoration: none;                        /* no underline by default */
 
-  padding: .45em .6em;      /* scales with font size */
-  border-radius: 6px;
-  position: relative;
+  padding: .45em .6em;                          /* clickable padding; scales with font size */
+  border-radius: 6px;                           /* soft corner on hover/focus states */
+  position: relative;                           /* anchor for the underline pseudo-element */
 
-  font-size: clamp(0.25rem, 2.2vw, 0.95rem);
+  font-size: clamp(0.25rem, 2.2vw, 0.95rem);    /* responsive link size */
+  /* NOTE: 0.25rem is extremely small; if readability matters, consider raising min to ~0.75rem.
+     (do not change here; just a note for future refinement) */
 }
-.nav-left a.is-active{ color: var(--pink); }
-.nav-left a.hidden{ display: none; }
+.nav-left a.is-active{ color: var(--pink); }    /* active page indicator */
+.nav-left a.hidden{ display: none; }            /* utility: hide specific nav items */
 
-.nav-left a:hover{ color: var(--yellow); }
+.nav-left a:hover{ color: var(--yellow); }      /* hover color shift */
 .nav-left a::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 2px;
-  background: var(--pink);
-  transition: width .3s ease;
+  content: "";                                  /* required for pseudo-element */
+  position: absolute;                           /* position relative to link */
+  left: 0;                                      /* start underline from left */
+  bottom: 0;                                    /* sit underline at bottom of link box */
+  width: 0;                                     /* animate from 0 to 100% */
+  height: 2px;                                  /* underline thickness */
+  background: var(--pink);                      /* underline color */
+  transition: width .3s ease;                   /* smooth underline growth */
 }
-.nav-left a:hover::after{ width: 100%; }
+.nav-left a:hover::after{ width: 100%; }        /* underline expands on hover */
 
 
 /* =========================================================
    8) socials (right side icons)
+   - layout and sizing for social icon links
    ========================================================= */
 .socials{
-  justify-self: end;
-  padding: 0 .5rem 0 0;
-  gap: clamp(.35rem, 1.5vw, .75rem);
+  justify-self: end;                            /* keeps the socials block on the right side */
+  padding: 0 .5rem 0 0;                         /* right padding so icons don't touch the edge */
+  gap: clamp(.35rem, 1.5vw, .75rem);            /* responsive spacing between icons */
+  /* NOTE: this rule is missing display:flex and align-items in THIS block,
+     but you already set them above in “force each group into its column”.
+     (safe as-is; redundancy is optional) */
 }
 .socials a{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-flex;                         /* keeps each icon link as a tight inline-flex box */
+  align-items: center;                          /* vertical center for icons */
+  justify-content: center;                      /* horizontal center for icons */
 }
 .socials img{
-  width: clamp(18px, 5vw, 24px);
-  height: auto;
-  display: block;
+  width: clamp(18px, 5vw, 24px);                /* responsive icon size */
+  height: auto;                                 /* keep SVG aspect ratio */
+  display: block;                               /* removes inline image baseline spacing */
+  /* NOTE: consider adding alt="" in HTML for accessibility if these are decorative icons. */
 }
 
-/* hover icon swaps */
+/* hover icon swaps
+   - swaps dark icons to bright variants on hover */
 a[href*="instagram"] img:hover { content: url("/images/instagram_bright.svg"); }
 a[href*="dribbble"]  img:hover { content: url("/images/dribbble_bright.svg"); }
 a[href*="x.com"]     img:hover { content: url("/images/twitter_bright.svg"); }
 a[href*="github"]    img:hover { content: url("/images/github_bright.svg"); }
+  /* NOTE: “content: url()” on <img> hover works in some browsers but can be inconsistent.
+     A more robust pattern is swapping via background-image on a span, or using <picture>.
+     (do not change here; just flagging for future hardening) */
 
 
 /* =========================================================
-   9) mobile header behavior (your “last working” style)
+   9) mobile header behavior (“last working” style)
    - keep a single row
    - scale left/right groups slightly
-   - hide title on small screens
+   - hide title on small screens to prevent crowding
    ========================================================= */
 @media (max-width: 450px){
-  :root{ --header-h: 64px; }
+  :root{ --header-h: 64px; }                    /* increase header height on mobile */
 
   .nav-left,
   .socials{
-    transform: scale(.9);
-    transform-origin: center;
+    transform: scale(.9);                       /* shrink slightly to fit */
+    transform-origin: center;                   /* scale from center so it doesn't drift */
+    /* NOTE: scaling text/icons can reduce crispness; an alternative is reducing font-size/icon size.
+       (do not change here; just an option) */
   }
 
-  .socials{ gap: .35rem; }
-  .nav-left{ gap: .5rem; }
+  .socials{ gap: .35rem; }                      /* tighten icon spacing */
+  .nav-left{ gap: .5rem; }                      /* tighten link spacing */
 
   .header-title{
-    display: none;
+    display: none;                              /* hide title on very small screens */
   }
 }
 
 
 /* =========================================================
    10) logo / canvas
+   - responsive sizing for Rive canvas logo
    ========================================================= */
 #mb_logo_riv{
-  width: 100%;
-  height: auto;
-  display: block;
+  width: 100%;                                  /* scale canvas to parent width */
+  height: auto;                                 /* preserve aspect ratio */
+  display: block;                               /* remove baseline spacing */
 }
 .logo-solo{
-  width: min(100%, 600px);
-  aspect-ratio: 1 / 1;
+  width: min(100%, 600px);                      /* max logo width */
+  aspect-ratio: 1 / 1;                          /* enforce square area */
+  /* NOTE: if the canvas needs to be centered, ensure its parent is a flex/center container. */
 }
 
 
 /* =========================================================
    11) body + background
+   - sets global background + default font + default text color
    ========================================================= */
 body{
-  margin: 0;
-  padding-top: 0 !important;
+  margin: 0;                                    /* remove default body margin */
+  padding-top: 0 !important;                    /* ensure header doesn't create extra offset */
 
-  color: var(--text);
-  background: var(--bg) url("/images/themlines.png") top left / auto repeat;
+  color: var(--text);                           /* default text */
+  background: var(--bg) url("/images/themlines.png") top left / auto repeat; /* dark base + tiled image */
 
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;       /* global font */
+  /* NOTE: if performance becomes an issue on mobile, consider reducing backdrop filters + heavy tiling. */
 }
 
 
 /* =========================================================
    12) typography defaults
+   - global headings + anchors + paragraph spacing
    ========================================================= */
 h1,h2,h3,h4,h5,h6{
-  margin: 0 0 .5em;
-  font-weight: 700;
-  line-height: 1.2;
+  margin: 0 0 .5em;                             /* space after headings */
+  font-weight: 700;                             /* bold headings */
+  line-height: 1.2;                             /* readable heading line height */
 }
 a{
-  color: var(--pink);
-  text-decoration: none;
+  color: var(--pink);                           /* global link color (outside nav-left) */
+  text-decoration: none;                        /* no underline by default */
 }
 a:hover{
-  color: var(--yellow);
-  text-decoration: none;
+  color: var(--yellow);                         /* hover color */
+  text-decoration: none;                        /* keep no underline */
 }
-p{ margin: 0 0 1em; }
+p{ margin: 0 0 1em; }                           /* default paragraph spacing */
 small{
-  color: var(--muted);
-  font-size: 0.875rem;
+  color: var(--muted);                          /* subdued small text */
+  font-size: 0.875rem;                          /* standard small size */
 }
 
 
 /* =========================================================
    13) main layout container
+   - centers main content horizontally + vertically (flex)
    ========================================================= */
 #main-container{
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 1rem;
+  max-width: var(--container);                  /* constrain content width */
+  margin: 0 auto;                               /* center horizontally */
+  padding: 0 1rem;                              /* page gutters */
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex;                                /* flex layout for centering */
+  justify-content: center;                      /* horizontal center */
+  align-items: center;                          /* vertical center */
+  /* NOTE: vertical centering only “looks” centered if the parent has height available;
+     if content grows, this becomes less meaningful. */
 }
 
 
 /* =========================================================
    14) sections (content cards)
+   - left/right gradient cards with overlapping image boxes
    ========================================================= */
 .section_container{
-  display: flex;
-  justify-content: start;
-  margin: 2%;
+  display: flex;                                /* row container (by default) */
+  justify-content: start;                       /* align cards to the left */
+  margin: 2%;                                   /* outer spacing */
+  /* NOTE: on small screens, you may want flex-direction: column;
+     (do not change here; just noting) */
 }
 .section_left{
-  z-index: 1;
-  width: 80%;
-  min-height: 300px;
-  font-size: 1.2rem;
+  z-index: 1;                                   /* keeps card above overlapping elements */
+  width: 80%;                                   /* card width */
+  min-height: 300px;                            /* minimum visual height */
+  font-size: 1.2rem;                            /* base text size for the card */
 
-  margin: 2%;
-  padding: 2rem 12% 2rem 2rem;
+  margin: 2%;                                   /* spacing around card */
+  padding: 2rem 12% 2rem 2rem;                  /* extra right padding to make room for overlap */
 
-  border: 1px solid rgba(255,255,255,.8);
-  border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--grad-start-blue), var(--grad-end-blue));
-  box-shadow: var(--shadow-left);
+  border: 1px solid rgba(255,255,255,.8);       /* light border */
+  border-radius: var(--radius-lg);              /* rounded corners */
+  background: linear-gradient(135deg, var(--grad-start-blue), var(--grad-end-blue)); /* blue gradient */
+  box-shadow: var(--shadow-left);               /* shadow that pushes left */
 }
 .section_right{
-  z-index: 1;
-  width: 80%;
-  min-height: 300px;
-  font-size: 1.2rem;
+  z-index: 1;                                   /* keeps card above overlapping elements */
+  width: 80%;                                   /* card width */
+  min-height: 300px;                            /* minimum visual height */
+  font-size: 1.2rem;                            /* base text size for the card */
 
-  margin: 2%;
-  padding: 2rem 2rem 2rem 12%;
+  margin: 2%;                                   /* spacing around card */
+  padding: 2rem 2rem 2rem 12%;                  /* extra left padding to make room for overlap */
 
-  border: 1px solid rgba(255,255,255,.8);
-  border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--grad-start-silver), var(--grad-end-silver));
-  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,.8);       /* light border */
+  border-radius: var(--radius-lg);              /* rounded corners */
+  background: linear-gradient(135deg, var(--grad-start-silver), var(--grad-end-silver)); /* silver gradient */
+  box-shadow: var(--shadow);                    /* standard shadow */
 }
 .section_box_right{
-  z-index: 2;
-  margin: 0 0 -10% -10%;
-  width: 40%;
-  height: 80%;
-  justify-self: end;
+  z-index: 2;                                   /* above card (for overlap effect) */
+  margin: 0 0 -10% -10%;                        /* pulls box down and left */
+  width: 40%;                                   /* box width */
+  height: 80%;                                  /* box height */
+  justify-self: end;                            /* only affects if this element is inside a grid parent */
+  /* NOTE: justify-self does nothing in a flex container; use margin/align-self instead if needed. */
 }
 .section_box_left{
-  z-index: 2;
-  margin: 0 -10% -10% 0;
-  width: 40%;
-  height: 80%;
-  justify-self: start;
+  z-index: 2;                                   /* above card (for overlap effect) */
+  margin: 0 -10% -10% 0;                        /* pulls box down and right */
+  width: 40%;                                   /* box width */
+  height: 80%;                                  /* box height */
+  justify-self: start;                          /* only affects if this element is inside a grid parent */
+  /* NOTE: justify-self does nothing in a flex container; use margin/align-self instead if needed. */
 }
 
 
 /* =========================================================
    15) footer
+   - small frosted footer bar with links
    ========================================================= */
 .footer{
-  height: 32px;
+  height: 32px;                                 /* footer bar height */
 
-  backdrop-filter: saturate(140%) blur(6px);
+  backdrop-filter: saturate(140%) blur(6px);    /* frosted background */
   -webkit-backdrop-filter: saturate(140%) blur(6px);
 
-  border-top: 1px solid rgba(255,255,255,.12);
-  font-size: 0.5rem;
+  border-top: 1px solid rgba(255,255,255,.12);  /* subtle separator line */
+  font-size: 0.5rem;                            /* small footer text */
 
-  display: flex;
+  display: flex;                                /* center footer content */
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 1rem;                                    /* space between footer items */
 
-  padding: .5rem;
+  padding: .5rem;                               /* inner padding */
 }
-.footer a{ color: rgba(0,0,0,.5); }
-.footer a:hover{ color: var(--pink); }
+.footer a{ color: rgba(0,0,0,.5); }             /* footer link color */
+.footer a:hover{ color: var(--pink); }          /* footer hover color */
 
 
 /* =========================================================
    16) images
+   - global image safety: responsive sizing, no overflow
    ========================================================= */
 img{
-  display: block;
-  max-width: 100%;
-  height: auto;
+  display: block;                               /* removes inline image gaps */
+  max-width: 100%;                              /* never exceed container width */
+  height: auto;                                 /* keep aspect ratio */
 }
 .logo,
 .section_image{
-  width: 100%;
+  width: 100%;                                  /* fill container */
   height: auto;
-  object-fit: cover;
+  object-fit: cover;                            /* crop to container when needed */
 }
-```
-
-if your header is still not spanning visually, it’s usually because the **html structure** doesn’t match the css assumptions. the layout above assumes:
-
-* `.site_header` contains `.header_grid`
-* `.header_grid` directly contains `.nav-left`, `.header-title`, `.socials`
-
-if you paste your current header html snippet, i’ll align the selectors to it exactly (no guessing).
+/* =========================================================
+   End of stylesheet
+   ========================================================= */
