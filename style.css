@@ -276,7 +276,7 @@ small{
   gap: 1rem;
   padding: .5rem;
 }
-.footer a{ color: black; }
+.footer a{ color: rgb(0, 0, 0, 0.5); }
 .footer a:hover{ color: var(--pink); }
 
 /* ------- images ------- */
