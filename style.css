@@ -226,7 +226,7 @@ a[href*="github"]    img:hover { content: url("/images/github_bright.svg"); }
   .nav-left{ gap: .5rem; }                      /* tighten link spacing */
 
   .header-title{
-    display: none;                              /* hide title on very small screens */
+    display: hidden;                              /* hide title on very small screens */
   }
 }
 
