@@ -86,18 +86,22 @@ html,body{height:100%}
   aspect-ratio: 1 / 1;
 }
 .nav{
-    padding: .5rem;
-    display:flex;
-    gap:.5rem;
-    justify-self: start;
+  padding: .5rem;
+  display: flex;
+  gap: clamp(.25rem, 2vw, .75rem);
+  justify-self: start;
 }
+
 .nav a{
-    font-size: clamp(0.85rem, 3.5vw, 1.1rem);
-    color: var(--blue);
-    text-decoration: none;
-    padding: .5rem .5rem;
-    border-radius: 6px;
-    position: relative;}
+  color: var(--blue);
+  text-decoration: none;
+  padding: clamp(.35rem, 1.5vw, .5rem)
+           clamp(.4rem, 2vw, .6rem);
+  border-radius: 6px;
+  position: relative;
+  font-size: clamp(0.85rem, 3.5vw, 1.1rem);
+}
+
 .nav a.is-active{
     color: var(--pink);
 }
