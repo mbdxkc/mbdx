@@ -154,26 +154,33 @@ a[href*="github"]    img:hover { content: url("/images/github_bright.svg"); }
   .socials  { display: none !important; }
 
 @media (max-width: 450px) {
+  :root { --header-h: 64px; } /* back to single row */
 
-  .header-title{
-    grid-column: 1 / 3;
-    grid-row: 2;
-
+  /* keep nav behaving like desktop (flex) */
+  .nav{
     display: flex;
-    justify-content: center;
     align-items: center;
-
-    width: 100%;
-    justify-self: stretch;   /* ← key line */
-    text-align: center;
+    justify-content: space-between;
+    gap: .5rem;
   }
 
-  .dark-title{
-    margin: 0 auto;          /* ← centers block text */
-    width: 100%;
-    text-align: center;
+  /* shrink left + right groups instead of hiding */
+  .nav-left,
+  .socials{
+    transform: scale(.9);
+    transform-origin: center;
+  }
+
+  /* if icons/links still feel tight, tighten spacing */
+  .socials{ gap: .35rem; }
+  .nav-left{ gap: .5rem; }
+
+  /* hide the title on small screens */
+  .header-title{
+    display: none;
   }
 }
+
 
 }
 
