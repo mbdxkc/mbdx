@@ -53,15 +53,19 @@ html,body{overflow-x:hidden} /* prevents sideways scroll on mobile */
   /* key change */
   justify-items: stretch;
 }
-
+.nav-left, .header-title, .socials{
+  display: flex;
+  align-items: center;
+}
 
 /* make nav wrapper not fight the grid layout */
-.nav{ display: contents; }
+.nav{ display: contents;
+} 
 
 /* --- title --- */
 .header-title{
   display: flex;
-justify-self: center;
+  justify-self: center;
   align-items: center;
   min-width: 0;
 }
