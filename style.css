@@ -112,11 +112,18 @@ html{ scrollbar-gutter: stable; }         /* prevents width shift when scrollbar
 .nav-left,
 .header-title,
 .socials{
-  white-space: nowrap;                     /* prevents line breaks */
-  overflow: hidden;                        /* prevents overflow from leaking */
+  white-space: nowrap;
   display: flex;
   align-items: center;
 }
+
+/* only the title should truncate */
+.header-title{ overflow: hidden; }
+.dark-title{
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 
 
 /* =========================================================
@@ -152,12 +159,13 @@ html{ scrollbar-gutter: stable; }         /* prevents width shift when scrollbar
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -2px;          /* change from 0 to -2px */
   width: 0;
   height: 2px;
   background: var(--pink);
   transition: width .3s ease;
 }
+
 
 /* underline expands on hover */
 .nav-left a:hover::after{ width: 100%; }
@@ -270,9 +278,12 @@ body{
   margin: 0;
   padding-top: 0;
   color: var(--text);
+  background-color: var(--bg);
   background: var(--bg) url("/images/themlines.png") top left / auto repeat;
   font-family: 'Nunito Sans', sans-serif;
 }
+
+
 
 
 /* =========================================================
