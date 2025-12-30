@@ -8,11 +8,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css?v=9">
-        <link rel="icon" href="/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
-        <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
-        <link rel="shortcut icon" href="/favicon.png">
+        <link rel="icon" href="./favicon.ico" type="image/x-icon">
+        <link rel="icon" href="./favicon-32.png" type="image/png" sizes="32x32">
+        <link rel="icon" href=./favicon-16.png" type="image/png" sizes="16x16">
+        <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
+        <link rel="shortcut icon" href="./favicon.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
@@ -24,10 +24,10 @@
         <header class="site_header" role="banner">
             <div class="header_grid container">
                 <nav class="nav" role="navigation">
-                    <a href="/index.html" class="is-active">home</a>
+                    <a href="./index.html" class="is-active">home</a>
                     <a href="#" class="hidden">portfolio</a>
                     <a href="#" class="hidden">about</a>
-                    <a href="/contact.html">contact</a>
+                    <a href="./contact.html">contact</a>
                 </nav>
                 <div class="mb_wordmark">
                     <!--<a href="/index.html" aria-label="mediaBrilliance home">
@@ -35,8 +35,8 @@
                     </a>-->
                 </div>                
                 <div class="socials">
-                    <a href="https://www.instagram.com/mediaBrilliance/"><img src="/images/instagram_dark.svg"></a>
-                    <a href="https://github.com/mbdxkc/"><img src="/images/github_dark.svg"></a>
+                    <a href="https://www.instagram.com/mediaBrilliance/"><img src="./images/instagram_dark.svg"></a>
+                    <a href="https://github.com/mbdxkc/"><img src="./images/github_dark.svg"></a>
                 </div>            
             </div>
         </header>
@@ -49,26 +49,16 @@
             </div>
         </div>
     <footer class="footer" role="contentinfo">
-        <p><a href="/index.html">© 2025 mediosBrillantes</a></p>
-        <p><a href="/accessibility.html">accessibility statement</a></p>
+        <p><a href="./index.html">© 2025 mediosBrillantes</a></p>
+        <p><a href="./accessibility.html">accessibility statement</a></p>
         <p><a href="/privacy.html">privacy policy</a></p>
     </footer>
 
     <script>
-        // mb wordmark animation
-        new rive.Rive({
-            src: "/media/mb_wordmark.riv",
-            canvas: document.getElementById("mb_wordmark"),
-            autoplay: true,
-            stateMachines: "State Machine 1", 
-            onLoad: () => {
-            console.log("mb_wordmark rive loaded!");
-            }
-        });
 
         // mb logo animation
         new rive.Rive({
-            src: "/media/mb_logo.riv",
+            src: "./media/mb_logo.riv",
             canvas: document.getElementById("mb_logo_riv"),
             autoplay: true,
             stateMachines: "State Machine 1",  
