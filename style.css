@@ -92,6 +92,7 @@ html,body{height:100%}
     justify-self: start;
 }
 .nav a{
+    font-size: clamp(0.85rem, 3.5vw, 1.1rem);
     color: var(--blue);
     text-decoration: none;
     padding: .5rem .5rem;
