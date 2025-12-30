@@ -317,6 +317,10 @@ small{
   align-items: center;
 }
 
+body{
+  background-color: var(--bg);
+  background: var(--bg) url("/images/themlines.png") top left / auto repeat;
+}
 
 /* =========================================================
    16) content sections
