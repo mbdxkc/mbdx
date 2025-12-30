@@ -150,18 +150,23 @@ a[href*="github"]    img:hover { content: url("/images/github_bright.svg"); }
     width: 100%;
   }
 
-  .nav-left { display: hidden !important; }
-  .socials  { display: hidden !important; }
+  .nav-left { display: none !important; }
+  .socials  { display: none !important; }
 
   .header-title{
     grid-column: 1 / 3;
     grid-row: 2;
-    justify-content: center;
+    display: flex;
+    justify-content: center;  /* horizontal */
+    align-items: center;      /* vertical */
     text-align: center;
+    width: 100%;
   }
 
   .dark-title{
     font-size: clamp(1rem, 5.2vw, 1.35rem);
+    margin: 0;
+    text-align: center;
   }
 }
 
