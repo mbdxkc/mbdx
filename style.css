@@ -175,7 +175,7 @@ a[href*="github"]    img:hover { content: url("/images/github_bright.svg"); }
   .socials{ gap: .35rem; }
   .nav-left{ gap: .5rem; }
 
-  /* hide the title on small screens */
+  /* hide the title on small screens OK*/
   .header-title{
     display: none;
   }
