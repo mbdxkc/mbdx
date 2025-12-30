@@ -28,19 +28,40 @@
 html,body{height:100%}
 
 /* ------- breakpoints ------- */
-@media(max-width:450px) {
-  .mb_wordmark {
-    visibility: hidden;
+@media (max-width: 450px) {
+  :root{
+    --header-h: 52px; /* optional: actually shrink header */
   }
-  .socials a {
-    width: 32px;       
-    height: 32px;       
+
+  .header_grid{
+    grid-template-columns: 1fr auto; /* nav | socials */
+    gap: .5rem;
+    padding: 0 .5rem;
+    justify-items: stretch;
   }
-  .socials img {
-    width: 32px;       
-    height: auto;
+
+  .header-title{
+    display: none; /* easiest: hide title on tiny screens */
+  }
+
+  .nav{
+    padding: 0;
+    gap: .25rem;
+  }
+  .nav a{
+    padding: .25rem .35rem;
+    font-size: .95rem;
+  }
+
+  .socials{
+    padding: 0;           /* <-- big one */
+    gap: .4rem;
+  }
+  .socials img{
+    width: 22px;
   }
 }
+
 
 /* --------- header --------- */
 .site_header{
