@@ -71,7 +71,7 @@ html,body{height:100%}
   line-height: 1;
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 100;
-  font-size: 2rem;
+  font-size: clamp(1rem, 6vw, 3rem) ;
   color: rgba(0, 0, 0, 0.5);
   justify-self: start;
 }
