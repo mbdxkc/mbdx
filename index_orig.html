@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+    <head>
+        <title>mediosBrillantes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css?v=9">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+        <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+        <link rel="shortcut icon" href="/favicon.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
+    </head>
+
+    <body>
+        
+        <header class="site_header" role="banner">
+            <div class="header_grid container">
+                <nav class="nav" role="navigation">
+                    <a href="/index.html" class="is-active">home</a>
+                    <a href="#" class="hidden">portfolio</a>
+                    <a href="#" class="hidden">about</a>
+                    <a href="/contact.html">contact</a>
+                </nav>
+                <div class="mb_wordmark">
+                    <a href="/index.html" aria-label="medios brillantes home">
+                    <canvas id="mb_wordmark" width="340" height="36"></canvas>
+                    </a>
+                </div>                
+                <div class="socials">
+                    <a href="https://www.instagram.com/mediosbrillantes/"><img src="/images/instagram_dark.svg"></a>
+                    <a href="https://www.x.com/@mbdxkc"><img src="/images/twitter_dark.svg"></a>
+                    <a href="https://dribbble.com/mediosbrillantes"><img src="/images/dribbble_dark.svg"></a>
+                    <a href="https://github.com/mediosbrillantes"><img src="/images/github_dark.svg"></a>
+                </div>            
+            </div>
+        </header>
+
+        <div id="main_container" class="container" role="main">
+            <div id="section1" class="section_container">
+                <div class="section_left">
+                    <h1>un estudio digital</h1>
+                    <p>¿Qué sucede cuando lo has perdido todo? ¿Angustia, desesperación, depresión? Quizás. Pero 
+                        cuando no te queda nada, también puedes tenerlo todo. Esto es lo que mi apartamento ha 
+                        representado para mí durante el año pasado.
+                    </p>
+                </div>
+                <div class="section_box_right">
+                    <canvas id="mb_logo_riv" width="500" height="500"></canvas>
+                </div>
+            </div>
+            <div id="section2_digitalxstudio" class="section_container">
+                <div class="section_box_left">
+                    <img class="section_image" src="/images/digitalxstudio.svg" alt="designXtudio" aria-label="digital design studio header"> 
+                </div>
+                <div class="section_right">
+                    <h1>...</h1>
+                        <p>Cuando empiezas de nuevo, como un estudiante de primer año en su primer dormitorio
+                            universitario, todo parece tan nuevo y aterrador. Esta es la razón por lo que mi apartamento es
+                            muy especial para mí. Dormí sobre un tatami japonés durante mi primer semestre en Kansas
+                            State, un escritorio, una silla y una laptop eran mis únicos muebles. Eso era todo lo que
+                            necesitaba. Durante el año pasado, he abrazado el miedo que tenía perder mi matrimonio; y,
+                            como un joven estudiante que descubre el mundo, también me he redescubierto a mí mismo.
+                        </p>
+                </div>
+            </div>
+            <div id="section3_web" class="section_container">
+                <div class="section_left">
+                    <h1>...</h1>
+                        <p>Con 400 pies cuadrados, mi apartamento es pequeño, como una habitación de motel barata. Cuando 
+                        me mudé aquí, las paredes estaban tan desnudas como una choza abandonada, y los ruidos del centro, 
+                        los trenes, el tráfico y los aviones despegando, llenaban constantemente ese espacio vacío.
+                        </p>
+                </div>
+                <div class="section_box_right">
+                    <img class="section_image" src="/images/web.dev.svg" alt="mediosBrillantes design xtudio" aria-label="web design services"> 
+                </div>
+            </div>
+            <div id="section4_ux" class="section_container">
+                    <div class="section_box_left">
+                        <img class="section_image" src="/images/ux.design.svg" alt="mediosBrillantes design xtudio" aria-label="ux design services"> 
+                    </div>
+                    <div class="section_right">
+                        <h1>...</h1>
+                    <p>Después de un año, esos sonidos ahora son un consuelo, un recordatorio de mi propósito aquí, y
+                        se han unido a ritmos suaves que llenan este lugar romántico con una energía relajante. Las
+                        paredes están cubiertas de arte, dibujos y notas de estudio. Y, como mis compañeros de clase más
+                        jóvenes, mi corazón está lleno de la alegría del descubrimiento.
+                    </p>
+                    </div>
+            </div>
+        </div>
+    <footer class="footer" role="contentinfo">
+        <p><a href="/index.html">© 2025 mediosBrillantes</a></p>
+        <p><a href="/accessibility.html">accessibility statement</a></p>
+        <p><a href="/privacy.html">privacy policy</a></p>
+    </footer>
+
+    <script>
+        // mb wordmark animation
+        new rive.Rive({
+            src: "/media/mb_wordmark.riv",
+            canvas: document.getElementById("mb_wordmark"),
+            autoplay: true,
+            stateMachines: "State Machine 1", 
+            onLoad: () => {
+            console.log("mb_wordmark rive loaded!");
+            }
+        });
+
+        // mb logo animation
+        new rive.Rive({
+            src: "/media/mb_logo.riv",
+            canvas: document.getElementById("mb_logo_riv"),
+            autoplay: true,
+            stateMachines: "State Machine 1",  
+            onLoad: () => {
+            console.log("mb_logo rive loaded!");
+            }
+        });
+    </script>
+
+    </body>
+
+</html>
