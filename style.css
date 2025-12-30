@@ -224,10 +224,6 @@ a[href*="github"]    img:hover { content: url("/images/github_bright.svg"); }
 
   .socials{ gap: .35rem; }                      /* tighten icon spacing */
   .nav-left{ gap: .5rem; }                      /* tighten link spacing */
-
-  .header-title{
-    display: hidden;                              /* hide title on very small screens */
-  }
 }
 
 
