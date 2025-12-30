@@ -319,7 +319,7 @@ small{
 
 body{
   background-color: var(--bg);
-  background: var(--bg) url("/images/themlines.png") top left / auto repeat;
+  background: var(--bg) url("./images/themlines.png") top left / auto repeat;
 }
 
 /* =========================================================
