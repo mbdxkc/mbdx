@@ -69,9 +69,13 @@ html,body{height:100%}
   aspect-ratio: 340 / 36;
 }
 #mb_logo_riv {
-  width: min(100%, 500px);
+  width: 100%;
   height: auto;
-  aspect-ratio: 500 / 500;
+  display: block;
+}
+.logo-solo {
+  width: min(100%, 900px);
+  aspect-ratio: 1 / 1;
 }
 .nav{
     padding: .5rem;
@@ -165,9 +169,9 @@ small {
 /* ------- main -------- */
 #main_container {
   max-width:var(--container);margin:0 auto;padding:0 1rem;
-  display: grid;
-  grid-auto-rows: auto;
-  /*margin-bottom: 10%;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ------- sections ------- */ 
