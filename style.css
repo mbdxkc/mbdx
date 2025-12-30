@@ -73,6 +73,13 @@ html,body{height:100%}
   height: auto;
   display: block;
 }
+.dark-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--text);
+  justify-self: start;
+}
 .logo-solo {
   width: min(100%, 600px);
   aspect-ratio: 1 / 1;
