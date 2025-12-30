@@ -150,8 +150,8 @@ a[href*="github"]    img:hover { content: url("/images/github_bright.svg"); }
     width: 100%;
   }
 
-  .nav-left { display: none !important; }
-  .socials  { display: none !important; }
+  .nav-left { display: hidden !important; }
+  .socials  { display: hidden !important; }
 
   .header-title{
     grid-column: 1 / 3;
