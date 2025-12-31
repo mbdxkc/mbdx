@@ -247,6 +247,17 @@ a[href*="github"]    img:hover { content: url("/images/github_bright.svg"); }
    11) body + background
    - sets global background + default font + default text color
    ========================================================= */
+.skip-link{
+  position: absolute;                           /* removes from normal flow */
+  top: -40px;                                   /* hide offscreen */
+  left: 0;
+  background: var(--blue);                      /* visible background */
+  color: #fff;                                 /* visible text */
+  padding: 8px 16px;                           /* clickable padding */
+  z-index: 10000;                              /* above all other content */
+
+  transition: top .3s ease;                    /* smooth slide-in */
+}
 body{
   margin: 0;                                    /* remove default body margin */
   padding-top: 0 !important;                    /* ensure header doesn't create extra offset */
