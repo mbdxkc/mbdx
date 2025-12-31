@@ -169,6 +169,26 @@ html,body{ overflow-x:hidden; }                 /* prevents sideways scroll from
 }
 .nav-left a:hover::after{ width: 100%; }        /* underline expands on hover */
 
+/* =========================================================
+   8) pages (left side icons)
+   - layout and sizing for page icon links
+   ========================================================= */
+.pages{
+  justify-self: start;                            /* keeps the socials block on the right side */
+  padding: 0 0 0 .5rem;                         /* right padding so icons don't touch the edge */
+  gap: clamp(.35rem, 1.5vw, .75rem);            /* responsive spacing between icons */
+}
+.pages a{
+  display: inline-flex;                         /* keeps each icon link as a tight inline-flex box */
+  align-items: center;                          /* vertical center for icons */
+  justify-content: center;                      /* horizontal center for icons */
+}
+.pages img{
+  width: clamp(18px, 5vw, 24px);                /* responsive icon size */
+  height: auto;                                 /* keep SVG aspect ratio */
+  display: block;                               /* removes inline image baseline spacing */
+}
+
 
 /* =========================================================
    8) socials (right side icons)
@@ -200,6 +220,9 @@ a[href*="instagram"] img:hover { content: url("/images/instagram_bright.svg"); }
 a[href*="dribbble"]  img:hover { content: url("/images/dribbble_bright.svg"); }
 a[href*="x.com"]     img:hover { content: url("/images/twitter_bright.svg"); }
 a[href*="github"]    img:hover { content: url("/images/github_bright.svg"); }
+a[href*="index"]      img:hover { content: url("/images/home_dark.png"); }
+a[href*="services"] img:hover { content: url("/images/services_dark.png"); }
+a[href*="contact"]   img:hover { content: url("/images/contact_dark.png"); }
   /* NOTE: “content: url()” on <img> hover works in some browsers but can be inconsistent.
      A more robust pattern is swapping via background-image on a span, or using <picture>.
      (do not change here; just flagging for future hardening) */
