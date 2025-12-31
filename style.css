@@ -129,45 +129,6 @@ html,body{ overflow-x:hidden; }                 /* prevents sideways scroll from
 }
 
 
-/* =========================================================
-   7) left nav links
-   - styles for the “home / contact” links on the left
-   ========================================================= */
-.nav-left{
-  justify-self: start;                          /* positions the block in the grid */
-  display: flex;                                /* row layout for the links */
-  align-items: center;                          /* vertical center */
-  justify-content: flex-start;                  /* keep link row aligned to the left inside the block */
-  gap: clamp(.25rem, 2vw, .75rem);              /* responsive spacing between links */
-}
-
-.nav-left a{
-  color: var(--blue);                           /* default link color */
-  text-decoration: none;                        /* no underline by default */
-
-  padding: .45em .6em;                          /* clickable padding; scales with font size */
-  border-radius: 6px;                           /* soft corner on hover/focus states */
-  position: relative;                           /* anchor for the underline pseudo-element */
-
-  font-size: clamp(0.25rem, 2.2vw, 0.95rem);    /* responsive link size */
-  /* NOTE: 0.25rem is extremely small; if readability matters, consider raising min to ~0.75rem.
-     (do not change here; just a note for future refinement) */
-}
-.nav-left a.is-active{ color: var(--pink); }    /* active page indicator */
-.nav-left a.hidden{ display: none; }            /* utility: hide specific nav items */
-
-.nav-left a:hover{ color: var(--yellow); }      /* hover color shift */
-.nav-left a::after{
-  content: "";                                  /* required for pseudo-element */
-  position: absolute;                           /* position relative to link */
-  left: 0;                                      /* start underline from left */
-  bottom: 0;                                    /* sit underline at bottom of link box */
-  width: 0;                                     /* animate from 0 to 100% */
-  height: 2px;                                  /* underline thickness */
-  background: var(--pink);                      /* underline color */
-  transition: width .3s ease;                   /* smooth underline growth */
-}
-.nav-left a:hover::after{ width: 100%; }        /* underline expands on hover */
 
 /* =========================================================
    8) pages (left side icons)
@@ -190,6 +151,10 @@ html,body{ overflow-x:hidden; }                 /* prevents sideways scroll from
   display: block;                               /* removes inline image baseline spacing */
 }
 
+/* ACTIVE STATE (overrides everything) */
+.pages a.is-active img{
+  filter: none;
+}
 
 /* =========================================================
    8) socials (right side icons)
