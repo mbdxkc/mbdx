@@ -186,9 +186,9 @@ a[href*="instagram"] img:hover { content: url("/images/instagram_bright.svg"); }
 a[href*="dribbble"]  img:hover { content: url("/images/dribbble_bright.svg"); }
 a[href*="x.com"]     img:hover { content: url("/images/twitter_bright.svg"); }
 a[href*="github"]    img:hover { content: url("/images/github_bright.svg"); }
-a[href*="index"]      img:hover { content: url("/images/home_dark.png"); }
-a[href*="services"] img:hover { content: url("/images/services_dark.png"); }
-a[href*="contact"]   img:hover { content: url("/images/contact_dark.png"); }
+a[href*="index"]      img:hover { content: url("/images/home_dark.svg"); }
+a[href*="services"] img:hover { content: url("/images/services_dark.svg"); }
+a[href*="contact"]   img:hover { content: url("/images/contact_dark.svg"); }
   /* NOTE: “content: url()” on <img> hover works in some browsers but can be inconsistent.
      A more robust pattern is swapping via background-image on a span, or using <picture>.
      (do not change here; just flagging for future hardening) */
