@@ -61,14 +61,31 @@
                     </p>
                     <p>gracias por su interés en mediaBrilliance digitalxtudio. siéntase libre de contactar con nosotros en cualquier momento.
                     </p>
-                    <h2>mediaBrilliance digitalxtudio</h2>
-                        <address>
-                        kansas city, mo<br>
-                        <a href="tel:+19137034060">913-703-4060</a><br>
-                        email: <a id="email-link" href="#">dez@mBdx</a><br>
-                        ig: <a href="https://www.instagram.com/mediabrilliance/" target="_blank" rel="noopener noreferrer">@mediaBrilliance</a><br>
-                        git: <a href="https://github.com/mbdxkc" target="_blank" rel="noopener noreferrer">mbdxkc</a>
-                        </address>                   
+                    <address>
+                    kansas city, mo<br>
+                    phone: <a href="tel:+19137034060">913-703-4060</a><br>
+                    email: <a id="email-link" href="#">dez@mBdx</a><br>
+                    ig: <a href="https://www.instagram.com/mediabrilliance/" target="_blank" rel="noopener noreferrer">@mediaBrilliance</a><br>
+                    git: <a href="https://github.com/mbdxkc" target="_blank" rel="noopener noreferrer">mbdxkc</a><br><br>
+                    </address>
+
+                    <h2>drop us a line!</h2>
+                    <form id="contact-form" novalidate>
+                        <div class="form-field">
+                            <label for="name">name</label><br>
+                            <input id="name" name="name" type="text" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="email">email</label><br>
+                            <input id="email" name="email" type="email" required>
+                        </div>      
+                        <div class="form-field">
+                            <label for="message">message</label><br>
+                            <textarea id="message" name="message" rows="10" cols="30" required></textarea>
+                        </div>
+                        <button type="submit">send message</button>
+                        <p id="form-status" aria-live="polite"></p>
+                    </form>
                 </div>
                 <div class="section_box_right">
                     <img class="logo" src="./images/mB.svg" alt="mediaBrilliance">
@@ -82,7 +99,10 @@
         <p><a href="./privacy.html">privacy policy</a></p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script src="./js/email.js"></script>
+    <script src="./js/contact-form.js"></script>
+
     <script>
                     // mb wordmark animation
         new rive.Rive({
