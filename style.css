@@ -393,7 +393,7 @@ main{
 
   padding: .5rem;                               /* inner padding */
 }
-.footer a{ color: rgba(0,0,0,.5); }             /* footer link color */
+.footer a{ color: rgba(62, 62, 62, 0.9); }             /* footer link color */
 .footer a:hover{ color: var(--pink); }          /* footer hover color */
 
 
