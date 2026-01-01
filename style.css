@@ -46,6 +46,7 @@ html{
   scrollbar-gutter: stable;
 }
 
+
 /* =========================================================
    3) header shell (full-width sticky bar)
    - keeps header pinned at top (sticky)
@@ -397,6 +398,228 @@ img{
   width: 100%;                                  /* fill container */
   height: auto;
   object-fit: cover;                            /* crop to container when needed */
+
+  /* =========================================================
+   17) wobble fixes (inputs/textarea focus scroll)
+   - prevents layout shift when scrollbars appear/disappear
+   - prevents mobile viewport height "bounce"
+   - prevents form controls from overflowing/causing reflow
+   ========================================================= */
+
+/* keep scrollbar space reserved so the layout width doesn't “jump” */
+html{
+  scrollbar-gutter: stable both-edges; /* stable = no width shift; both-edges = more consistent centering */
+}
+
+/* mobile viewport stabilization
+   - 100vh can wobble when browser chrome (address bar) changes
+   - dvh is the dynamic, correct viewport unit on modern browsers */
+body{
+  min-height: 100vh;   /* fallback */
+  min-height: 100dvh;  /* modern fix */
+}
+
+/* prevent horizontal jiggle from form controls trying to exceed container width */
+input, textarea, button{
+  max-width: 100%;
+}
+
+/* iOS Safari: prevents auto-zoom + jump when focusing inputs under 16px */
+input, textarea, button{
+  font-size: 16px;
+}
+
+/* textarea reflow control
+   - resizing can cause “wobble” on scroll */
+textarea{
+  resize: vertical;     /* allow resize only vertically (or set to none if you prefer) */
+  width: 100%;          /* fill the form width */
+  box-sizing: border-box;
+}
+
+/* optional: smoother scrolling on iOS (helps reduce perceived wobble) */
+body{
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* =========================================================
+   18) contact form — “sexy” mBdx styling
+   - glassy, high-contrast, rounded corners
+   - uses your tokens (bg/text/pink/yellow/radii/shadows)
+   - accessible focus states + clear spacing
+   ========================================================= */
+
+/* form wrapper
+   - creates a distinct panel on top of the blue gradient card */
+#contact-form{
+  margin-top: 1.25rem; /* breathing room under the address block */
+  padding: 1.25rem;    /* comfortable inner spacing */
+
+  border-radius: var(--radius-lg); /* matches your card rounding */
+  border: 1px solid rgba(255,255,255,.6);
+
+  /* “glassy” dark panel that still fits your dark site aesthetic */
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+
+  /* soft lift without fighting your existing card shadows */
+  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+
+  /* keep internal spacing consistent */
+  display: grid;
+  gap: 0.9rem;
+}
+
+/* each field block
+   - grid so label and control line up cleanly without <br> tags */
+#contact-form .form-field{
+  display: grid;
+  gap: 0.35rem;
+}
+
+/* labels: readable, slightly “techy”, not too bold */
+#contact-form label{
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: rgba(255,255,255,.92);
+}
+
+/* shared input styling */
+#contact-form input,
+#contact-form textarea{
+  /* sizing */
+  width: 100%;
+  padding: 0.85rem 0.9rem;
+
+  /* shape */
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.35);
+
+  /* colors */
+  background: rgba(0,0,0,.35);
+  color: rgba(255,255,255,.92);
+
+  /* typography */
+  font-family: inherit;
+  line-height: 1.35;
+
+  /* subtle depth */
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);
+
+  /* animation */
+  transition: border-color .15s ease, box-shadow .15s ease, transform .12s ease, background-color .15s ease;
+}
+
+/* textarea: slightly different feel (more roomy) */
+#contact-form textarea{
+  min-height: 9rem; /* avoids tiny box on load (also reduces perceived wobble) */
+}
+
+/* placeholder styling */
+#contact-form input::placeholder,
+#contact-form textarea::placeholder{
+  color: rgba(255,255,255,.6);
+}
+
+/* focus styling (keyboard + mouse)
+   - strong visible ring for accessibility */
+#contact-form input:focus,
+#contact-form textarea:focus{
+  outline: none;
+  border-color: rgba(255,255,0,.85); /* your --yellow vibe */
+  background: rgba(0,0,0,.45);
+
+  /* glowing focus ring */
+  box-shadow:
+    0 0 0 3px rgba(255,255,0,.28),
+    0 0 0 1px rgba(255,255,255,.22) inset;
+}
+
+/* submit button */
+#contact-form button[type="submit"]{
+  /* spacing + size */
+  padding: 0.9rem 1.1rem;
+  margin-top: 0.25rem;
+
+  /* shape */
+  border-radius: 999px; /* pill button */
+  border: 1px solid rgba(255,255,255,.45);
+
+  /* colors: gradient echoing your brand */
+  background: linear-gradient(135deg, rgba(0,141,218,.95), rgba(255,45,241,.85));
+  color: rgba(255,255,255,.95);
+
+  /* typography */
+  font-family: inherit;
+  font-weight: 800;
+  letter-spacing: .03em;
+  text-transform: lowercase; /* matches your site voice */
+
+  /* interaction */
+  cursor: pointer;
+  transition: transform .12s ease, filter .15s ease, box-shadow .15s ease;
+  box-shadow: 0 10px 22px rgba(0,0,0,.25);
+}
+
+/* hover: a little lift */
+#contact-form button[type="submit"]:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+/* active: press down */
+#contact-form button[type="submit"]:active{
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
+/* keyboard focus on button */
+#contact-form button[type="submit"]:focus{
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(255,255,0,.28),
+    0 10px 22px rgba(0,0,0,.25);
+}
+
+/* disabled state (if you add button disabling in JS) */
+#contact-form button[disabled]{
+  opacity: .65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* status message: small, clear, and readable */
+#form-status{
+  margin: 0;
+  min-height: 1.2em; /* prevents layout shift when text appears/disappears */
+  font-size: 0.95rem;
+  color: rgba(255,255,255,.9);
+}
+
+/* optional “success/error” hooks
+   - if you ever add classes from JS like: status.className = "ok" / "err" */
+#form-status.ok{ color: rgba(255,255,255,.95); }
+#form-status.err{ color: rgba(255,255,0,.95); } /* yellow reads well on dark glass */
+
+
+/* =========================================================
+   19) small screen polish
+   - reduces padding + keeps form readable
+   ========================================================= */
+@media (max-width: 450px){
+  #contact-form{
+    padding: 1rem;
+    border-radius: 18px;
+  }
+
+  #contact-form input,
+  #contact-form textarea{
+    padding: 0.75rem 0.85rem;
+  }
+}
+
 }
 /* =========================================================
    End of stylesheet
