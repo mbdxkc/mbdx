@@ -9,7 +9,7 @@
 
     status.textContent = "sending…";
 
-    emailjs.send("service_jdzvpxw", "ts0lnuu", {
+    emailjs.send("service_jdzvpxw", "template_zden0om", {
       from_name: form.name.value,
       reply_to: form.email.value,
       message: form.message.value,
