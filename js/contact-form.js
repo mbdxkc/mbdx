@@ -1,8 +1,10 @@
 (function () {
-  emailjs.init("YOUR_PUBLIC_KEY"); // ← from EmailJS dashboard
+  emailjs.init("tX81q_4yGbXnrQSJ9"); // ← from EmailJS dashboard
 
   const form = document.getElementById("contact-form");
   const status = document.getElementById("form-status");
+
+  if (!form || !status) return;
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
