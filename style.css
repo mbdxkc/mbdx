@@ -253,12 +253,21 @@ a[href*="contact"]   img:hover { content: url("/images/contact_dark.svg"); }
 body{
   margin: 0;                                    /* remove default body margin */
   padding-top: 0 !important;                    /* ensure header doesn't create extra offset */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;                           /* full viewport height */
+  min-height: 100dvh;                         /* modern mobile */
 
   color: var(--text);                           /* default text */
   background: var(--bg) url("/images/themlines.png") top left / auto repeat; /* dark base + tiled image */
 
   font-family: 'Nunito Sans', sans-serif;       /* global font */
   /* NOTE: if performance becomes an issue on mobile, consider reducing backdrop filters + heavy tiling. */
+}
+
+/* sticky footer layout */
+html, body{
+  height: 100%;
 }
 
 
@@ -290,6 +299,9 @@ small{
    13) main layout container
    - centers main content horizontally + vertically (flex)
    ========================================================= */
+main{
+  flex: 1 0 auto;
+}
 #main-container{
   max-width: var(--container);                  /* constrain content width */
   margin: 0 auto;                               /* center horizontally */
@@ -366,7 +378,8 @@ small{
    ========================================================= */
 .footer{
   height: 32px;                                 /* footer bar height */
-
+  margin-top: auto;
+  width: 100%;                                  /* full-width footer */
   backdrop-filter: saturate(140%) blur(6px);    /* frosted background */
   -webkit-backdrop-filter: saturate(140%) blur(6px);
 
