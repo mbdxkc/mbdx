@@ -407,24 +407,7 @@ img{
    contact form styling + scroll wobble fixes
    ========================================================= */
 
-/* prevent page width shifting when focusing inputs */
-html{
-  scrollbar-gutter: stable both-edges;
-}
 
-/* mobile viewport stability */
-body{
-  min-height: 100vh;
-  min-height: 100dvh;
-}
-
-/* prevent iOS zoom + layout jiggle */
-input,
-textarea,
-button{
-  font-size: 16px;
-  max-width: 100%;
-}
 
 /* -----------------------------
    contact form container
