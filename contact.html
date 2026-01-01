@@ -41,10 +41,9 @@
                     <a href="./contact.html" aria-current="page"><img src="./images/contact_active.svg" alt="mediaBrilliance contact icon"></a>
                     </div>
                     <div class="header-title">
-                        <!--<a href="/index.html" aria-label="mediaBrilliance home">
-                        <canvas id="mb_wordmark" width="340" height="36"></canvas>
-                        </a>-->
-                        <p class="dark-title">contact mediaBrilliance</p>
+                        <a href="/index.html" aria-label="mediaBrilliance home">
+                        <canvas id="mb_wordmark" width="340" height="36">mediaBrilliance</canvas>
+                        </a>
                     </div>                
                     <div class="socials">
                         <a href="https://www.instagram.com/mediaBrilliance/" aria-label="mediaBrilliance on instagram" target="_blank" rel="noopener noreferrer"><img src="./images/instagram_dark.svg" alt="" aria-hidden="true"></a>
@@ -84,6 +83,18 @@
     </footer>
 
     <script src="/js/email.js"></script>
+    <script>
+                    // mb wordmark animation
+        new rive.Rive({
+            src: "./media/mb_wordmark.riv",
+            canvas: document.getElementById("mb_wordmark"),
+            autoplay: true,
+            stateMachines: "State Machine 1",  
+            onLoad: () => {
+            console.log("mb_wordmark rive loaded!");
+            }
+        });
+    </script>
 
     </body>
 

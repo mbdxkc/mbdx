@@ -41,11 +41,10 @@
                     <a href="./contact.html"><img src="./images/contact_light.svg" alt="mediaBrilliance contact icon"></a>
                     </div>
                     <div class="header-title">
-                        <!--<a href="/index.html" aria-label="mediaBrilliance home">
-                        <canvas id="mb_wordmark" width="340" height="36"></canvas>
-                        </a>-->
-                        <h1 class="dark-title">mediaBrilliance</h1>
-                    </div>                
+                        <a href="/index.html" aria-label="mediaBrilliance home">
+                        <canvas id="mb_wordmark" width="340" height="36">mediaBrilliance</canvas>
+                        </a>
+                    </div>                 
                     <div class="socials">
                         <a href="https://www.instagram.com/mediaBrilliance/" aria-label="mediaBrilliance on instagram" target="_blank" rel="noopener noreferrer"><img src="./images/instagram_dark.svg" alt="" aria-hidden="true"></a>
                         <a href="https://github.com/mbdxkc/" aria-label="mediaBrilliance on github" target="_blank" rel="noopener noreferrer"><img src="./images/github_dark.svg" alt="" aria-hidden="true"></a>
@@ -141,6 +140,19 @@
         <p><a href="./accessibility.html">accessibility statement</a></p>
         <p><a href="./privacy.html">privacy policy</a></p>
     </footer>
+
+    <script>
+                    // mb wordmark animation
+        new rive.Rive({
+            src: "./media/mb_wordmark.riv",
+            canvas: document.getElementById("mb_wordmark"),
+            autoplay: true,
+            stateMachines: "State Machine 1",  
+            onLoad: () => {
+            console.log("mb_wordmark rive loaded!");
+            }
+        });
+    </script>
 
     </body>
 
