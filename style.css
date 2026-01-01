@@ -42,7 +42,9 @@
 *,*::before,*::after{ box-sizing:border-box; } /* makes padding/borders behave predictably */
 html,body{ height:100%; }                       /* allows full-height layout patterns */
 html,body{ overflow-x:hidden; }                 /* prevents sideways scroll from wide elements on mobile */
-
+html{
+  scrollbar-gutter: stable;
+}
 
 /* =========================================================
    3) header shell (full-width sticky bar)
