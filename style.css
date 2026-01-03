@@ -281,11 +281,11 @@ h1,h2,h3,h4,h5,h6{
   line-height: 1.2;                             /* readable heading line height */
 }
 a{
-  color: var(--pink);                           /* global link color (outside nav-left) */
+  color: var(--yellow);                           /* global link color (outside nav-left) */
   text-decoration: none;                        /* no underline by default */
 }
 a:hover{
-  color: var(--yellow);                         /* hover color */
+  color: var(--pink);                         /* hover color */
   text-decoration: none;                        /* keep no underline */
 }
 p{ margin: 0 0 1em; }                           /* default paragraph spacing */
