@@ -493,44 +493,19 @@ button{
   border-color: var(--yellow);
   box-shadow: 0 0 0 3px rgba(255,255,0,.25);
 }
-
-/* submit button */
-#contact-form button{
-  margin-top: .25rem;
-  padding: .9rem 1.2rem;
-
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.45);
-
-  background: linear-gradient(
-    135deg,
-    var(--blue),
-    var(--pink)
-  );
-
-  color: white;
-  font-weight: 900;
-  letter-spacing: .04em;
-  text-transform: lowercase;
-
+.rive-submit{
+  border: 0;
+  background: transparent;
+  padding: 0;
   cursor: pointer;
-  box-shadow: 0 10px 22px rgba(0,0,0,.3);
-
-  transition: transform .12s ease, filter .12s ease;
+  display: inline-flex;
 }
 
-#contact-form button:hover{
-  transform: translateY(-1px);
-  filter: brightness(1.05);
+#submit_button{
+  width: min(200px, 100%);
+  height: auto;           /* ok ONLY if we also set an aspect ratio */
+  aspect-ratio: 200 / 50; /* keeps height correct when scaling */
+  display: block;
 }
 
-#contact-form button:active{
-  transform: translateY(0);
-}
-
-/* status text */
-#form-status{
-  min-height: 1.2em;
-  font-size: .95rem;
-  color: rgba(255,255,255,.9);
-}
+.rive-submit{ margin: 0 auto; }
