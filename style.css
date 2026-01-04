@@ -46,6 +46,48 @@ html{
   scrollbar-gutter: stable;
 }
 
+/* ===============================
+   page transition: smooth slide
+   =============================== */
+
+#page-transition{
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 9999;
+  pointer-events: none;
+
+  /* start COVERING the page */
+  transform: translateX(0);
+
+  /* smoother easing + a touch longer */
+  transition: transform 0.75s cubic-bezier(.25,.8,.25,1);
+  will-change: transform;
+}
+
+/* cover page before navigating */
+#page-transition.active{
+  transform: translateX(0);
+}
+
+/* reveal page after load (slide off to the left) */
+#page-transition.exit{
+  transform: translateX(-100%);
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  #page-transition{ transition: none; }
+}
+
+
+/* accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  #page-transition{
+    transition: none;
+  }
+}
+
 
 /* =========================================================
    3) header shell (full-width sticky bar)
