@@ -456,8 +456,8 @@ button{
 
 /* form container */
 #contact-form{
-  width: min(92vw, 420px);  /* choose your max width */
-  margin: 0 auto;           /* centers horizontally */  padding: 1.25rem;
+  margin-top: 1.25rem;
+  padding: 1.25rem;
 
   display: grid;
   gap: 1rem;
