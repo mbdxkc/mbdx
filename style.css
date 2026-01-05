@@ -583,6 +583,20 @@ button{
     0 4px 8px rgba(0,0,0,.25);
 }
 
+/* =========================================================
+   MOBILE FIX — visually center form fields
+   ========================================================= */
+@media (max-width: 600px){
+  .section_left{
+    padding: 1.75rem 1.5rem 2rem; /* equal left/right padding */
+  }
+
+  #contact-form{
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 
 /* =========================================================
    end of style.css
