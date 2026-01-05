@@ -73,6 +73,22 @@ body{
 
 
 /* =========================================================
+   2.5) accessibility utilities
+   ========================================================= */
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* =========================================================
    3) accessibility: skip link
    ========================================================= */
 .skip-link{
@@ -158,6 +174,29 @@ a{
 }
 a:hover{ color: var(--pink); }
 
+
+/* =========================================================
+   5.5) headline pop (recommended)
+   - makes h1 feel distinct from body text
+   - works across all section cards
+   ========================================================= */
+.section_left h1,
+.section_right h1{
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.05;
+
+  margin: 0 0 1rem;
+
+  color: #fff;
+  text-transform: lowercase;
+  letter-spacing: -0.015em;
+
+  /* subtle separation: depth + a hint of brand glow */
+  text-shadow:
+    0 2px 12px rgba(0,0,0,.35),
+    0 0 18px rgba(0,141,218,.35);
+}
 
 /* =========================================================
    6) header shell (full-width sticky bar)
@@ -282,19 +321,23 @@ a[href*="contact"]   img:hover{ content: url("/images/contact_dark.svg"); }
 
 
 /* =========================================================
-   12) home logo (logo-solo)
-   - center logo on the home page without affecting other pages
+   12) page-level layout
    ========================================================= */
-    .page-contact main{
-  align-items: center;
-}
-
 main{
   flex: 1 0 auto;
   display: flex;
   justify-content: center;
 }
 
+/* center contact page content vertically-ish */
+.page-contact main{
+  align-items: center;
+}
+
+
+/* =========================================================
+   12.5) home logo (logo-solo)
+   ========================================================= */
 #main_container > .logo-solo,
 #main-container > .logo-solo{
   margin: 0 auto;
@@ -334,7 +377,8 @@ main{
 }
 
 .section_left{
-  padding: 2rem 12% 2rem 2rem;
+  /* tightened top padding so the h1 feels intentional */
+  padding: 1.75rem 12% 2rem 2rem;
   background: linear-gradient(135deg, var(--grad-start-blue), var(--grad-end-blue));
   box-shadow: var(--shadow-left);
 }
