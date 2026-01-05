@@ -1,500 +1,421 @@
 /* =========================================================
    mediaBrilliance / mBdx — main stylesheet
+   design. code. clarity.
    ========================================================= */
 
 
 /* =========================================================
-   1) design tokens (css variables)
-   - single source of truth for colors, sizes, spacing, etc.
-   - update these first when changing the “theme”
+   1) design tokens
+   - single source of truth for the UI
    ========================================================= */
 :root{
-  --bg: rgba(0,0,0,.9);                 /* page background color (and base layer under the tiled image) */
-  --text: rgba(255,255,255,.87);        /* default body text color on dark bg */
-  --muted: rgba(255,255,255,.7);        /* muted/subtle text color */
+  /* colors */
+  --bg:    rgba(0,0,0,.9);
+  --text:  rgba(255,255,255,.87);
+  --muted: rgba(255,255,255,.7);
 
-  --blue:   #008DDA;                    /* brand accent: blue (links, etc.) */
-  --pink:   #FF2DF1;                    /* brand accent: pink (active link + hover underline) */
-  --yellow: #FFFF00;                    /* brand accent: yellow (hover state) */
+  /* brand accents */
+  --blue:   #008DDA;
+  --pink:   #FF2DF1;
+  --yellow: #FFFF00;
 
-  --grad-start-blue:   #008DDA;         /* section gradient (blue start) */
-  --grad-end-blue:     #caecff;         /* section gradient (blue end) */
-  --grad-start-silver: #eaeaea;         /* section gradient (silver start) */
-  --grad-end-silver:   #373737;         /* section gradient (silver end) */
+  /* gradients */
+  --grad-start-blue:   #008DDA;
+  --grad-end-blue:     #caecff;
+  --grad-start-silver: #eaeaea;
+  --grad-end-silver:   #373737;
 
-  --radius-lg: 20px;                    /* standard card corner radius */
-  --radius-xl: 28px;                    /* larger corner radius (if needed elsewhere) */
-  --container: 1200px;                  /* max content width */
+  /* layout */
+  --container: 1200px;
+  --header-h:  42px;
 
-  --shadow:       6px 4px 4px 2px rgba(255,255,255,.2);     /* “right” shadow used on silver sections */
-  --shadow-left: -6px 4px 4px 2px rgba(255,255,255,.2);     /* “left” shadow used on blue sections */
+  /* shape + shadow */
+  --radius-lg: 20px;
+  --radius-xl: 28px;
 
-  --header-h: 42px;                     /* header height on desktop */
-  /* NOTE: if items look cramped vertically, increase this slightly (ex: 56px). */
+  --shadow:       6px 4px 4px 2px rgba(255,255,255,.2);   /* right-side shadow */
+  --shadow-left: -6px 4px 4px 2px rgba(255,255,255,.2);   /* left-side shadow */
+
+  /* motion */
+  --t-fade:  .5s;
+  --t-slide: .75s;
+  --ease-slide: cubic-bezier(.25,.8,.25,1);
 }
 
 
 /* =========================================================
    2) base reset + global safeguards
-   - consistent box sizing
-   - prevent mobile horizontal scroll
    ========================================================= */
-*,*::before,*::after{ box-sizing:border-box; } /* makes padding/borders behave predictably */
-html,body{ height:100%; }                       /* allows full-height layout patterns */
-html,body{ overflow-x:hidden; }                 /* prevents sideways scroll from wide elements on mobile */
+*,*::before,*::after{ box-sizing: border-box; }
+
+html,body{ height: 100%; }
+
 html{
-  scrollbar-gutter: stable;
+  overflow-x: hidden;
+  scrollbar-gutter: stable both-edges;
 }
 
-/* ===============================
-   page transition: smooth slide
-   =============================== */
+body{
+  margin: 0;
+  padding-top: 0 !important;
 
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+
+  color: var(--text);
+  background: var(--bg) url("/images/themlines.png") top left / auto repeat;
+
+  font-family: "Nunito Sans", sans-serif;
+}
+
+
+/* =========================================================
+   3) accessibility: skip link
+   ========================================================= */
+.skip-link{
+  position: absolute;
+  top: -40px;
+  left: 0;
+  z-index: 10000;
+
+  padding: 8px 16px;
+  background: var(--blue);
+  color: #fff;
+
+  transition: top .3s ease;
+}
+
+/* show on keyboard focus */
+.skip-link:focus{ top: 0; }
+
+
+/* =========================================================
+   4) page transitions
+   - overlay slides away on load
+   - main fades in/out during nav
+   ========================================================= */
 #page-transition{
   position: fixed;
   inset: 0;
-  background: var(--bg);
   z-index: 9999;
+
+  background: var(--bg);
   pointer-events: none;
 
-  /* start COVERING the page */
+  /* start covering */
   transform: translateX(0);
-
-  /* smoother easing + a touch longer */
-  transition: transform 0.75s cubic-bezier(.25,.8,.25,1);
+  transition: transform var(--t-slide) var(--ease-slide);
   will-change: transform;
 }
 
-/* cover page before navigating */
-#page-transition.active{
-  transform: translateX(0);
-}
-
-/* reveal page after load (slide off to the left) */
+/* reveal after load */
 #page-transition.exit{
   transform: translateX(-100%);
 }
 
+/* content fade */
+main{
+  flex: 1 0 auto;
+  opacity: 1;
+  transition: opacity var(--t-fade) ease;
+}
+
+/* on first paint, keep content hidden */
+body.is-loading main{ opacity: 0; }
+
+/* when leaving, fade content out */
+body.is-leaving main{ opacity: 0; }
+
 /* reduced motion */
 @media (prefers-reduced-motion: reduce){
   #page-transition{ transition: none; }
-}
-
-
-/* accessibility: respect reduced motion */
-@media (prefers-reduced-motion: reduce){
-  #page-transition{
-    transition: none;
-  }
+  main{ transition: none; }
 }
 
 
 /* =========================================================
-   3) header shell (full-width sticky bar)
-   - keeps header pinned at top (sticky)
-   - creates glassy blur effect over content behind it
-   - does NOT center children; centering is handled inside .header-grid/.nav
-   ========================================================= */
-.site-header{
-  position: sticky;                             /* sticks at top as you scroll */
-  top: 0;                                       /* sticky anchor */
-  z-index: 9999;                                /* keep above page content */
-
-  width: 100%;                                  /* full-width bar */
-  height: var(--header-h);                      /* fixed bar height */
-
-  backdrop-filter: saturate(140%) blur(6px);    /* glassy blur (supported browsers) */
-  -webkit-backdrop-filter: saturate(140%) blur(6px); /* Safari version of blur */
-  /* NOTE: remove both backdrop-filter lines if you don't want the frosted/glass effect. */
-}
-
-
-/* =========================================================
-   4) header layout (grid applied to the nav *inside* header-grid)
-   - this targets the exact structure:
-       .header-grid > .nav
-   - nav becomes the 3-column grid:
-       left (1fr) | title (auto) | socials (1fr)
-   - 1fr on both sides helps keep the title visually centered
-   ========================================================= */
-.header-grid > .nav{
-  display: grid;                                /* enables grid layout for the three header chunks */
-  grid-template-columns: 1fr auto 1fr;          /* left grows | title fits content | right grows */
-  align-items: center;                          /* vertically center all three chunks */
-  width: 100%;                                  /* stretch nav to full width of its container */
-  /* NOTE: you may want height:100% here if you want nav to fill header vertically:
-     height: 100%;
-     (add it if vertical centering ever looks off) */
-}
-
-/* force each group into its column
-   - these are the “grid items” that sit in the 3 columns
-   - each also becomes a flex row to align its own children neatly */
-.nav-left{
-  justify-self: start;                          /* push the whole block to left edge of its column */
-  display:flex;                                 /* lay out the links in a row */
-  align-items:center;                           /* vertically align links in the header */
-  gap: .75rem;                                  /* spacing between links */
-  flex-wrap: nowrap;                            /* keep links on one line (prevents stacking) */
-  /* NOTE: if links ever wrap on very small screens, consider:
-     flex-wrap: wrap; (but only if you *want* wrapping instead of shrinking) */
-}
-.header-title{
-  justify-self: center;                         /* keep title centered in the middle column */
-  display:flex;                                 /* helps vertical centering of the <p> */
-  align-items:center;                           /* vertical align the title text */
-}
-.socials{
-  justify-self: end;                            /* push the socials block to right edge of its column */
-  display:flex;                                 /* lay out icons in a row */
-  align-items:center;                           /* vertical align icons */
-  gap: .75rem;                                  /* spacing between icons */
-  /* NOTE: if icons need to hug the right padding more/less, adjust padding on .socials below. */
-}
-
-
-/* =========================================================
-   6) title
-   - typography for the “mediaBrilliance” text
-   - uses clamp() for responsive sizing
-   ========================================================= */
-.header-title{
-  justify-self: center;                         /* (redundant but safe) ensures title stays centered */
-  min-width: 0;                                 /* prevents overflow issues in grid/flex combos */
-}
-.dark-title{
-  margin: 0;                                    /* remove default paragraph margin */
-  line-height: 1.05;                            /* tighter line height for compact header */
-  font-family: 'Nunito Sans', sans-serif;       /* title font */
-  font-weight: 100;                             /* thin weight */
-  font-size: clamp(0.5rem, 3.5vw, 2rem);        /* responsive scaling between 0.5rem and 2rem */
-  color: rgba(0,0,0,.5);                        /* 50% black (semi-transparent) */
-  white-space: nowrap;                          /* prevent title from wrapping */
-  /* NOTE: if the title overlaps other items, reduce max (2rem) or hide on smaller breakpoints. */
-}
-
-
-
-/* =========================================================
-   8) pages (left side icons)
-   - layout and sizing for page icon links
-   ========================================================= */
-.pages{
-  display: inline-flex;                         /* keeps each icon link as a tight inline-flex box */
-  justify-self: start;                            /* keeps the socials block on the right side */
-  padding: 0 0 0 .5rem;                         /* right padding so icons don't touch the edge */
-  gap: clamp(.35rem, 1.5vw, .75rem);            /* responsive spacing between icons */
-}
-.pages a{
-  display: inline-flex;                         /* keeps each icon link as a tight inline-flex box */
-  align-items: center;                          /* vertical center for icons */
-  justify-content: center;                      /* horizontal center for icons */
-}
-.pages img{
-  width: clamp(18px, 5vw, 24px);                /* responsive icon size */
-  height: auto;                                 /* keep SVG aspect ratio */
-  display: block;                               /* removes inline image baseline spacing */
-}
-
-/* ACTIVE STATE (overrides everything) */
-.pages a.is-active img{
-  filter: none;
-}
-
-/* =========================================================
-   8) socials (right side icons)
-   - layout and sizing for social icon links
-   ========================================================= */
-.socials{
-  justify-self: end;                            /* keeps the socials block on the right side */
-  padding: 0 .5rem 0 0;                         /* right padding so icons don't touch the edge */
-  gap: clamp(.35rem, 1.5vw, .75rem);            /* responsive spacing between icons */
-  /* NOTE: this rule is missing display:flex and align-items in THIS block,
-     but you already set them above in “force each group into its column”.
-     (safe as-is; redundancy is optional) */
-}
-.socials a{
-  display: inline-flex;                         /* keeps each icon link as a tight inline-flex box */
-  align-items: center;                          /* vertical center for icons */
-  justify-content: center;                      /* horizontal center for icons */
-}
-.socials img{
-  width: clamp(18px, 5vw, 24px);                /* responsive icon size */
-  height: auto;                                 /* keep SVG aspect ratio */
-  display: block;                               /* removes inline image baseline spacing */
-  /* NOTE: consider adding alt="" in HTML for accessibility if these are decorative icons. */
-}
-
-/* hover icon swaps
-   - swaps dark icons to bright variants on hover */
-a[href*="instagram"] img:hover { content: url("/images/instagram_bright.svg"); }
-a[href*="dribbble"]  img:hover { content: url("/images/dribbble_bright.svg"); }
-a[href*="x.com"]     img:hover { content: url("/images/twitter_bright.svg"); }
-a[href*="github"]    img:hover { content: url("/images/github_bright.svg"); }
-a[href*="index"]      img:hover { content: url("/images/home_dark.svg"); }
-a[href*="services"] img:hover { content: url("/images/services_dark.svg"); }
-a[href*="contact"]   img:hover { content: url("/images/contact_dark.svg"); }
-  /* NOTE: “content: url()” on <img> hover works in some browsers but can be inconsistent.
-     A more robust pattern is swapping via background-image on a span, or using <picture>.
-     (do not change here; just flagging for future hardening) */
-
-
-/* =========================================================
-   9) mobile header behavior (“last working” style)
-   - keep a single row
-   - scale left/right groups slightly
-   - hide title on small screens to prevent crowding
-   ========================================================= */
-@media (max-width: 450px){
-  :root{ --header-h: 64px; }                    /* increase header height on mobile */
-
-  .nav-left,
-  .socials{
-    transform: scale(.9);                       /* shrink slightly to fit */
-    transform-origin: center;                   /* scale from center so it doesn't drift */
-    /* NOTE: scaling text/icons can reduce crispness; an alternative is reducing font-size/icon size.
-       (do not change here; just an option) */
-  }
-
-  .socials{ gap: .35rem; }                      /* tighten icon spacing */
-  .nav-left{ gap: .5rem; }                      /* tighten link spacing */
-}
-
-
-/* =========================================================
-   10) logo / canvas
-   - responsive sizing for Rive canvas logo
-   ========================================================= */
-#mb_logo_riv{
-  width: 100%;                                  /* scale canvas to parent width */
-  height: auto;                                 /* preserve aspect ratio */
-  display: block;                               /* remove baseline spacing */
-}
-.logo-solo{
-  width: min(100%, 600px);                      /* max logo width */
-  aspect-ratio: 1 / 1;                          /* enforce square area */
-  /* NOTE: if the canvas needs to be centered, ensure its parent is a flex/center container. */
-}
-
-
-/* =========================================================
-   11) body + background
-   - sets global background + default font + default text color
-   ========================================================= */
-.skip-link{
-  position: absolute;                           /* removes from normal flow */
-  top: -40px;                                   /* hide offscreen */
-  left: 0;
-  background: var(--blue);                      /* visible background */
-  color: #fff;                                 /* visible text */
-  padding: 8px 16px;                           /* clickable padding */
-  z-index: 10000;                              /* above all other content */
-
-  transition: top .3s ease;                    /* smooth slide-in */
-}
-body{
-  margin: 0;                                    /* remove default body margin */
-  padding-top: 0 !important;                    /* ensure header doesn't create extra offset */
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;                           /* full viewport height */
-  min-height: 100dvh;                         /* modern mobile */
-
-  color: var(--text);                           /* default text */
-  background: var(--bg) url("/images/themlines.png") top left / auto repeat; /* dark base + tiled image */
-
-  font-family: 'Nunito Sans', sans-serif;       /* global font */
-  /* NOTE: if performance becomes an issue on mobile, consider reducing backdrop filters + heavy tiling. */
-}
-
-/* sticky footer layout */
-html, body{
-  height: 100%;
-}
-
-
-/* =========================================================
-   12) typography defaults
-   - global headings + anchors + paragraph spacing
+   5) typography defaults
    ========================================================= */
 h1,h2,h3,h4,h5,h6{
-  margin: 0 0 .5em;                             /* space after headings */
-  font-weight: 700;                             /* bold headings */
-  line-height: 1.2;                             /* readable heading line height */
+  margin: 0 0 .5em;
+  font-weight: 700;
+  line-height: 1.2;
 }
-a{
-  color: var(--yellow);                           /* global link color (outside nav-left) */
-  text-decoration: none;                        /* no underline by default */
-}
-a:hover{
-  color: var(--pink);                         /* hover color */
-  text-decoration: none;                        /* keep no underline */
-}
-p{ margin: 0 0 1em; }                           /* default paragraph spacing */
+
+p{ margin: 0 0 1em; }
+
 small{
-  color: var(--muted);                          /* subdued small text */
-  font-size: 0.875rem;                          /* standard small size */
+  color: var(--muted);
+  font-size: .875rem;
 }
+
+a{
+  color: var(--yellow);
+  text-decoration: none;
+}
+a:hover{ color: var(--pink); }
 
 
 /* =========================================================
-   13) main layout container
-   - centers main content horizontally + vertically (flex)
+   6) header shell (full-width sticky bar)
    ========================================================= */
-main{
-  flex: 1 0 auto;
-}
-#main-container{
-  max-width: var(--container);                  /* constrain content width */
-  margin: 0 auto;                               /* center horizontally */
-  padding: 0 1rem;                              /* page gutters */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 9999;
 
-  display: flex;                                /* flex layout for centering */
-  justify-content: center;                      /* horizontal center */
-  align-items: center;                          /* vertical center */
-  /* NOTE: vertical centering only “looks” centered if the parent has height available;
-     if content grows, this becomes less meaningful. */
+  width: 100%;
+  height: var(--header-h);
+
+  backdrop-filter: saturate(140%) blur(6px);
+  -webkit-backdrop-filter: saturate(140%) blur(6px);
 }
 
 
 /* =========================================================
-   14) sections (content cards)
-   - left/right gradient cards with overlapping image boxes
+   7) header layout (3-column grid)
+   - left | title | right
+   - uses equal flexible columns so title stays dead-center
+   ========================================================= */
+.header-grid > .nav{
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+  align-items: center;
+  width: 100%;
+}
+
+/* center cluster */
+.header-title{
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+/* left + right clusters */
+.pages,
+.socials{
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: clamp(.35rem, 1.5vw, .75rem);
+}
+
+.pages{
+  justify-self: start;
+  padding-left: .5rem;
+  flex-wrap: nowrap;
+}
+
+.socials{
+  justify-self: end;
+  padding-right: .5rem;
+  flex-wrap: nowrap;
+}
+
+
+/* =========================================================
+   8) header icon sizing
+   ========================================================= */
+.pages a,
+.socials a{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pages img,
+.socials img{
+  width: clamp(18px, 5vw, 24px);
+  height: auto;
+  display: block;
+}
+
+/* active state */
+.pages a.is-active img{ filter: none; }
+
+
+/* =========================================================
+   9) icon hover swaps
+   - (works in many browsers; keep an eye on consistency)
+   ========================================================= */
+a[href*="instagram"] img:hover{ content: url("/images/instagram_bright.svg"); }
+a[href*="dribbble"]  img:hover{ content: url("/images/dribbble_bright.svg"); }
+a[href*="x.com"]     img:hover{ content: url("/images/twitter_bright.svg"); }
+a[href*="github"]    img:hover{ content: url("/images/github_bright.svg"); }
+a[href*="index"]     img:hover{ content: url("/images/home_dark.svg"); }
+a[href*="services"]  img:hover{ content: url("/images/services_dark.svg"); }
+a[href*="contact"]   img:hover{ content: url("/images/contact_dark.svg"); }
+
+
+/* =========================================================
+   10) mobile header behavior
+   ========================================================= */
+@media (max-width: 450px){
+  :root{ --header-h: 64px; }
+
+  .pages,
+  .socials{
+    transform: scale(.9);
+    transform-origin: center;
+  }
+
+  .socials{ gap: .35rem; }
+  .pages{ gap: .5rem; }
+}
+
+
+/* =========================================================
+   11) main layout container
+   - width control only (layout belongs to page sections)
+   - supports BOTH ids for backward compatibility
+   ========================================================= */
+#main_container,
+#main-container{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+
+/* =========================================================
+   12) home logo (logo-solo)
+   - center logo on the home page without affecting other pages
+   ========================================================= */
+#main_container > .logo-solo,
+#main-container > .logo-solo{
+  margin: 0 auto;
+}
+
+.logo-solo{
+  width: min(100%, 600px);
+  aspect-ratio: 1 / 1;
+}
+
+#mb_logo_riv{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/* =========================================================
+   13) sections (content cards)
    ========================================================= */
 .section_container{
-  display: flex;                                /* row container (by default) */
-  justify-content: start;                       /* align cards to the left */
-  margin: 2%;                                   /* outer spacing */
-  /* NOTE: on small screens, you may want flex-direction: column;
-     (do not change here; just noting) */
+  display: flex;
+  justify-content: start;
+  margin: 2%;
 }
-.section_left{
-  z-index: 1;                                   /* keeps card above overlapping elements */
-  width: 80%;                                   /* card width */
-  min-height: 300px;                            /* minimum visual height */
-  font-size: 1.2rem;                            /* base text size for the card */
 
-  margin: 2%;                                   /* spacing around card */
-  padding: 2rem 12% 2rem 2rem;                  /* extra right padding to make room for overlap */
-
-  border: 1px solid rgba(255,255,255,.8);       /* light border */
-  border-radius: var(--radius-lg);              /* rounded corners */
-  background: linear-gradient(135deg, var(--grad-start-blue), var(--grad-end-blue)); /* blue gradient */
-  box-shadow: var(--shadow-left);               /* shadow that pushes left */
-}
+.section_left,
 .section_right{
-  z-index: 1;                                   /* keeps card above overlapping elements */
-  width: 80%;                                   /* card width */
-  min-height: 300px;                            /* minimum visual height */
-  font-size: 1.2rem;                            /* base text size for the card */
+  z-index: 1;
+  width: 80%;
+  min-height: 300px;
+  font-size: 1.2rem;
 
-  margin: 2%;                                   /* spacing around card */
-  padding: 2rem 2rem 2rem 12%;                  /* extra left padding to make room for overlap */
-
-  border: 1px solid rgba(255,255,255,.8);       /* light border */
-  border-radius: var(--radius-lg);              /* rounded corners */
-  background: linear-gradient(135deg, var(--grad-start-silver), var(--grad-end-silver)); /* silver gradient */
-  box-shadow: var(--shadow);                    /* standard shadow */
+  margin: 2%;
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: var(--radius-lg);
 }
+
+.section_left{
+  padding: 2rem 12% 2rem 2rem;
+  background: linear-gradient(135deg, var(--grad-start-blue), var(--grad-end-blue));
+  box-shadow: var(--shadow-left);
+}
+
+.section_right{
+  padding: 2rem 2rem 2rem 12%;
+  background: linear-gradient(135deg, var(--grad-start-silver), var(--grad-end-silver));
+  box-shadow: var(--shadow);
+}
+
+/* overlap boxes */
+.section_box_left,
 .section_box_right{
-  z-index: 2;                                   /* above card (for overlap effect) */
-  margin: 0 0 -10% -10%;                        /* pulls box down and left */
-  width: 40%;                                   /* box width */
-  height: 80%;                                  /* box height */
-  justify-self: end;                            /* only affects if this element is inside a grid parent */
-  /* NOTE: justify-self does nothing in a flex container; use margin/align-self instead if needed. */
+  z-index: 2;
+  width: 40%;
+  height: 80%;
 }
-.section_box_left{
-  z-index: 2;                                   /* above card (for overlap effect) */
-  margin: 0 -10% -10% 0;                        /* pulls box down and right */
-  width: 40%;                                   /* box width */
-  height: 80%;                                  /* box height */
-  justify-self: start;                          /* only affects if this element is inside a grid parent */
-  /* NOTE: justify-self does nothing in a flex container; use margin/align-self instead if needed. */
-}
+
+.section_box_left{  margin: 0 -10% -10% 0; }
+.section_box_right{ margin: 0 0 -10% -10%; }
 
 
 /* =========================================================
-   15) footer
-   - small frosted footer bar with links
+   14) footer
    ========================================================= */
 .footer{
-  height: 32px;                                 /* footer bar height */
+  height: 32px;
   margin-top: auto;
-  width: 100%;                                  /* full-width footer */
-  backdrop-filter: saturate(140%) blur(6px);    /* frosted background */
-  -webkit-backdrop-filter: saturate(140%) blur(6px);
+  width: 100%;
 
-  border-top: 1px solid rgba(255,255,255,.12);  /* subtle separator line */
-  font-size: 0.5rem;                            /* small footer text */
-
-  display: flex;                                /* center footer content */
+  display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;                                    /* space between footer items */
-  padding: .5rem;                               /* inner padding */
+  gap: 1rem;
+
+  padding: .5rem;
+
+  font-size: .5rem;
+  border-top: 1px solid rgba(255,255,255,.12);
+
+  backdrop-filter: saturate(140%) blur(6px);
+  -webkit-backdrop-filter: saturate(140%) blur(6px);
 }
-.footer a{ color: var(--blue); }               /* footer link color */
-.footer a:hover{ color: var(--pink); }          /* footer hover color */
+
+.footer a{ color: var(--blue); }
+.footer a:hover{ color: var(--pink); }
 
 
 /* =========================================================
-   16) images
-   - global image safety: responsive sizing, no overflow
+   15) global images
    ========================================================= */
 img{
-  display: block;                               /* removes inline image gaps */
-  max-width: 100%;                              /* never exceed container width */
-  height: auto;                                 /* keep aspect ratio */
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
+
 .logo,
 .section_image{
-  width: 100%;                                  /* fill container */
+  width: 100%;
   height: auto;
-  object-fit: cover;                            /* crop to container when needed */
+  object-fit: cover;
 }
 
-   /* =========================================================
-   contact form styling + scroll wobble fixes
+
+/* =========================================================
+   16) contact form + scroll wobble fixes
    ========================================================= */
-
-/* prevent page width shifting when focusing inputs */
-html{
-  scrollbar-gutter: stable both-edges;
-}
-
-/* mobile viewport stability */
-body{
-  min-height: 100vh;
-  min-height: 100dvh;
-}
-
-/* prevent iOS zoom + layout jiggle */
 input,
 textarea,
 button{
-  font-size: 16px;
+  font-size: 16px;   /* prevent iOS zoom */
   max-width: 100%;
 }
 
-/* -----------------------------
-   contact form container
-   ----------------------------- */
+/* form container */
 #contact-form{
   margin-top: 1.25rem;
   padding: 1.25rem;
 
-  border-radius: 20px;
+  display: grid;
+  gap: 1rem;
+
+  border-radius: var(--radius-lg);
   border: 1px solid rgba(255,255,255,.5);
 
-  background: linear-gradient(135deg, var(--grad-start-silver), var(--grad-end-silver)); /* silver gradient */
+  background: linear-gradient(135deg, var(--grad-start-silver), var(--grad-end-silver));
   backdrop-filter: blur(10px) saturate(140%);
   -webkit-backdrop-filter: blur(10px) saturate(140%);
 
   box-shadow: 0 12px 28px rgba(0,0,0,.25);
-
-  display: grid;
-  gap: 1rem;
 }
 
 /* field grouping */
@@ -512,22 +433,21 @@ button{
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,.3);
 
-  background: rgba(255, 255, 255, 0.685);
-  color: rgba(0, 0, 0, 0.95);
+  background: rgba(255,255,255,.685);
+  color: rgba(0,0,0,.95);
 
   font-family: inherit;
-  box-sizing: border-box;
 
   transition: border-color .15s ease, box-shadow .15s ease;
 }
 
-/* textarea behavior */
+/* textarea */
 #contact-form textarea{
   resize: vertical;
   min-height: 9rem;
 }
 
-/* focus styles */
+/* focus */
 #contact-form input:focus,
 #contact-form textarea:focus{
   outline: none;
@@ -535,133 +455,80 @@ button{
   box-shadow: 0 0 0 3px rgba(255,255,0,.25);
 }
 
-/* ===============================
-   mediaBrilliance submit button
-   =============================== */
 
+/* =========================================================
+   17) buttons
+   - mediaBrilliance submit button
+   ========================================================= */
 .mb-submit{
   appearance: none;
-  border: 1px solid transparent;
-  background:
-  linear-gradient(#111, #000) padding-box,
-  linear-gradient(135deg, #eaeaea, #8a8a8a, #f5f5f5) border-box;
   cursor: pointer;
 
-
-  /* size */
   width: 200px;
   height: 50px;
 
-  /* center */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1.25rem auto 0 auto; /* ← centered */
+  margin: 1.25rem auto 0;
 
-  /* typography */
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 0.95rem;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: .95rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: .02em;
   text-transform: lowercase;
 
-  /* visuals */
-  color: white;
-  border-radius: 999px;
-  background: linear-gradient(
-    135deg,
-    #111 0%,
-    #222 40%,
-    #000 100%
-  );
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.15),
-    0 8px 18px rgba(0,0,0,0.35);
-
-  transition:
-    transform 0.12s ease,
-    box-shadow 0.12s ease,
-    background 0.2s ease;
-}
-
-/* pink hover */
-.mb-submit{
-  appearance: none;
-  border: 1px solid rgba(234,234,234,0.45); /* subtle silver */
-  background: linear-gradient(
-    135deg,
-    #111 0%,
-    #222 40%,
-    #000 100%
-  );
-  cursor: pointer;
-
-  /* size */
-  width: 200px;
-  height: 50px;
-
-  /* center */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1.25rem auto 0 auto;
-
-  /* typography */
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: lowercase;
-
-  color: white;
+  color: #fff;
   border-radius: 999px;
 
+  border: 1px solid rgba(234,234,234,.45); /* subtle silver */
+  background: linear-gradient(135deg, #111 0%, #222 40%, #000 100%);
+
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.15),
-    0 8px 18px rgba(0,0,0,0.35);
+    inset 0 1px 0 rgba(255,255,255,.15),
+    0 8px 18px rgba(0,0,0,.35);
 
   transition:
-    transform 0.12s ease,
-    box-shadow 0.12s ease,
-    border-color 0.2s ease;
-}
-
-/* press */
-.mb-submit:active{
-  transform: translateY(1px);
-  box-shadow:
-    inset 0 2px 6px rgba(0,0,0,0.6),
-    0 4px 10px rgba(0,0,0,0.4);
-}
-
-/* keyboard focus */
-.mb-submit:focus-visible{
-  outline: none;
-  box-shadow:
-    0 0 0 3px rgba(255,45,241,0.55),
-    inset 0 1px 0 rgba(255,255,255,0.2);
-}
-
-/* disabled (optional) */
-.mb-submit:disabled{
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.1),
-    0 4px 8px rgba(0,0,0,0.25);
+    transform .12s ease,
+    box-shadow .12s ease,
+    border-color .2s ease,
+    color .2s ease;
 }
 
 .mb-submit:hover{
   color: var(--blue);
   transform: translateY(-1px);
-  border-color: rgba(234,234,234,0.75); /* brighter silver */
+  border-color: rgba(234,234,234,.75);
+
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.2),
-    0 0 0 2px rgba(255,45,241,0.35),
-    0 12px 26px rgba(0,0,0,0.45);
+    inset 0 1px 0 rgba(255,255,255,.2),
+    0 0 0 2px rgba(255,45,241,.35),
+    0 12px 26px rgba(0,0,0,.45);
 }
+
+.mb-submit:active{
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 2px 6px rgba(0,0,0,.6),
+    0 4px 10px rgba(0,0,0,.4);
+}
+
+.mb-submit:focus-visible{
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(255,45,241,.55),
+    inset 0 1px 0 rgba(255,255,255,.2);
+}
+
+.mb-submit:disabled{
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.1),
+    0 4px 8px rgba(0,0,0,.25);
+}
+
 
 /* =========================================================
    end of style.css

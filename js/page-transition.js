@@ -1,50 +1,48 @@
 (() => {
-  const t = document.getElementById("page-transition");
-  if (!t) return;
+  const overlay = document.getElementById("page-transition");
+  if (!overlay) return;
 
-  const DURATION_MS = 450; // must match your CSS: transition 0.45s
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const OVERLAY_MS = reduce ? 0 : 750;
+  const FADE_MS    = reduce ? 0 : 350;
 
-  // on load: slide overlay away to the left
+  // start hidden, then reveal while overlay slides away
+  document.body.classList.add("is-loading");
   requestAnimationFrame(() => {
-    t.classList.add("exit");
+    overlay.classList.add("exit");          // slide overlay off
+    document.body.classList.remove("is-loading"); // fade content in
   });
 
-  function isInternalLink(a) {
-    const href = a.getAttribute("href");
-    if (!href) return false;
+  function leaveTo(url){
+    document.body.classList.add("is-leaving"); // fade content out
+    overlay.classList.remove("exit");          // bring overlay back to covering (translateX(0))
 
-    if (href.startsWith("#")) return false;
-    if (href.startsWith("mailto:") || href.startsWith("tel:")) return false;
-    if (a.target === "_blank") return false;
-    if (a.hasAttribute("download")) return false;
-
-    try {
-      const url = new URL(href, window.location.href);
-      return url.origin === window.location.origin;
-    } catch {
-      return false;
-    }
+    // wait until overlay has covered the page, then navigate
+    window.setTimeout(() => {
+      window.location.href = url;
+    }, Math.max(OVERLAY_MS, FADE_MS));
   }
 
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (!a) return;
 
-    // allow ctrl/cmd click, middle click, etc.
-    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    const href = a.getAttribute("href");
+    if (!href || href.startsWith("#")) return;
+    if (a.target && a.target !== "_self") return;
+    if (a.hasAttribute("download")) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
-    if (!isInternalLink(a)) return;
+    const url = new URL(a.href, location.href);
+    if (url.origin !== location.origin) return;
 
     e.preventDefault();
+    leaveTo(url.href);
+  });
 
-    const href = a.getAttribute("href");
-
-    // bring overlay in to cover page
-    t.classList.remove("exit");
-    t.classList.add("active");
-
-    setTimeout(() => {
-      window.location.href = href;
-    }, DURATION_MS);
+  // handle bfcache (back/forward)
+  window.addEventListener("pageshow", () => {
+    document.body.classList.remove("is-leaving");
+    document.body.classList.remove("is-loading");
   });
 })();
