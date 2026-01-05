@@ -6,7 +6,9 @@
          page: accessibility statement
          ===================================================== -->
 
-    <!-- core meta -->
+    <!-- =====================================================
+         1) core meta
+         ===================================================== -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -17,32 +19,38 @@
     />
     <link rel="canonical" href="https://mediabrilliance.io/accessibility.html" />
 
-    <!-- social / previews -->
-    <meta property="og:title" content="mediaBrilliance digitalxtudio" />
+    <!-- =====================================================
+         2) social previews
+         ===================================================== -->
+    <meta property="og:title" content="accessibility statement :: mediaBrilliance digitalxtudio" />
     <meta
       property="og:description"
-      content="digital strategy and clean, modern websites and apps for small businesses, creators, and startups."
+      content="mediaBrilliance is committed to digital accessibility and improving the user experience for everyone."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mediabrilliance.io/accessibility.html" />
     <meta property="og:image" content="https://mediabrilliance.io/og.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="accessibility statement — mediaBrilliance" />
+    <meta name="twitter:title" content="accessibility statement :: mediaBrilliance" />
     <meta
       name="twitter:description"
       content="mediaBrilliance supports accessibility and is committed to ensuring digital accessibility for people with disabilities."
     />
     <meta name="twitter:image" content="https://mediabrilliance.io/og.png" />
 
-    <!-- icons -->
+    <!-- =====================================================
+         3) icons
+         ===================================================== -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="shortcut icon" href="/favicon.png" />
 
-    <!-- fonts -->
+    <!-- =====================================================
+         4) fonts
+         ===================================================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -50,18 +58,27 @@
       rel="stylesheet"
     />
 
-    <!-- styles -->
+    <!-- =====================================================
+         5) styles
+         ===================================================== -->
     <link rel="stylesheet" href="/style.css?v=9" />
 
-    <!-- scripts -->
+    <!-- =====================================================
+         6) scripts
+         ===================================================== -->
     <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
     <script src="/js/page-transition.js" defer></script>
   </head>
 
+  <!--
+    validation notes (html + a11y):
+    - add a body class only if you want page-specific layout hooks, e.g. class="page-accessibility"
+    - keep skip link target id aligned with your css (#main_container)
+    - icons that are purely decorative should have alt="" and aria-hidden="true"
+  -->
   <body>
     <!-- =====================================================
-         page transition + skip link
-         (structure must match your CSS + JS)
+         page transition overlay + skip link
          ===================================================== -->
     <div id="page-transition" aria-hidden="true"></div>
     <a class="skip-link" href="#main_container">skip to main content</a>
@@ -72,20 +89,20 @@
     <header class="site-header" role="banner">
       <div class="header-grid">
         <nav class="nav" aria-label="primary">
-          <!-- left: pages -->
-          <div class="pages">
-            <a href="/index.html">
-              <img src="/images/home_light.svg" alt="mediaBrilliance home icon" />
+          <!-- left: primary pages -->
+          <div class="pages" aria-label="site pages">
+            <a href="/index.html" aria-label="home">
+              <img src="/images/home_light.svg" alt="" aria-hidden="true" />
             </a>
-            <a href="/services.html">
-              <img src="/images/services_light.svg" alt="mediaBrilliance services icon" />
+            <a href="/services.html" aria-label="services">
+              <img src="/images/services_light.svg" alt="" aria-hidden="true" />
             </a>
-            <a href="/contact.html">
-              <img src="/images/contact_light.svg" alt="mediaBrilliance contact icon" />
+            <a href="/contact.html" aria-label="contact">
+              <img src="/images/contact_light.svg" alt="" aria-hidden="true" />
             </a>
           </div>
 
-          <!-- center: wordmark -->
+          <!-- center: wordmark (canvas has text fallback) -->
           <div class="header-title">
             <a href="/index.html" aria-label="mediaBrilliance home">
               <canvas id="mb_wordmark" width="200" height="42">mediaBrilliance</canvas>
@@ -93,7 +110,7 @@
           </div>
 
           <!-- right: socials -->
-          <div class="socials">
+          <div class="socials" aria-label="social links">
             <a
               href="https://www.instagram.com/mediaBrilliance/"
               aria-label="mediaBrilliance on instagram"
@@ -118,17 +135,22 @@
     <!-- =====================================================
          main
          ===================================================== -->
-    <main id="main_container" class="container">
-      <div id="section1" class="section_container">
+    <main id="main_container" class="container" role="main">
+      <!--
+        layout note:
+        - your css centers the whole <main> horizontally by default.
+        - this page uses the existing section card pattern (section_left + section_box_right).
+      -->
+      <section id="section1" class="section_container" aria-labelledby="page-title">
         <!-- content card -->
         <div class="section_left">
-          <h1>accessibility statement</h1>
+          <h1 id="page-title">accessibility statement</h1>
 
-          <p>This statement was last updated on Jan 1, 2026.</p>
+          <p><small>This statement was last updated on January 1, 2026.</small></p>
 
           <p>
             We at mediaBrilliance are committed to ensuring that our website,
-            <a href="https://www.mediabrilliance.io">https://www.mediabrilliance.io</a>,
+            <a href="https://mediabrilliance.io">mediabrilliance.io</a>,
             is accessible to people with disabilities. We are actively working to improve the user
             experience for everyone, and we aim to comply with relevant accessibility standards,
             including the Web Content Accessibility Guidelines (WCAG) 2.1.
@@ -136,9 +158,9 @@
 
           <p>
             If you experience any difficulty accessing content on this site, or if you have
-            suggestions for how we can improve accessibility, please contact us at
-            <a href="/contact.html">mediabrilliance.io/contact.html</a>. We value your feedback and
-            will do our best to accommodate your needs.
+            suggestions for how we can improve accessibility, please contact us via our
+            <a href="/contact.html">contact page</a>. We value your feedback and will do our best to
+            accommodate your needs.
           </p>
 
           <h2>what web accessibility is</h2>
@@ -156,25 +178,25 @@
             technologies such as screen readers and keyboard navigation.
           </p>
 
-          <h2>we have implemented the following measures to enhance accessibility:</h2>
+          <h2>measures we have implemented</h2>
           <ul>
             <li>Aligned the site with WCAG 2.1 Level AA standards</li>
             <li>Ensured compatibility with assistive technologies (e.g., screen readers, keyboard navigation)</li>
             <li>Defined a clear and consistent heading structure</li>
             <li>Set the site’s default language for assistive software</li>
             <li>Organized content in a logical reading order</li>
-            <li>Added descriptive alternative text to all images</li>
+            <li>Added descriptive alternative text to essential images</li>
             <li>Used high-contrast, accessible color combinations</li>
             <li>Minimized the use of motion and animations</li>
-            <li>Made videos, audio files, and downloadable documents accessible</li>
+            <li>Worked to make videos, audio files, and downloadable documents accessible when present</li>
           </ul>
         </div>
 
-        <!-- right overlap logo box -->
-        <div class="section_box_right">
-          <img class="logo" src="/images/mB.svg" alt="mediaBrilliance logo" />
+        <!-- right overlap logo box (decorative on this page) -->
+        <div class="section_box_right" aria-hidden="true">
+          <img class="logo" src="/images/mB.svg" alt="" />
         </div>
-      </div>
+      </section>
     </main>
 
     <!-- =====================================================
@@ -182,22 +204,37 @@
          ===================================================== -->
     <footer class="footer" role="contentinfo">
       <p><a href="/index.html">© 2025 mediaBrilliance</a></p>
-      <p><a href="/accessibility.html">accessibility statement</a></p>
+      <p><a href="/accessibility.html" aria-current="page">accessibility statement</a></p>
       <p><a href="/privacy.html">privacy policy</a></p>
     </footer>
 
     <!-- =====================================================
          rive: wordmark init
-         (kept inline to avoid changing your file structure)
          ===================================================== -->
     <script>
+      // initializes the animated wordmark in the header.
+      // canvas includes text fallback ("mediaBrilliance") for non-canvas contexts.
       new rive.Rive({
         src: "/media/mb_wordmark.riv",
         canvas: document.getElementById("mb_wordmark"),
         autoplay: true,
         stateMachines: "State Machine 1",
-        onLoad: () => console.log("mb_wordmark rive loaded!")
       });
     </script>
+
+    <!-- =====================================================
+         validation checklist (quick)
+         =====================================================
+         html:
+         - one <h1> on page (yes)
+         - skip link target exists (yes: #main_container)
+         - external links with target=_blank use rel=noopener (yes)
+         a11y:
+         - decorative icons use alt="" + aria-hidden (yes)
+         - meaningful link text ("contact page" instead of raw url) (yes)
+         seo:
+         - title + meta description set (yes)
+         - canonical set (yes)
+    -->
   </body>
 </html>

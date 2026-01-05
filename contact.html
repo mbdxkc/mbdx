@@ -1,121 +1,276 @@
-<!DOCTYPE HTML>
-
+<!doctype html>
 <html lang="en">
+  <head>
+    <!-- =====================================================
+         mediaBrilliance / mBdx
+         page: contact
+         ===================================================== -->
 
-    <head>
-        <title>contact :: mediaBrilliance digitalxtudio</title>
-        <meta name="description" content="reach out to mediaBrilliance digitalxtudio for digital strategy and clean, modern websites and apps for small businesses, creators, and startups.">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta property="og:title" content="contact mediaBrilliance">
-        <meta property="og:description" content="digital strategy and clean, modern websites and apps for small businesses, creators, and startups.">
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://mediabrilliance.io/contact.html">
-        <meta property="og:image" content="https://mediabrilliance.io/og.png">
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="contact mediaBrilliance">
-        <meta name="twitter:description" content="mediaBrilliance digitalxtudio  provides digital strategy and clean, modern websites and apps for small businesses, creators, and startups.">
-        <meta name="twitter:image" content="https://mediabrilliance.io/og.png">        
-        <link rel="canonical" href="https://mediabrilliance.io/contact.html">
-        <link rel="stylesheet" href="style.css?v=10">
-        <link rel="icon" href="./favicon.ico" type="image/x-icon">
-        <link rel="icon" href="./favicon-32.png" type="image/png" sizes="32x32">
-        <link rel="icon" href="./favicon-16.png" type="image/png" sizes="16x16">
-        <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
-        <link rel="shortcut icon" href="./favicon.png">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
-        <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
-        <script src="/js/page-transition.js" defer></script>
-    </head>
+    <!-- =====================================================
+         1) core meta
+         ===================================================== -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <<body class="page-contact">
+    <title>contact :: mediaBrilliance digitalxtudio</title>
+    <meta
+      name="description"
+      content="reach out to mediaBrilliance digitalxtudio for digital strategy and clean, modern websites and apps for small businesses, creators, and startups."
+    />
+    <link rel="canonical" href="https://mediabrilliance.io/contact.html" />
 
-        <div id="page-transition"></div>
-        <a class="skip-link" href="#main_container">skip to main content</a>
-        
-        <header class="site-header" role="banner">
-            <div class="header-grid">
-                <nav class="nav" role="navigation">
-                    <div class="pages">
-                    <a href="./index.html"><img src="./images/home_light.svg" alt="mediaBrilliance home icon"></a>
-                    <a href="./services.html"><img src="./images/services_light.svg" alt="mediaBrilliance services icon"></a>
-                    <a href="./contact.html" aria-current="page"><img src="./images/contact_active.svg" alt="mediaBrilliance contact icon"></a>
-                    </div>
-                    <div class="header-title">
-                        <a href="./index.html" aria-label="mediaBrilliance home">
-                        <canvas id="mb_wordmark" width="200" height="42">mediaBrilliance</canvas>
-                        </a>
-                    </div>                
-                    <div class="socials">
-                        <a href="https://www.instagram.com/mediaBrilliance/" aria-label="mediaBrilliance on instagram" target="_blank" rel="noopener noreferrer"><img src="./images/instagram_dark.svg" alt="" aria-hidden="true"></a>
-                        <a href="https://github.com/mbdxkc/" aria-label="mediaBrilliance on github" target="_blank" rel="noopener noreferrer"><img src="./images/github_dark.svg" alt="" aria-hidden="true"></a>
-                    </div>    
-                </nav>     
-            </div>
-        </header>
+    <!-- =====================================================
+         2) social previews
+         ===================================================== -->
+    <meta property="og:title" content="contact :: mediaBrilliance digitalxtudio" />
+    <meta
+      property="og:description"
+      content="digital strategy and clean, modern websites and apps for small businesses, creators, and startups."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mediabrilliance.io/contact.html" />
+    <meta property="og:image" content="https://mediabrilliance.io/og.png" />
 
-        <main id="main_container" class="container">
-            <div id="section1" class="section_container">
-                <div class="section_left">
-                    <h1>drop us a line!</h1>
-                    <p>mediaBrilliance digitalxtudio is an independent design and development studio focused on
-                    building clear, functional, and thoughtfully designed digital experiences. we work with individuals, small businesses, nonprofits, and creative projects.</p>
-                    <address>kansas city, mo
-                    <br>est. 2026
-                    <br>913.703.4060
-                    <br><a id="email-link" href="#" aria-label="email dez at mediabrilliance dot io"></a>
-                    </address>
-                    <form id="contact-form" novalidate>
-                        <div class="form-field">
-                            <input id="name" name="name" placeholder="your name" type="text" required>
-                        </div>
-                        <div class="form-field">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="contact :: mediaBrilliance" />
+    <meta
+      name="twitter:description"
+      content="mediaBrilliance digitalxtudio provides digital strategy and clean, modern websites and apps for small businesses, creators, and startups."
+    />
+    <meta name="twitter:image" content="https://mediabrilliance.io/og.png" />
 
-                            <input id="email" name="email" type="email" placeholder="your email address" required>
-                        </div>      
-                        <div class="form-field">
-                            <textarea id="message" name="message" rows="10" cols="30" placeholder="hey dez, i'd love to schedule my free consultation with you regarding my company's digital strategy..." required></textarea>
-                        </div>
-                        <!-- rive submit button (accessible) -->
-                        <button type="submit" class="mb-submit">
-                        send message
-                        </button>
-                        <p id="form-status" aria-live="polite"></p>
-                    </form>
-                </div>
-                <div class="section_box_right">
-                    <img class="logo" src="./images/contactmBdx.svg" alt="contact mediaBrilliance">
-                </div>
-            </div>
-        </main>
+    <!-- =====================================================
+         3) icons
+         ===================================================== -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="shortcut icon" href="/favicon.png" />
 
+    <!-- =====================================================
+         4) fonts
+         ===================================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- =====================================================
+         5) styles
+         ===================================================== -->
+    <link rel="stylesheet" href="/style.css?v=10" />
+
+    <!-- =====================================================
+         6) scripts (early)
+         - rive lib needed for wordmark + submit button scripts
+         - page transition script deferred
+         ===================================================== -->
+    <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
+    <script src="/js/page-transition.js" defer></script>
+  </head>
+
+  <!--
+    validation + optimization notes:
+    - fixed invalid tag: "<<body" → "<body"
+    - nav should use aria-label (not role="navigation" required, but ok)
+    - form inputs should have labels for accessibility (we add visually-hidden labels)
+    - address content uses <address> but phone should be a tel: link
+    - email link should have visible text fallback in case js fails
+    - scripts that depend on DOM should be "defer" or placed at end (we keep at end)
+  -->
+  <body class="page-contact">
+    <!-- =====================================================
+         page transition overlay + skip link
+         ===================================================== -->
+    <div id="page-transition" aria-hidden="true"></div>
+    <a class="skip-link" href="#main_container">skip to main content</a>
+
+    <!-- =====================================================
+         header
+         ===================================================== -->
+    <header class="site-header" role="banner">
+      <div class="header-grid">
+        <nav class="nav" aria-label="primary">
+          <!-- left: site pages -->
+          <div class="pages" aria-label="site pages">
+            <a href="/index.html" aria-label="home">
+              <img src="/images/home_light.svg" alt="" aria-hidden="true" />
+            </a>
+            <a href="/services.html" aria-label="services">
+              <img src="/images/services_light.svg" alt="" aria-hidden="true" />
+            </a>
+            <a href="/contact.html" aria-label="contact" aria-current="page">
+              <img src="/images/contact_active.svg" alt="" aria-hidden="true" />
+            </a>
+          </div>
+
+          <!-- center: wordmark -->
+          <div class="header-title">
+            <a href="/index.html" aria-label="mediaBrilliance home">
+              <canvas id="mb_wordmark" width="200" height="42">mediaBrilliance</canvas>
+            </a>
+          </div>
+
+          <!-- right: socials -->
+          <div class="socials" aria-label="social links">
+            <a
+              href="https://www.instagram.com/mediaBrilliance/"
+              aria-label="mediaBrilliance on instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="/images/instagram_dark.svg" alt="" aria-hidden="true" />
+            </a>
+            <a
+              href="https://github.com/mbdxkc/"
+              aria-label="mediaBrilliance on github"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="/images/github_dark.svg" alt="" aria-hidden="true" />
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- =====================================================
+         main
+         ===================================================== -->
+    <main id="main_container" class="container" role="main">
+      <!-- optional width wrapper (works with the css we added earlier) -->
+      <div class="contact-wrap">
+        <section id="section1" class="section_container" aria-labelledby="page-title">
+          <!-- content card -->
+          <div class="section_left">
+            <h1 id="page-title">drop us a line!</h1>
+
+            <p>
+              mediaBrilliance digitalxtudio is an independent design and development studio focused on
+              building clear, functional, and thoughtfully designed digital experiences. we work with individuals,
+              small businesses, nonprofits, and creative projects.
+            </p>
+
+            <!-- contact details -->
+            <address aria-label="contact details">
+              <p>kansas city, mo<br />est. 2026</p>
+
+              <p>
+                <a href="tel:+19137034060" aria-label="call 913 703 4060">913.703.4060</a>
+                <br />
+                <!-- email will be injected by js; fallback keeps it usable -->
+                <a id="email-link" href="mailto:dez@mediabrilliance.io">dez@mediabrilliance.io</a>
+              </p>
+            </address>
+
+            <!-- =================================================
+                 contact form
+                 - keep novalidate if you handle validation in js
+                 - add labels for screen readers (visually hidden)
+                 ================================================= -->
+            <form id="contact-form" novalidate aria-describedby="form-status">
+              <div class="form-field">
+                <label for="name" class="sr-only">your name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="your name"
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="email" class="sr-only">your email address</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="your email address"
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="message" class="sr-only">message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="10"
+                  placeholder="hey dez, i'd love to schedule my free consultation with you regarding my company's digital strategy..."
+                  required
+                ></textarea>
+              </div>
+
+              <!-- submit button -->
+              <button type="submit" class="mb-submit">send message</button>
+
+              <!-- status message for assistive tech -->
+              <p id="form-status" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <!-- right overlap graphic (decorative) -->
+          <div class="section_box_right" aria-hidden="true">
+            <img class="logo" src="/images/contactmBdx.svg" alt="" />
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- =====================================================
+         footer
+         ===================================================== -->
     <footer class="footer" role="contentinfo">
-        <p><a href="./index.html">© 2026 mediaBrilliance</a></p>
-        <p><a href="./accessibility.html">accessibility statement</a></p>
-        <p><a href="./privacy.html">privacy policy</a></p>
+      <p><a href="/index.html">© 2026 mediaBrilliance</a></p>
+      <p><a href="/accessibility.html">accessibility statement</a></p>
+      <p><a href="/privacy.html">privacy policy</a></p>
     </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script src="./js/email.js"></script>
-<script src="./js/contact-form.js"></script>
-<script src="./js/rive-submit.js"></script>
+    <!-- =====================================================
+         scripts (end-of-body for performance + dom readiness)
+         ===================================================== -->
 
+    <!-- emailjs sdk (needed by your contact-form.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
+    <!-- your site scripts -->
+    <script src="/js/email.js" defer></script>
+    <script src="/js/contact-form.js" defer></script>
+    <script src="/js/rive-submit.js" defer></script>
+
+    <!-- =====================================================
+         rive: wordmark init
+         ===================================================== -->
     <script>
-                    // mb wordmark animation
-        new rive.Rive({
-            src: "./media/mb_wordmark.riv",
-            canvas: document.getElementById("mb_wordmark"),
-            autoplay: true,
-            stateMachines: "State Machine 1",  
-            onLoad: () => {
-            console.log("mb_wordmark rive loaded!");
-            }
-        });
+      // mb wordmark animation (canvas includes text fallback)
+      new rive.Rive({
+        src: "/media/mb_wordmark.riv",
+        canvas: document.getElementById("mb_wordmark"),
+        autoplay: true,
+        stateMachines: "State Machine 1",
+      });
     </script>
 
-    </body>
-
+    <!-- =====================================================
+         validation checklist (quick)
+         =====================================================
+         html:
+         - removed invalid "<<body" token (fixed)
+         - consistent absolute paths (leading /) for production
+         a11y:
+         - icons are decorative: alt="" + aria-hidden (yes)
+         - form inputs have associated labels (sr-only) (yes)
+         - status region uses aria-live (yes)
+         seo:
+         - title + meta description + canonical set (yes)
+         performance:
+         - scripts deferred where appropriate (yes)
+    -->
+  </body>
 </html>
