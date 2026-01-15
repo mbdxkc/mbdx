@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="preload" href="/js/rive.min.js" as="script">
+    <!-- rive.min.js loaded lazily after initial render for better LCP -->
     <!--
     ============================================================================
     mBdx (mediaBrilliance digitalxtudio)
@@ -66,7 +66,6 @@
     <!-- styles -->
     <link rel="stylesheet" href="/style.min.css?v=9" />
     <!-- scripts -->
-    <script src="/js/rive.min.js" fetchpriority="high"></script>
     <script src="/js/page-transition.min.js" defer></script>
     <script src="/js/header.min.js" defer></script>
     <script src="/js/footer.min.js" defer></script>
@@ -87,7 +86,9 @@
          ===================================================== -->
     <main id="main_container" class="container">
       <div class="logo-solo" role="img" aria-label="mediaBrilliance logo animation">
-        <canvas id="mb_logo_riv" width="600" height="600" aria-hidden="true"></canvas>
+        <!-- static placeholder for fast LCP, replaced by animation once Rive loads -->
+        <img id="mb_logo_placeholder" src="/images/mB.svg" alt="" width="600" height="600" aria-hidden="true" />
+        <canvas id="mb_logo_riv" width="600" height="600" aria-hidden="true" style="display:none;"></canvas>
       </div>
     </main>
     <!-- =====================================================
@@ -95,17 +96,57 @@
          ===================================================== -->
     <footer id="site-footer" class="footer" role="contentinfo"></footer>
     <!-- =====================================================
-         rive: page-specific animations
+         rive: lazy-load animation for better LCP
          ===================================================== -->
     <script>
-      // mb logo animation (homepage only)
-      new rive.Rive({
-        src: "/media/mb_logo.riv",
-        canvas: document.getElementById("mb_logo_riv"),
-        autoplay: true,
-        stateMachines: "State Machine 1",
-        onLoad: () => console.log("mb_logo rive loaded!")
-      });
+      // lazy-load rive library after initial render for better LCP
+      (function() {
+        function loadRive() {
+          var script = document.createElement('script');
+          script.src = '/js/rive.min.js';
+          script.onload = function() {
+            initLogoAnimation();
+            // also initialize header wordmark animation
+            if (typeof window.initHeaderWordmark === 'function') {
+              window.initHeaderWordmark();
+            }
+          };
+          document.head.appendChild(script);
+        }
+        function initLogoAnimation() {
+          var canvas = document.getElementById('mb_logo_riv');
+          var placeholder = document.getElementById('mb_logo_placeholder');
+          if (canvas && typeof rive !== 'undefined') {
+            new rive.Rive({
+              src: '/media/mb_logo.riv',
+              canvas: canvas,
+              autoplay: true,
+              stateMachines: 'State Machine 1',
+              onLoad: function() {
+                // fade out placeholder, show canvas
+                if (placeholder) {
+                  placeholder.style.transition = 'opacity 0.3s ease';
+                  placeholder.style.opacity = '0';
+                  setTimeout(function() {
+                    placeholder.style.display = 'none';
+                    canvas.style.display = 'block';
+                  }, 300);
+                } else {
+                  canvas.style.display = 'block';
+                }
+              }
+            });
+          }
+        }
+        // load rive after page has rendered
+        if (document.readyState === 'complete') {
+          setTimeout(loadRive, 100);
+        } else {
+          window.addEventListener('load', function() {
+            setTimeout(loadRive, 100);
+          });
+        }
+      })();
     </script>
   </body>
 </html>

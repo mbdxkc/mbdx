@@ -70,10 +70,11 @@
           </a>
         </div>
 
-        <!-- center: wordmark -->
+        <!-- center: wordmark (static svg fallback, replaced by rive when loaded) -->
         <div class="header-title">
           <a href="/index.html" aria-label="mediaBrilliance home">
-            <canvas id="mb_wordmark" width="200" height="42">mediaBrilliance</canvas>
+            <img id="mb_wordmark_static" src="/images/mBwordmark.svg" alt="mediaBrilliance" width="200" height="42" />
+            <canvas id="mb_wordmark" width="200" height="42" style="display:none;">mediaBrilliance</canvas>
           </a>
         </div>
 
@@ -115,18 +116,30 @@
   // -------------------------------------------------------------------------
   // 6. rive animation - initialize wordmark canvas animation
   //    uses state machine for interactive/animated wordmark
+  //    falls back to static svg if rive not available
   // -------------------------------------------------------------------------
   function initWordmark() {
     if (typeof rive !== "undefined") {
-      new rive.Rive({
-        src: "/media/mb_wordmark.riv",
-        canvas: document.getElementById("mb_wordmark"),
-        autoplay: true,
-        stateMachines: "State Machine 1",
-        onLoad: () => console.log("mb_wordmark rive loaded!")
-      });
+      var canvas = document.getElementById("mb_wordmark");
+      var staticImg = document.getElementById("mb_wordmark_static");
+      if (canvas) {
+        new rive.Rive({
+          src: "/media/mb_wordmark.riv",
+          canvas: canvas,
+          autoplay: true,
+          stateMachines: "State Machine 1",
+          onLoad: function() {
+            // swap static image for animated canvas
+            if (staticImg) staticImg.style.display = "none";
+            canvas.style.display = "block";
+          }
+        });
+      }
     }
   }
+
+  // expose initWordmark globally so lazy-loaded rive can call it
+  window.initHeaderWordmark = initWordmark;
 
   // -------------------------------------------------------------------------
   // 7. initialization - run when dom is ready
