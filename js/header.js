@@ -1,24 +1,59 @@
-// Header Component
-// Injects the site header into any element with id="site-header"
-// Automatically detects the current page and sets the active state
+/**
+ * ============================================================================
+ * mBdx (mediaBrilliance digitalxtudio) - Header Component
+ * ============================================================================
+ * @project    mBdx - mediaBrilliance digitalxtudio website
+ * @version    3.1
+ * @author     valdez campos <dez@mediabrilliance.io>
+ * @date       2026-01-15
+ * @file       js/header.js
+ *
+ * @desc       reusable header component that injects the site navigation
+ *             into any element with id="site-header". automatically detects
+ *             the current page and highlights the active nav icon.
+ *
+ * @requires   - rive-app/canvas (for wordmark animation)
+ *             - /media/mb_wordmark.riv (rive animation file)
+ *             - /images/home_*.svg, services_*.svg, contact_*.svg (nav icons)
+ *             - /images/instagram_dark.svg, github_dark.svg (social icons)
+ *
+ * @usage      add <header id="site-header"></header> to your html,
+ *             then include this script with defer attribute.
+ *
+ * @exports    none (iife - self-executing)
+ * ============================================================================
+ */
 
 (function () {
+  // -------------------------------------------------------------------------
+  // 1. page detection - determine which page is currently active
+  // -------------------------------------------------------------------------
   const currentPath = window.location.pathname;
   const pageName = currentPath.split("/").pop() || "index.html";
 
-  // Determine which nav icon should be active
+  // check if current page matches each nav item
   const isHome = pageName === "index.html" || pageName === "";
   const isServices = pageName === "services.html";
   const isContact = pageName === "contact.html";
 
+  // -------------------------------------------------------------------------
+  // 2. dynamic icon selection - active pages get highlighted icons
+  // -------------------------------------------------------------------------
   const homeIcon = isHome ? "/images/home_active.svg" : "/images/home_light.svg";
   const servicesIcon = isServices ? "/images/services_active.svg" : "/images/services_light.svg";
   const contactIcon = isContact ? "/images/contact_active.svg" : "/images/contact_light.svg";
 
+  // -------------------------------------------------------------------------
+  // 3. aria attributes - accessibility for current page indication
+  // -------------------------------------------------------------------------
   const homeAria = isHome ? ' aria-current="page" class="is-active"' : "";
   const servicesAria = isServices ? ' aria-current="page" class="is-active"' : "";
   const contactAria = isContact ? ' aria-current="page" class="is-active"' : "";
 
+  // -------------------------------------------------------------------------
+  // 4. header html template - three-column grid layout
+  //    left: page navigation | center: wordmark | right: social links
+  // -------------------------------------------------------------------------
   const headerHTML = `
     <div class="header-grid">
       <nav class="nav" aria-label="primary">
@@ -66,7 +101,9 @@
     </div>
   `;
 
-  // Insert header when DOM is ready
+  // -------------------------------------------------------------------------
+  // 5. dom insertion - inject header html into placeholder element
+  // -------------------------------------------------------------------------
   function insertHeader() {
     const headerEl = document.getElementById("site-header");
     if (headerEl) {
@@ -75,7 +112,10 @@
     }
   }
 
-  // Initialize the Rive wordmark animation
+  // -------------------------------------------------------------------------
+  // 6. rive animation - initialize wordmark canvas animation
+  //    uses state machine for interactive/animated wordmark
+  // -------------------------------------------------------------------------
   function initWordmark() {
     if (typeof rive !== "undefined") {
       new rive.Rive({
@@ -88,6 +128,9 @@
     }
   }
 
+  // -------------------------------------------------------------------------
+  // 7. initialization - run when dom is ready
+  // -------------------------------------------------------------------------
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", insertHeader);
   } else {

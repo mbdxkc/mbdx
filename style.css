@@ -1,12 +1,55 @@
-/* =========================================================
-   mediaBrilliance / mBdx — main stylesheet
-   design. code. clarity.
-   ========================================================= */
+/**
+ * ============================================================================
+ * mBdx (mediaBrilliance digitalxtudio) - Main Stylesheet
+ * ============================================================================
+ * @project    mBdx - mediaBrilliance digitalxtudio website
+ * @version    3.1
+ * @author     valdez campos <dez@mediabrilliance.io>
+ * @date       2026-01-15
+ * @file       style.css
+ *
+ * @desc       main stylesheet for the mBdx website. includes design tokens,
+ *             base reset, layout systems, components, and responsive styles.
+ *
+ * @sections   1)  design tokens - css custom properties (colors, spacing, etc.)
+ *             2)  base reset - normalize browser defaults
+ *             2.5) accessibility utilities - screen reader helpers
+ *             3)  skip link - keyboard navigation accessibility
+ *             4)  page transitions - overlay and content fade animations
+ *             5)  typography - headings, paragraphs, links
+ *             5.5) headline pop - enhanced h1 styling
+ *             6)  header shell - sticky header container
+ *             7)  header layout - three-column grid navigation
+ *             8)  header icon sizing - nav and social icons
+ *             9)  icon hover swaps - interactive icon states
+ *             10) mobile header - responsive header adjustments
+ *             11) main container - content width constraints
+ *             12) page layout - flexbox page structure
+ *             12.5) home logo - logo-solo component
+ *             13) sections - content card components
+ *             14) footer - site footer styles
+ *             15) global images - image defaults
+ *             16) contact form - form styling
+ *             17) buttons - submit button component
+ *
+ * @fonts      nunito sans (google fonts)
+ * @colors     see design tokens section for full palette
+ *
+ * @a11y       - high contrast colors (wcag aa compliant)
+ *             - focus-visible styles
+ *             - reduced motion support
+ *             - screen reader utilities
+ *
+ * @browser    modern browsers (chrome, firefox, safari, edge)
+ *             uses css custom properties, grid, flexbox
+ * ============================================================================
+ */
 
 
 /* =========================================================
    1) design tokens
-   - single source of truth for the UI
+   single source of truth for colors, spacing, and effects.
+   change values here to update the entire site.
    ========================================================= */
 :root{
   /* colors */
@@ -45,6 +88,7 @@
 
 /* =========================================================
    2) base reset + global safeguards
+   normalize browser defaults and prevent common layout issues.
    ========================================================= */
 *,*::before,*::after{ box-sizing: border-box; }
 
@@ -74,6 +118,8 @@ body{
 
 /* =========================================================
    2.5) accessibility utilities
+   helper classes for screen reader-only content.
+   .sr-only hides content visually but keeps it accessible.
    ========================================================= */
 .sr-only{
   position: absolute;
@@ -90,6 +136,8 @@ body{
 
 /* =========================================================
    3) accessibility: skip link
+   allows keyboard users to skip navigation and go directly
+   to main content. hidden until focused.
    ========================================================= */
 .skip-link{
   position: absolute;
@@ -110,8 +158,10 @@ body{
 
 /* =========================================================
    4) page transitions
-   - overlay slides away on load
-   - main fades in/out during nav
+   smooth page-to-page navigation animations.
+   - on load: overlay slides left, content fades in
+   - on leave: content fades out, overlay slides back
+   works with /js/page-transition.js
    ========================================================= */
 #page-transition{
   position: fixed;
@@ -279,7 +329,10 @@ a:hover{ color: var(--pink); }
 
 /* =========================================================
    9) icon hover swaps
-   - (works in many browsers; keep an eye on consistency)
+   changes nav icons to brighter versions on hover.
+   uses css content property to swap images.
+   note: this technique works in modern browsers but may
+   not be supported in all contexts.
    ========================================================= */
 a[href*="instagram"] img:hover{ content: url("/images/instagram_bright.svg"); }
 a[href*="dribbble"]  img:hover{ content: url("/images/dribbble_bright.svg"); }
@@ -357,6 +410,9 @@ main{
 
 /* =========================================================
    13) sections (content cards)
+   main content layout pattern used across pages.
+   - section_left/right: gradient background cards
+   - section_box_left/right: overlapping decorative elements
    ========================================================= */
 .section_container{
   display: flex;
@@ -445,7 +501,10 @@ img{
 
 
 /* =========================================================
-   16) contact form + scroll wobble fixes
+   16) contact form
+   form styles for the contact page.
+   includes input/textarea styling, focus states, and
+   responsive adjustments. font-size: 16px prevents ios zoom.
    ========================================================= */
 input,
 textarea,
@@ -512,7 +571,9 @@ button{
 
 /* =========================================================
    17) buttons
-   - mediaBrilliance submit button
+   custom button component with hover, active, focus,
+   and disabled states. dark gradient background with
+   subtle border and shadow effects.
    ========================================================= */
 .mb-submit{
   appearance: none;
@@ -584,7 +645,8 @@ button{
 }
 
 /* =========================================================
-   MOBILE FIX — visually center form fields
+   18) responsive: mobile form centering
+   adjusts padding on mobile to center form fields properly.
    ========================================================= */
 @media (max-width: 600px){
   .section_left{
@@ -599,4 +661,5 @@ button{
 
 /* =========================================================
    end of style.css
+   mBdx v3.1 | (c) 2026 mediaBrilliance
    ========================================================= */

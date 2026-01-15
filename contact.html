@@ -1,9 +1,38 @@
 <!doctype html>
+<!--
+================================================================================
+mBdx (mediaBrilliance digitalxtudio)
+================================================================================
+@project    mBdx - mediaBrilliance digitalxtudio website
+@version    3.1
+@author     valdez campos <dez@mediabrilliance.io>
+@date       2026-01-15
+@file       contact.html
+@desc       contact page - contact form, phone, email, location info
+
+@license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
+            see /cc0.html for public domain dedications on select assets.
+
+@requires   - /js/header.js (site header component)
+            - /js/footer.js (site footer component)
+            - /js/page-transition.js (page transition animations)
+            - /js/contact-form.js (form submission via emailjs)
+            - /js/email.js (email obfuscation)
+            - emailjs-com sdk (form delivery service)
+            - rive-app/canvas (rive animation runtime)
+            - /style.css (main stylesheet)
+
+@a11y       - skip link to main content
+            - form labels (visually hidden for screen readers)
+            - aria-live region for form status
+            - tel: link for phone
+            - wcag 2.1 aa compliant
+================================================================================
+-->
 <html lang="en">
   <head>
     <!-- =====================================================
-         mediaBrilliance / mBdx
-         page: contact
+         mBdx v3.1 | contact
          ===================================================== -->
 
     <!-- =====================================================
@@ -75,13 +104,11 @@
   </head>
 
   <!--
-    validation + optimization notes:
-    - fixed invalid tag: "<<body" → "<body"
-    - nav should use aria-label (not role="navigation" required, but ok)
-    - form inputs should have labels for accessibility (we add visually-hidden labels)
-    - address content uses <address> but phone should be a tel: link
-    - email link should have visible text fallback in case js fails
-    - scripts that depend on DOM should be "defer" or placed at end (we keep at end)
+    a11y notes:
+    - form inputs have visually-hidden labels (.sr-only)
+    - phone number uses tel: link for mobile dialing
+    - email has visible fallback text in case js fails
+    - form status uses aria-live for screen reader announcements
   -->
   <body class="page-contact">
     <!-- =====================================================
