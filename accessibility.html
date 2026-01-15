@@ -2,8 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    <link rel="preload" href="https://unpkg.com/@rive-app/canvas@latest" as="script" crossorigin>
+    <link rel="preload" href="/js/rive.min.js" as="script">
     <!--
     ============================================================================
     mBdx (mediaBrilliance digitalxtudio)
@@ -14,27 +13,22 @@
     @date       2026-01-15
     @file       accessibility.html
     @desc       accessibility statement - wcag 2.1 aa commitment and measures
-
     @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
                 see /cc0.html for public domain dedications on select assets.
-
     @requires   - /js/header.min.js, /js/footer.min.js, /js/page-transition.min.js
                 - rive-app/canvas, /style.min.css
-
     @a11y       - skip link, semantic html, wcag 2.1 aa compliant
     ============================================================================
     mBdx v3.1 | accessibility statement
     ============================================================================
     -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <title>accessibility statement :: mediaBrilliance digitalxtudio</title>
     <meta
       name="description"
       content="accessibility statement for mediaBrilliance digitalxtudio and our commitment to WCAG 2.1 AA."
     />
     <link rel="canonical" href="https://mediabrilliance.io/accessibility.html" />
-
     <!-- =====================================================
          2) social previews
          ===================================================== -->
@@ -46,7 +40,6 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mediabrilliance.io/accessibility.html" />
     <meta property="og:image" content="https://mediabrilliance.io/og.png" />
-
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="accessibility statement :: mediaBrilliance" />
     <meta
@@ -54,7 +47,6 @@
       content="mediaBrilliance supports accessibility and is committed to ensuring digital accessibility for people with disabilities."
     />
     <meta name="twitter:image" content="https://mediabrilliance.io/og.png" />
-
     <!-- =====================================================
          3) icons
          ===================================================== -->
@@ -63,7 +55,6 @@
     <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="shortcut icon" href="/favicon.png" />
-
     <!-- =====================================================
          4) fonts
          ===================================================== -->
@@ -73,33 +64,28 @@
       href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
       rel="stylesheet"
     />
-
     <!-- =====================================================
          5) styles
          ===================================================== -->
     <link rel="stylesheet" href="/style.min.css?v=9" />
-
     <!-- =====================================================
          6) scripts
          ===================================================== -->
-    <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
+    <script src="/js/rive.min.js" fetchpriority="high"></script>
     <script src="/js/page-transition.min.js" defer></script>
     <script src="/js/header.min.js" defer></script>
     <script src="/js/footer.min.js" defer></script>
   </head>
-
   <body>
     <!-- =====================================================
          page transition overlay + skip link
          ===================================================== -->
     <div id="page-transition" aria-hidden="true"></div>
     <a class="skip-link" href="#main_container">skip to main content</a>
-
     <!-- =====================================================
          header (injected by /js/header.min.js)
          ===================================================== -->
     <header id="site-header" class="site-header" role="banner"></header>
-
     <!-- =====================================================
          main
          ===================================================== -->
@@ -113,9 +99,7 @@
         <!-- content card -->
         <div class="section_left">
           <h1 id="page-title">accessibility statement</h1>
-
           <p><small>This statement was last updated on January 1, 2026.</small></p>
-
           <p>
             We at mediaBrilliance are committed to ensuring that our website,
             <a href="https://mediabrilliance.io">mediabrilliance.io</a>,
@@ -123,14 +107,12 @@
             experience for everyone, and we aim to comply with relevant accessibility standards,
             including the Web Content Accessibility Guidelines (WCAG) 2.1.
           </p>
-
           <p>
             If you experience any difficulty accessing content on this site, or if you have
             suggestions for how we can improve accessibility, please contact us via our
             <a href="/contact.html">contact page</a>. We value your feedback and will do our best to
             accommodate your needs.
           </p>
-
           <h2>what web accessibility is</h2>
           <p>
             An accessible site allows visitors with disabilities to browse the site with the same
@@ -138,14 +120,12 @@
             the capabilities of the system on which the site is operating, and through assistive
             technologies.
           </p>
-
           <h2>accessibility adjustments on this site</h2>
           <p>
             We have adapted this site in accordance with WCAG 2.1 guidelines and have made the site
             accessible to the level of AA. The site’s content is designed to work with assistive
             technologies such as screen readers and keyboard navigation.
           </p>
-
           <h2>measures we have implemented</h2>
           <ul>
             <li>Aligned the site with WCAG 2.1 Level AA standards</li>
@@ -159,14 +139,12 @@
             <li>Worked to make videos, audio files, and downloadable documents accessible when present</li>
           </ul>
         </div>
-
         <!-- right overlap logo box (decorative on this page) -->
         <div class="section_box_right" aria-hidden="true">
           <img class="logo" src="/images/mB.svg" alt="" />
         </div>
       </section>
     </main>
-
     <!-- =====================================================
          footer (injected by /js/footer.min.js)
          ===================================================== -->

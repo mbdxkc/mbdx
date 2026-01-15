@@ -2,8 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    <link rel="preload" href="https://unpkg.com/@rive-app/canvas@latest" as="script" crossorigin>
+    <link rel="preload" href="/js/rive.min.js" as="script">
     <!--
     ============================================================================
     mBdx (mediaBrilliance digitalxtudio)
@@ -14,27 +13,22 @@
     @date       2026-01-15
     @file       services.html
     @desc       services page - web design, development, cms, brand/ux, strategy
-
     @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
                 see /cc0.html for public domain dedications on select assets.
-
     @requires   - /js/header.min.js, /js/footer.min.js, /js/page-transition.min.js
                 - rive-app/canvas, /style.min.css
-
     @a11y       - skip link, semantic html, wcag 2.1 aa compliant
     ============================================================================
     mBdx v3.1 | services
     ============================================================================
     -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <title>services :: mediaBrilliance digitalxtudio</title>
     <meta
       name="description"
       content="mediaBrilliance digitalxtudio provides digital strategy and clean, modern websites and apps for small businesses, creators, and startups."
     />
     <link rel="canonical" href="https://mediabrilliance.io/services.html" />
-
     <!-- =====================================================
          2) social previews
          ===================================================== -->
@@ -46,7 +40,6 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mediabrilliance.io/services.html" />
     <meta property="og:image" content="https://mediabrilliance.io/og.png" />
-
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="services :: mediaBrilliance" />
     <meta
@@ -54,7 +47,6 @@
       content="mediaBrilliance digitalxtudio provides digital strategy and clean, modern websites and apps for small businesses, creators, and startups."
     />
     <meta name="twitter:image" content="https://mediabrilliance.io/og.png" />
-
     <!-- =====================================================
          3) icons
          ===================================================== -->
@@ -63,7 +55,6 @@
     <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="shortcut icon" href="/favicon.png" />
-
     <!-- =====================================================
          4) fonts
          ===================================================== -->
@@ -73,33 +64,28 @@
       href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
       rel="stylesheet"
     />
-
     <!-- =====================================================
          5) styles
          ===================================================== -->
     <link rel="stylesheet" href="/style.min.css?v=9" />
-
     <!-- =====================================================
          6) scripts
          ===================================================== -->
-    <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
+    <script src="/js/rive.min.js" fetchpriority="high"></script>
     <script src="/js/page-transition.min.js" defer></script>
     <script src="/js/header.min.js" defer></script>
     <script src="/js/footer.min.js" defer></script>
   </head>
-
   <body>
     <!-- =====================================================
          page transition overlay + skip link
          ===================================================== -->
     <div id="page-transition" aria-hidden="true"></div>
     <a class="skip-link" href="#main_container">skip to main content</a>
-
     <!-- =====================================================
          header (injected by /js/header.min.js)
          ===================================================== -->
     <header id="site-header" class="site-header" role="banner"></header>
-
     <!-- =====================================================
          main
          ===================================================== -->
@@ -108,13 +94,11 @@
         <!-- content card -->
         <div class="section_left">
           <h1 id="page-title">services</h1>
-
           <p>
             mediaBrilliance digitalxtudio is an independent design and development studio focused on
             building clear, functional, and thoughtfully designed digital experiences. we work with individuals,
             small businesses, nonprofits, and creative projects.
           </p>
-
           <!-- services list -->
           <ul>
             <li>
@@ -122,43 +106,36 @@
               custom website design focused on usability, accessibility, and visual clarity. every design is responsive
               and tailored to your brand, never generic templates.
             </li>
-
             <li>
               <strong>web development</strong><br />
               clean, efficient front-end development using modern web standards. sites are optimized for performance,
               mobile devices, and long-term maintainability.
             </li>
-
             <li>
               <strong>cms & site management</strong><br />
               setup and customization of content management systems so you can update your site easily. includes
               guidance on best practices and long-term site care.
             </li>
-
             <li>
               <strong>brand & ux support</strong><br />
               design support beyond the website, including layout systems, typography guidance, and user experience
               improvements that make your content easier to understand and use.
             </li>
-
             <li>
               <strong>digital strategy</strong><br />
               one-on-one strategy sessions to help you define your digital goals and create a roadmap for achieving them.
             </li>
           </ul>
-
           <p>
             <a href="/files/mBdx_services_sheet.pdf">printable services sheet</a>
           </p>
         </div>
-
         <!-- right overlap illustration (decorative) -->
         <div class="section_box_right" aria-hidden="true">
           <img class="logo" src="/images/digitalServices.svg" alt="" />
         </div>
       </section>
     </main>
-
     <!-- =====================================================
          footer (injected by /js/footer.min.js)
          ===================================================== -->

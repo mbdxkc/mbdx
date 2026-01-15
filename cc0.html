@@ -2,8 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    <link rel="preload" href="https://unpkg.com/@rive-app/canvas@latest" as="script" crossorigin>
+    <link rel="preload" href="/js/rive.min.js" as="script">
     <!--
     ============================================================================
     mBdx (mediaBrilliance digitalxtudio)
@@ -14,27 +13,22 @@
     @date       2026-01-15
     @file       cc0.html
     @desc       cc0 notice - public domain dedication for select materials
-
     @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
                 this page explains which materials are released under cc0.
-
     @requires   - /js/header.min.js, /js/footer.min.js, /js/page-transition.min.js
                 - rive-app/canvas, /style.min.css
-
     @a11y       - skip link, semantic html, wcag 2.1 aa compliant
     ============================================================================
     mBdx v3.1 | cc0 notice
     ============================================================================
     -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <title>cc0 notice :: mediaBrilliance digitalxtudio</title>
     <meta
       name="description"
       content="CC0 notice for mediaBrilliance digitalxtudio: what content is dedicated to the public domain and how you may use it."
     />
     <link rel="canonical" href="https://mediabrilliance.io/cc0.html" />
-
     <!-- social previews -->
     <meta property="og:title" content="cc0 notice :: mediaBrilliance digitalxtudio" />
     <meta
@@ -44,7 +38,6 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mediabrilliance.io/cc0.html" />
     <meta property="og:image" content="https://mediabrilliance.io/og.png" />
-
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="cc0 notice — mediaBrilliance" />
     <meta
@@ -52,14 +45,12 @@
       content="CC0 notice for mediaBrilliance digitalxtudio: what content is dedicated to the public domain and how you may use it."
     />
     <meta name="twitter:image" content="https://mediabrilliance.io/og.png" />
-
     <!-- icons -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="shortcut icon" href="/favicon.png" />
-
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -67,46 +58,37 @@
       href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
       rel="stylesheet"
     />
-
     <!-- styles -->
     <link rel="stylesheet" href="/style.min.css?v=10" />
-
     <!-- scripts -->
-    <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
+    <script src="/js/rive.min.js" fetchpriority="high"></script>
     <script src="/js/page-transition.min.js" defer></script>
     <script src="/js/header.min.js" defer></script>
     <script src="/js/footer.min.js" defer></script>
   </head>
-
   <body>
     <!-- page transition + skip link -->
     <div id="page-transition" aria-hidden="true"></div>
     <a class="skip-link" href="#main_container">skip to main content</a>
-
     <!-- header (injected by /js/header.min.js) -->
     <header id="site-header" class="site-header" role="banner"></header>
-
     <!-- main -->
     <main id="main_container" class="container">
       <section id="section1" class="section_container" aria-labelledby="page-title">
         <div class="section_left">
           <h1 id="page-title">cc0 notice</h1>
-
           <p><strong>effective date:</strong> jan 1, 2026</p>
-
           <p>
             mediaBrilliance digitalxtudio sometimes releases specific materials under
             <strong>CC0 1.0 Universal</strong> (a public domain dedication). when something is marked
             “cc0,” you may copy, modify, distribute, and use it for any purpose — including commercial
             use — without asking permission.
           </p>
-
           <h2>what this applies to</h2>
           <p>
             cc0 applies <strong>only</strong> to items where we explicitly say it applies (for example:
             a download, a repository, a file header, or a page note that says “cc0”).
           </p>
-
           <h2>what this does not apply to</h2>
           <ul>
             <li><strong>client work</strong> or commissioned deliverables, unless explicitly marked cc0</li>
@@ -114,7 +96,6 @@
             <li><strong>trademarks</strong>, brand names, or logos, except where explicitly released under cc0</li>
             <li><strong>privacy/publicity rights</strong> (people’s names, likenesses, or personal data)</li>
           </ul>
-
           <h2>official cc0 text</h2>
           <p>
             for the complete, authoritative license text, use the official creative commons pages:
@@ -131,15 +112,12 @@
               </a>
             </li>
           </ul>
-
           <h2>questions</h2>
           <p>
             if you’re not sure whether something is cc0, reach out and we’ll clarify:
             <a href="/contact.html">mediabrilliance.io/contact.html</a>
           </p>
-
           <hr style="border:0;border-top:1px solid rgba(255,255,255,.25);margin:1.25rem 0" />
-
           <p>
             <small>
               this notice is provided for clarity and convenience. the official cc0 legal code linked above
@@ -147,14 +125,12 @@
             </small>
           </p>
         </div>
-
         <!-- decorative logo (optional) -->
         <div class="section_box_right" aria-hidden="true">
           <img class="logo" src="/images/mB.svg" alt="" />
         </div>
       </section>
     </main>
-
     <!-- footer (injected by /js/footer.min.js) -->
     <footer id="site-footer" class="footer" role="contentinfo"></footer>
   </body>

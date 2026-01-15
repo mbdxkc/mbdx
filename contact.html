@@ -2,8 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    <link rel="preload" href="https://unpkg.com/@rive-app/canvas@latest" as="script" crossorigin>
+    <link rel="preload" href="/js/rive.min.js" as="script">
     <!--
     ============================================================================
     mBdx (mediaBrilliance digitalxtudio)
@@ -14,14 +13,11 @@
     @date       2026-01-15
     @file       contact.html
     @desc       contact page - contact form, phone, email, location info
-
     @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
                 see /cc0.html for public domain dedications on select assets.
-
     @requires   - /js/header.min.js, /js/footer.min.js, /js/page-transition.min.js
                 - /js/contact-form.min.js, /js/email.min.js, emailjs-com sdk
                 - rive-app/canvas, /style.min.css
-
     @a11y       - skip link, form labels (sr-only), aria-live for status
                 - tel: link for phone, wcag 2.1 aa compliant
     ============================================================================
@@ -29,14 +25,12 @@
     ============================================================================
     -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <title>contact :: mediaBrilliance digitalxtudio</title>
     <meta
       name="description"
       content="reach out to mediaBrilliance digitalxtudio for digital strategy and clean, modern websites and apps for small businesses, creators, and startups."
     />
     <link rel="canonical" href="https://mediabrilliance.io/contact.html" />
-
     <!-- =====================================================
          2) social previews
          ===================================================== -->
@@ -48,7 +42,6 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mediabrilliance.io/contact.html" />
     <meta property="og:image" content="https://mediabrilliance.io/og.png" />
-
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="contact :: mediaBrilliance" />
     <meta
@@ -56,7 +49,6 @@
       content="mediaBrilliance digitalxtudio provides digital strategy and clean, modern websites and apps for small businesses, creators, and startups."
     />
     <meta name="twitter:image" content="https://mediabrilliance.io/og.png" />
-
     <!-- =====================================================
          3) icons
          ===================================================== -->
@@ -65,7 +57,6 @@
     <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="shortcut icon" href="/favicon.png" />
-
     <!-- =====================================================
          4) fonts
          ===================================================== -->
@@ -75,23 +66,20 @@
       href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
       rel="stylesheet"
     />
-
     <!-- =====================================================
          5) styles
          ===================================================== -->
     <link rel="stylesheet" href="/style.min.css?v=10" />
-
     <!-- =====================================================
          6) scripts (early)
          - rive lib needed for wordmark + submit button scripts
          - page transition script deferred
          ===================================================== -->
-    <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
+    <script src="/js/rive.min.js" fetchpriority="high"></script>
     <script src="/js/page-transition.min.js" defer></script>
     <script src="/js/header.min.js" defer></script>
     <script src="/js/footer.min.js" defer></script>
   </head>
-
   <!--
     a11y notes:
     - form inputs have visually-hidden labels (.sr-only)
@@ -105,12 +93,10 @@
          ===================================================== -->
     <div id="page-transition" aria-hidden="true"></div>
     <a class="skip-link" href="#main_container">skip to main content</a>
-
     <!-- =====================================================
          header (injected by /js/header.min.js)
          ===================================================== -->
     <header id="site-header" class="site-header" role="banner"></header>
-
     <!-- =====================================================
          main
          ===================================================== -->
@@ -121,17 +107,14 @@
           <!-- content card -->
           <div class="section_left">
             <h1 id="page-title">drop us a line!</h1>
-
             <p>
               mediaBrilliance digitalxtudio is an independent design and development studio focused on
               building clear, functional, and thoughtfully designed digital experiences. we work with individuals,
               small businesses, nonprofits, and creative projects.
             </p>
-
             <!-- contact details -->
             <address aria-label="contact details">
               <p>kansas city, mo<br />est. 2026</p>
-
               <p>
                 <a href="tel:+19137034060" aria-label="call 913 703 4060">913.703.4060</a>
                 <br />
@@ -139,7 +122,6 @@
                 <a id="email-link" href="mailto:dez@mediabrilliance.io">dez@mediabrilliance.io</a>
               </p>
             </address>
-
             <!-- =================================================
                  contact form
                  ================================================= -->
@@ -155,7 +137,6 @@
                   required
                 />
               </div>
-
               <div class="form-field">
                 <label for="email" class="sr-only">your email address</label>
                 <input
@@ -167,7 +148,6 @@
                   required
                 />
               </div>
-
               <div class="form-field">
                 <label for="message" class="sr-only">message</label>
                 <textarea
@@ -178,15 +158,12 @@
                   required
                 ></textarea>
               </div>
-
               <!-- submit button -->
               <button type="submit" class="mb-submit">send message</button>
-
               <!-- status message for assistive tech -->
               <p id="form-status" aria-live="polite"></p>
             </form>
           </div>
-
           <!-- right overlap graphic (decorative) -->
           <div class="section_box_right" aria-hidden="true">
             <img class="logo" src="/images/contactmBdx.svg" alt="" />
@@ -194,19 +171,15 @@
         </section>
       </div>
     </main>
-
     <!-- =====================================================
          footer (injected by /js/footer.min.js)
          ===================================================== -->
     <footer id="site-footer" class="footer" role="contentinfo"></footer>
-
     <!-- =====================================================
          scripts (end-of-body for performance + dom readiness)
          ===================================================== -->
-
     <!-- emailjs sdk (needed by your contact-form.min.js) -->
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
     <!-- your site scripts -->
     <script src="/js/email.min.js" defer></script>
     <script src="/js/contact-form.min.js" defer></script>

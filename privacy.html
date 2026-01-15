@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    <link rel="preload" href="https://unpkg.com/@rive-app/canvas@latest" as="script" crossorigin>
+    <link rel="preload" href="/js/rive.min.js" as="script">
   <!--
   ============================================================================
   mBdx (mediaBrilliance digitalxtudio)
@@ -14,13 +13,10 @@
   @date       2026-01-15
   @file       privacy.html
   @desc       terms & conditions and privacy policy - legal agreements
-
   @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
               see /cc0.html for public domain dedications on select assets.
-
   @requires   - /js/header.min.js, /js/footer.min.js, /js/page-transition.min.js
               - rive-app/canvas, /style.min.css
-
   @a11y       - skip link, semantic html, wcag 2.1 aa compliant
   ============================================================================
   mBdx v3.1 | terms & privacy
@@ -30,7 +26,6 @@
   <meta name="description" content="Terms & Conditions and Privacy Policy for mediaBrilliance digitalxtudio." />
   <title>Terms & Conditions and Privacy Policy :: mediaBrilliance digitalxtudio</title>
   <link rel="canonical" href="https://mediabrilliance.io/privacy.html" />
-
   <!-- Social media meta tags -->
   <meta property="og:title" content="terms & privacy — mediaBrilliance" />
   <meta property="og:description" content="Digital strategy and clean, modern websites and apps for small businesses, creators, and startups." />
@@ -41,7 +36,6 @@
   <meta name="twitter:title" content="terms & privacy — mediaBrilliance" />
   <meta name="twitter:description" content="mediaBrilliance supports accessibility and is committed to ensuring digital accessibility for people with disabilities." />
   <meta name="twitter:image" content="https://mediabrilliance.io/og.png" />
-
   <!-- =====================================================
        2) Icons
        ===================================================== -->
@@ -50,40 +44,34 @@
   <link rel="icon" href="./favicon-16.png" type="image/png" sizes="16x16">
   <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
   <link rel="shortcut icon" href="./favicon.png">
-
   <!-- =====================================================
        3) Fonts
        ===================================================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
-
   <!-- =====================================================
        4) External JS
        ===================================================== -->
-  <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
+  <script src="/js/rive.min.js" fetchpriority="high"></script>
   <script src="/js/page-transition.min.js" defer></script>
   <script src="/js/header.min.js" defer></script>
   <script src="/js/footer.min.js" defer></script>
-
   <!-- =====================================================
        5) CSS Stylesheets
        ===================================================== -->
   <link rel="stylesheet" href="style.min.css?v=9">
 </head>
-
 <body>
   <!-- =====================================================
        6) Page transition overlay + skip link
        ===================================================== -->
   <div id="page-transition" aria-hidden="true"></div>
   <a class="skip-link" href="#main_container">skip to main content</a>
-
   <!-- =====================================================
        7) Header section (injected by /js/header.min.js)
        ===================================================== -->
   <header id="site-header" class="site-header" role="banner"></header>
-
   <!-- =====================================================
        8) Main content section
        ===================================================== -->
@@ -93,11 +81,9 @@
         <!-- Terms & Conditions Content -->
         <h1>Terms & Conditions and Privacy Policy</h1>
         <p>Effective Date: January 1, 2026</p>
-
         <!-- Terms and Conditions -->
         <h2>Terms and Conditions</h2>
         <p>Welcome to mediaBrilliance. These Terms & Conditions (“Terms”) govern your access to and use of our website, https://mediabrilliance.io, and any related services we provide. By accessing or using the site, you agree to be bound by these Terms. If you do not agree, please do not use our website.</p>
-
         <h3>1. Use of the Site</h3>
         <p>You may use this site only if you are at least 18 years old or under the supervision of a parent or guardian. By using this site, you confirm that you meet these requirements. You agree not to use the site:</p>
         <ul>
@@ -106,46 +92,37 @@
           <li>To infringe upon or violate our intellectual property rights or the rights of others</li>
           <li>To attempt to gain unauthorized access to any part of the site or its systems</li>
         </ul>
-
         <!-- Additional sections (Intellectual Property, Payments, etc.) -->
         <h3>2. Intellectual Property</h3>
         <p>All content on this site, including but not limited to text, images, graphics, logos, icons, and code, is the property of mediaBrilliance or its licensors and is protected by copyright, trademark, and other intellectual property laws.</p>
-
         <!-- Privacy Policy -->
         <h2>Privacy Policy</h2>
         <p>At mediaBrilliance (“we,” “our,” or “us”), your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information when you visit our website at https://mediabrilliance.io.</p>
-
         <!-- Privacy sections -->
         <h3>Information We Collect</h3>
         <ul>
           <li>Contact Information — When you voluntarily submit information via our contact form, we may collect your name, email address, or other details you choose to provide.</li>
           <li>Site Statistics — We use analytics tools to collect non-identifiable information such as pages visited, time spent on the site, and general device or browser data.</li>
         </ul>
-
         <h3>How We Use Your Information</h3>
         <ul>
           <li>To respond to inquiries and messages you submit through the contact form</li>
           <li>To improve the performance, content, and usability of our website</li>
           <li>To analyze usage trends and site activity through anonymized statistics</li>
         </ul>
-
         <!-- Contact Information -->
         <h3>Contact Us</h3>
         <p>If you have any questions about these Terms, Privacy Policy, or wish to make a privacy-related request, please contact us via our <a href="https://mediabrilliance.io/contact.html">contact page</a>.</p>
       </div>
-
       <!-- Right: Company Logo (decorative) -->
       <div class="section_box_right" aria-hidden="true">
         <img class="logo" src="./images/mB.svg" alt="">
       </div>
     </div>
   </main>
-
   <!-- =====================================================
        9) Footer section (injected by /js/footer.min.js)
        ===================================================== -->
   <footer id="site-footer" class="footer" role="contentinfo"></footer>
-
 </body>
-
 </html>
