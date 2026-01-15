@@ -359,14 +359,17 @@ a[href*="contact"]   img:hover{ content: url("/images/contact_dark.svg"); }
 @media (max-width: 450px){
   :root{ --header-h: 64px; }
 
-  .pages,
-  .socials{
+  .pages{
     transform: scale(.9);
-    transform-origin: center;
+    transform-origin: left center;
+    gap: .5rem;
   }
 
-  .socials{ gap: .35rem; }
-  .pages{ gap: .5rem; }
+  .socials{
+    transform: scale(.9);
+    transform-origin: right center;
+    gap: .35rem;
+  }
 }
 
 
