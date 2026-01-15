@@ -48,6 +48,8 @@
        ===================================================== -->
   <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
   <script src="/js/page-transition.js" defer></script>
+  <script src="/js/header.js" defer></script>
+  <script src="/js/footer.js" defer></script>
 
   <!-- =====================================================
        5) CSS Stylesheets
@@ -63,37 +65,9 @@
   <a class="skip-link" href="#main_container">skip to main content</a>
 
   <!-- =====================================================
-       7) Header section
+       7) Header section (injected by /js/header.js)
        ===================================================== -->
-  <header class="site-header" role="banner">
-    <div class="header-grid">
-      <nav class="nav" aria-label="primary">
-        <!-- Left navigation links -->
-        <div class="pages">
-          <a href="./index.html"><img src="./images/home_light.svg" alt="mediaBrilliance home icon"></a>
-          <a href="./services.html"><img src="./images/services_light.svg" alt="mediaBrilliance services icon"></a>
-          <a href="./contact.html"><img src="./images/contact_light.svg" alt="mediaBrilliance contact icon"></a>
-        </div>
-
-        <!-- Center: mediaBrilliance wordmark (Canvas fallback text) -->
-        <div class="header-title">
-          <a href="./index.html" aria-label="mediaBrilliance home">
-            <canvas id="mb_wordmark" width="200" height="42">mediaBrilliance</canvas>
-          </a>
-        </div>
-
-        <!-- Right: Social media links -->
-        <div class="socials">
-          <a href="https://www.instagram.com/mediaBrilliance/" aria-label="mediaBrilliance on Instagram" target="_blank" rel="noopener noreferrer">
-            <img src="./images/instagram_dark.svg" alt="" aria-hidden="true">
-          </a>
-          <a href="https://github.com/mbdxkc/" aria-label="mediaBrilliance on GitHub" target="_blank" rel="noopener noreferrer">
-            <img src="./images/github_dark.svg" alt="" aria-hidden="true">
-          </a>
-        </div>
-      </nav>
-    </div>
-  </header>
+  <header id="site-header" class="site-header" role="banner"></header>
 
   <!-- =====================================================
        8) Main content section
@@ -153,29 +127,9 @@
   </main>
 
   <!-- =====================================================
-       9) Footer section
+       9) Footer section (injected by /js/footer.js)
        ===================================================== -->
-  <footer class="footer" role="contentinfo">
-    <p><a href="./index.html">© 2026 mediaBrilliance</a></p>
-    <p><a href="./about.html">about</a></p>
-    <p><a href="/cc0.html">cc0 notice</a></p>
-    <p><a href="./accessibility.html">Accessibility Statement</a></p>
-    <p><a href="./privacy.html">Privacy Policy</a></p>
-  </footer>
-
-  <!-- =====================================================
-       10) Rive: Wordmark Animation
-       ===================================================== -->
-  <script>
-    // mb wordmark animation
-    new rive.Rive({
-      src: "./media/mb_wordmark.riv",
-      canvas: document.getElementById("mb_wordmark"),
-      autoplay: true,
-      stateMachines: "State Machine 1",
-      onLoad: () => console.log("mb_wordmark rive loaded!"),
-    });
-  </script>
+  <footer id="site-footer" class="footer" role="contentinfo"></footer>
 
 </body>
 

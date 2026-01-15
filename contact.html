@@ -70,6 +70,8 @@
          ===================================================== -->
     <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
     <script src="/js/page-transition.js" defer></script>
+    <script src="/js/header.js" defer></script>
+    <script src="/js/footer.js" defer></script>
   </head>
 
   <!--
@@ -89,53 +91,9 @@
     <a class="skip-link" href="#main_container">skip to main content</a>
 
     <!-- =====================================================
-         header
+         header (injected by /js/header.js)
          ===================================================== -->
-    <header class="site-header" role="banner">
-      <div class="header-grid">
-        <nav class="nav" aria-label="primary">
-          <!-- left: site pages -->
-          <div class="pages" aria-label="site pages">
-            <a href="/index.html" aria-label="home">
-              <img src="/images/home_light.svg" alt="" aria-hidden="true" />
-            </a>
-            <a href="/services.html" aria-label="services">
-              <img src="/images/services_light.svg" alt="" aria-hidden="true" />
-            </a>
-            <a href="/contact.html" aria-label="contact" aria-current="page">
-              <img src="/images/contact_active.svg" alt="" aria-hidden="true" />
-            </a>
-          </div>
-
-          <!-- center: wordmark -->
-          <div class="header-title">
-            <a href="/index.html" aria-label="mediaBrilliance home">
-              <canvas id="mb_wordmark" width="200" height="42">mediaBrilliance</canvas>
-            </a>
-          </div>
-
-          <!-- right: socials -->
-          <div class="socials" aria-label="social links">
-            <a
-              href="https://www.instagram.com/mediaBrilliance/"
-              aria-label="mediaBrilliance on instagram"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src="/images/instagram_dark.svg" alt="" aria-hidden="true" />
-            </a>
-            <a
-              href="https://github.com/mbdxkc/"
-              aria-label="mediaBrilliance on github"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src="/images/github_dark.svg" alt="" aria-hidden="true" />
-            </a>
-          </div>
-        </nav>
-      </div>
-    </header>
+    <header id="site-header" class="site-header" role="banner"></header>
 
     <!-- =====================================================
          main
@@ -224,15 +182,9 @@
     </main>
 
     <!-- =====================================================
-         footer
+         footer (injected by /js/footer.js)
          ===================================================== -->
-    <footer class="footer" role="contentinfo">
-      <p><a href="/index.html">© 2026 mediaBrilliance</a></p>
-      <p><a href="./about.html">about</a></p>
-      <p><a href="/cc0.html">cc0 notice</a></p>
-      <p><a href="/accessibility.html">accessibility statement</a></p>
-      <p><a href="/privacy.html">privacy policy</a></p>
-    </footer>
+    <footer id="site-footer" class="footer" role="contentinfo"></footer>
 
     <!-- =====================================================
          scripts (end-of-body for performance + dom readiness)
@@ -245,34 +197,5 @@
     <script src="/js/email.js" defer></script>
     <script src="/js/contact-form.js" defer></script>
     <script src="/js/rive-submit.js" defer></script>
-
-    <!-- =====================================================
-         rive: wordmark init
-         ===================================================== -->
-    <script>
-      // mb wordmark animation (canvas includes text fallback)
-      new rive.Rive({
-        src: "/media/mb_wordmark.riv",
-        canvas: document.getElementById("mb_wordmark"),
-        autoplay: true,
-        stateMachines: "State Machine 1",
-      });
-    </script>
-
-    <!-- =====================================================
-         validation checklist (quick)
-         =====================================================
-         html:
-         - removed invalid "<<body" token (fixed)
-         - consistent absolute paths (leading /) for production
-         a11y:
-         - icons are decorative: alt="" + aria-hidden (yes)
-         - form inputs have associated labels (sr-only) (yes)
-         - status region uses aria-live (yes)
-         seo:
-         - title + meta description + canonical set (yes)
-         performance:
-         - scripts deferred where appropriate (yes)
-    -->
   </body>
 </html>
