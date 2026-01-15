@@ -284,6 +284,12 @@ a:hover{ color: var(--pink); }
   min-width: 0;
 }
 
+.header-title img,
+.header-title canvas{
+  max-width: clamp(120px, 30vw, 200px);
+  height: auto;
+}
+
 /* left + right clusters */
 .pages,
 .socials{
