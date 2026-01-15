@@ -1,40 +1,29 @@
 <!doctype html>
-<!--
-================================================================================
-mBdx (mediaBrilliance digitalxtudio)
-================================================================================
-@project    mBdx - mediaBrilliance digitalxtudio website
-@version    3.1
-@author     valdez campos <dez@mediabrilliance.io>
-@date       2026-01-15
-@file       services.html
-@desc       services page - web design, development, cms, brand/ux, strategy
-
-@license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
-            see /cc0.html for public domain dedications on select assets.
-
-@requires   - /js/header.js (site header component)
-            - /js/footer.js (site footer component)
-            - /js/page-transition.js (page transition animations)
-            - rive-app/canvas (rive animation runtime)
-            - /style.css (main stylesheet)
-
-@a11y       - skip link to main content
-            - semantic html structure
-            - aria-labelledby for section
-            - wcag 2.1 aa compliant
-================================================================================
--->
 <html lang="en">
   <head>
-    <!-- =====================================================
-         mBdx v3.1 | services
-         ===================================================== -->
-
-    <!-- =====================================================
-         1) core meta
-         ===================================================== -->
     <meta charset="utf-8" />
+    <!--
+    ============================================================================
+    mBdx (mediaBrilliance digitalxtudio)
+    ============================================================================
+    @project    mBdx - mediaBrilliance digitalxtudio website
+    @version    3.1
+    @author     valdez campos <dez@mediabrilliance.io>
+    @date       2026-01-15
+    @file       services.html
+    @desc       services page - web design, development, cms, brand/ux, strategy
+
+    @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
+                see /cc0.html for public domain dedications on select assets.
+
+    @requires   - /js/header.min.js, /js/footer.min.js, /js/page-transition.min.js
+                - rive-app/canvas, /style.min.css
+
+    @a11y       - skip link, semantic html, wcag 2.1 aa compliant
+    ============================================================================
+    mBdx v3.1 | services
+    ============================================================================
+    -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>services :: mediaBrilliance digitalxtudio</title>
@@ -86,15 +75,15 @@ mBdx (mediaBrilliance digitalxtudio)
     <!-- =====================================================
          5) styles
          ===================================================== -->
-    <link rel="stylesheet" href="/style.css?v=9" />
+    <link rel="stylesheet" href="/style.min.css?v=9" />
 
     <!-- =====================================================
          6) scripts
          ===================================================== -->
     <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
-    <script src="/js/page-transition.js" defer></script>
-    <script src="/js/header.js" defer></script>
-    <script src="/js/footer.js" defer></script>
+    <script src="/js/page-transition.min.js" defer></script>
+    <script src="/js/header.min.js" defer></script>
+    <script src="/js/footer.min.js" defer></script>
   </head>
 
   <body>
@@ -105,7 +94,7 @@ mBdx (mediaBrilliance digitalxtudio)
     <a class="skip-link" href="#main_container">skip to main content</a>
 
     <!-- =====================================================
-         header (injected by /js/header.js)
+         header (injected by /js/header.min.js)
          ===================================================== -->
     <header id="site-header" class="site-header" role="banner"></header>
 
@@ -169,7 +158,7 @@ mBdx (mediaBrilliance digitalxtudio)
     </main>
 
     <!-- =====================================================
-         footer (injected by /js/footer.js)
+         footer (injected by /js/footer.min.js)
          ===================================================== -->
     <footer id="site-footer" class="footer" role="contentinfo"></footer>
   </body>

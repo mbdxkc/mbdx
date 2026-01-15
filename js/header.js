@@ -17,7 +17,7 @@
  *             - /images/home_*.svg, services_*.svg, contact_*.svg (nav icons)
  *             - /images/instagram_dark.svg, github_dark.svg (social icons)
  *
- * @usage      add <header id="site-header"></header> to your html,
+ * @usage      add <header id="site-header"></header> to html,
  *             then include this script with defer attribute.
  *
  * @exports    none (iife - self-executing)
@@ -60,13 +60,13 @@
         <!-- left: pages -->
         <div class="pages">
           <a href="/index.html"${homeAria}>
-            <img src="${homeIcon}" alt="mediaBrilliance home icon" />
+            <img src="${homeIcon}" alt="mediaBrilliance home icon" width="24" height="24" />
           </a>
           <a href="/services.html"${servicesAria}>
-            <img src="${servicesIcon}" alt="mediaBrilliance services icon" />
+            <img src="${servicesIcon}" alt="mediaBrilliance services icon" width="24" height="24" />
           </a>
           <a href="/contact.html"${contactAria}>
-            <img src="${contactIcon}" alt="mediaBrilliance contact icon" />
+            <img src="${contactIcon}" alt="mediaBrilliance contact icon" width="24" height="24" />
           </a>
         </div>
 
@@ -85,7 +85,7 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="/images/instagram_dark.svg" alt="instagram icon" aria-hidden="true" />
+            <img src="/images/instagram_dark.svg" alt="" aria-hidden="true" width="24" height="24" />
           </a>
 
           <a
@@ -94,7 +94,7 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="/images/github_dark.svg" alt="github icon" aria-hidden="true" />
+            <img src="/images/github_dark.svg" alt="" aria-hidden="true" width="24" height="24" />
           </a>
         </div>
       </nav>

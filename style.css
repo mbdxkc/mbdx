@@ -308,17 +308,21 @@ a:hover{ color: var(--pink); }
 
 /* =========================================================
    8) header icon sizing
+   touch targets must be at least 44x44px for accessibility.
+   icons are visually smaller but tap area is larger.
    ========================================================= */
 .pages a,
 .socials a{
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .pages img,
 .socials img{
-  width: clamp(18px, 5vw, 24px);
+  width: clamp(20px, 5vw, 28px);
   height: auto;
   display: block;
 }
