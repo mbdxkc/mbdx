@@ -30,29 +30,42 @@
 
   // respect user's motion preference for accessibility
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const OVERLAY_MS = reduce ? 0 : 750;  // overlay slide duration
-  const FADE_MS    = reduce ? 0 : 350;  // content fade duration
+
+  // read duration from css variable for consistency
+  function getTransitionDuration() {
+    if (reduce) return 0;
+    const val = getComputedStyle(document.documentElement).getPropertyValue("--t-slide");
+    return parseFloat(val) * 1000 || 600;
+  }
 
   // -------------------------------------------------------------------------
   // 2. initial page load - reveal content with transition
   // -------------------------------------------------------------------------
   document.body.classList.add("is-loading");
   requestAnimationFrame(() => {
-    overlay.classList.add("exit");               // slide overlay off screen
+    overlay.classList.add("exit");                // slide overlay off screen
     document.body.classList.remove("is-loading"); // fade content in
   });
 
   // -------------------------------------------------------------------------
   // 3. navigation handler - animate out before leaving page
   // -------------------------------------------------------------------------
+  const isHomepage = window.location.pathname === "/" || window.location.pathname.endsWith("/index.html");
+
   function leaveTo(url) {
+    // homepage only gets slide-in, skip slide-out for smoother rive animation coexistence
+    if (reduce || isHomepage) {
+      window.location.href = url;
+      return;
+    }
+
     document.body.classList.add("is-leaving");   // fade content out
     overlay.classList.remove("exit");            // bring overlay back (translateX(0))
 
     // wait until overlay has covered the page, then navigate
     window.setTimeout(() => {
       window.location.href = url;
-    }, Math.max(OVERLAY_MS, FADE_MS));
+    }, getTransitionDuration());
   }
 
   // -------------------------------------------------------------------------
