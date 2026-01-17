@@ -258,6 +258,15 @@ a:hover{ color: var(--pink); }
   color: rgba(0,0,0,.65);
 }
 
+.section_left a,
+.section_right a{
+  color: var(--pink);
+}
+.section_left a:hover,
+.section_right a:hover{
+  color: var(--yellow);
+}
+
 /* =========================================================
    6) header shell (full-width sticky bar)
    ========================================================= */
