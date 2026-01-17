@@ -41,20 +41,24 @@
   // -------------------------------------------------------------------------
   // 2. initial page load - reveal content with transition
   // -------------------------------------------------------------------------
+  // ensure body starts with is-loading (should also be in HTML for no-flash)
   document.body.classList.add("is-loading");
+
+  // double rAF ensures browser has painted the hidden state before we reveal
+  // single rAF is unreliable - transition may not trigger if paint hasn't happened
   requestAnimationFrame(() => {
-    overlay.classList.add("exit");                // slide overlay off screen
-    document.body.classList.remove("is-loading"); // fade content in
+    requestAnimationFrame(() => {
+      overlay.classList.add("exit");                // slide overlay off screen
+      document.body.classList.remove("is-loading"); // fade content in
+    });
   });
 
   // -------------------------------------------------------------------------
   // 3. navigation handler - animate out before leaving page
   // -------------------------------------------------------------------------
-  const isHomepage = window.location.pathname === "/" || window.location.pathname.endsWith("/index.html");
-
   function leaveTo(url) {
-    // homepage only gets slide-in, skip slide-out for smoother rive animation coexistence
-    if (reduce || isHomepage) {
+    // skip animation if user prefers reduced motion
+    if (reduce) {
       window.location.href = url;
       return;
     }
@@ -94,7 +98,11 @@
   // -------------------------------------------------------------------------
   // 5. bfcache handler - reset state when using back/forward navigation
   // -------------------------------------------------------------------------
-  window.addEventListener("pageshow", () => {
+  window.addEventListener("pageshow", (e) => {
+    // if page was restored from bfcache, ensure proper state
+    if (e.persisted) {
+      overlay.classList.add("exit");
+    }
     document.body.classList.remove("is-leaving");
     document.body.classList.remove("is-loading");
   });

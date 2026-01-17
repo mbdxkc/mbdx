@@ -1,0 +1,7 @@
+# robots.txt for mediabrilliance.io
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://mediabrilliance.io/sitemap.xml
