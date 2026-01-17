@@ -250,9 +250,11 @@ a:hover{ color: var(--pink); }
     0 0 18px rgba(0,141,218,.35);
 }
 
-/* paragraph text in content cards - darker for contrast */
+/* text in content cards - darker for contrast */
 .section_left p,
-.section_right p{
+.section_right p,
+.section_left li,
+.section_right li{
   color: rgba(0,0,0,.65);
 }
 
