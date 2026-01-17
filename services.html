@@ -10,7 +10,7 @@
     @project    mBdx - mediaBrilliance digitalxtudio website
     @version    3.1
     @author     valdez campos <dez@mediabrilliance.io>
-    @date       2026-01-15
+    @date       2026-01-17
     @file       services.html
     @desc       services page - web design, development, cms, brand/ux, strategy
     @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
@@ -56,12 +56,13 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="shortcut icon" href="/favicon.png" />
     <!-- =====================================================
-         4) fonts
+         4) fonts - preconnect + preload critical subset
          ===================================================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&display=swap" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&display=swap"
       rel="stylesheet"
     />
     <!-- =====================================================
@@ -75,6 +76,81 @@
     <script src="/js/page-transition.min.js" defer></script>
     <script src="/js/header.min.js" defer></script>
     <script src="/js/footer.min.js" defer></script>
+    <!-- =====================================================
+         7) structured data - LocalBusiness + Service
+         ===================================================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "mediaBrilliance digitalxtudio",
+      "description": "Independent design and development studio focused on building clear, functional, and thoughtfully designed digital experiences.",
+      "url": "https://mediabrilliance.io",
+      "logo": "https://mediabrilliance.io/images/mBwordmark.svg",
+      "image": "https://mediabrilliance.io/og.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Kansas City",
+        "addressRegion": "MO",
+        "addressCountry": "US"
+      },
+      "priceRange": "$$",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Digital Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Digital Strategy",
+              "description": "Goals & roadmap, competitive analysis, content strategy, actionable plan"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "UX Design",
+              "description": "User research, wireframes, prototypes, usability testing"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Brand Identity",
+              "description": "Logo, color palette, typography, brand guidelines"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Website Development",
+              "description": "Single page to custom builds, responsive design, CMS integration"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "E-Commerce",
+              "description": "Online storefronts with Shopify, Toast, Square, or WooCommerce"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "App Design",
+              "description": "UI/UX design, interactive prototypes, design specs, developer handoff"
+            }
+          }
+        ]
+      }
+    }
+    </script>
   </head>
   <body class="is-loading">
     <!-- =====================================================
@@ -103,32 +179,32 @@
         <!-- Rate Card List -->
         <ul>
           <!-- strategy & design services -->
-          <li><b>digital strategy:</b> $1,500-$4,000 <br> goals & roadmap • competitive analysis • content strategy • actionable plan</li><br>
-          <li><b>ux design:</b> $2,000-$5,000 <br> user research • wireframes • prototypes • usability testing</li><br>
-          <li><b>brand identity:</b> $1,000-$2,500 <br> logo • color palette • typography • brand guidelines</li><br>
+          <li><b>digital strategy:</b> $1,500-$4,000 <br> goals &amp; roadmap • competitive analysis • content strategy • actionable plan</li>
+          <li><b>ux design:</b> $2,000-$5,000 <br> user research • wireframes • prototypes • usability testing</li>
+          <li><b>brand identity:</b> $1,000-$2,500 <br> logo • color palette • typography • brand guidelines</li>
 
           <!-- websites -->
-          <li><b>single page:</b> $600-$1,000 <br> clear, focused digital presence • responsive layout • contact form • fast turnaround</li><br>
-          <li><b>startup website:</b> $1,200-$2,000 <br> 1-3 pages • responsive layout • contact form • basic SEO • scalable structure to match your growth</li><br>
-          <li><b>professional website:</b> $2500-$4500 <br> 5-7 dynamic pages • custom design & development • CMS • analytics • advanced SEO</li><br>
-          <li><b>e-commerce:</b> $3,500-$6,000 <br> professional website with online storefront • shopify • toast • square • woocommerce • product pages • checkout • payments</li><br>
-          <li><b>custom build:</b> $5,000-$10,000+ <br> design system • animations • integrations • performance optimization</li><br>
-          <li><b>site redesign:</b> $1,500-$4,000 <br> refresh existing site • preserve content • modernize design & code</li><br>
+          <li><b>single page:</b> $600-$1,000 <br> clear, focused digital presence • responsive layout • contact form • fast turnaround</li>
+          <li><b>startup website:</b> $1,200-$2,000 <br> 1-3 pages • responsive layout • contact form • basic SEO • scalable structure to match your growth</li>
+          <li><b>professional website:</b> $2,500-$4,500 <br> 5-7 dynamic pages • custom design &amp; development • CMS • analytics • advanced SEO</li>
+          <li><b>e-commerce:</b> $3,500-$6,000 <br> professional website with online storefront • shopify • toast • square • woocommerce • product pages • checkout • payments</li>
+          <li><b>custom build:</b> $5,000-$10,000+ <br> design system • animations • integrations • performance optimization</li>
+          <li><b>site redesign:</b> $1,500-$4,000 <br> refresh existing site • preserve content • modernize design &amp; code</li>
 
           <!-- apps -->
-          <li><b>app design:</b> $3,500-$8,000 <br> ui/ux design • interactive prototypes • design specs • developer handoff</li><br>
+          <li><b>app design:</b> $3,500-$8,000 <br> ui/ux design • interactive prototypes • design specs • developer handoff</li>
 
           <!-- hourly & ongoing -->
-          <li><b>hourly work:</b> <br> maintenance $60/hr • design & development $75-$100/hr • strategy $125/hr</li><br>
-          <li><b>ongoing support:</b> $100-$200/month <br> updates • backups • priority support • monthly check-in</li><br>
+          <li><b>hourly work:</b> <br> maintenance $60/hr • design &amp; development $75-$100/hr • strategy $125/hr</li>
+          <li><b>ongoing support:</b> $100-$200/month <br> updates • backups • priority support • monthly check-in</li>
         </ul>
         <!-- Downloadable rate card and services sheet -->
          <p>most projects are scoped as flat-rate engagements after a free, friendly consultation.
         <a href="./files/mBdx_rate_card.pdf" download="mBdx_rate_card">printable rate card</a></p>
       </div>
-      <!-- Right: Company logo (decorative) -->
+      <!-- Right: Rate card graphic (decorative) -->
       <div class="section_box_right" aria-hidden="true">
-        <img class="logo" src="/images/rateCard.svg" alt="" />
+        <img class="logo" src="/images/rateCard.svg" alt="" loading="lazy" decoding="async" />
       </div>
     </div>
   </main>
