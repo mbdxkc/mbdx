@@ -7,38 +7,38 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://mediabrilliance.io/services.html</loc>
+    <loc>https://mediabrilliance.io/pages/services.html</loc>
     <lastmod>2026-01-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://mediabrilliance.io/about.html</loc>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://mediabrilliance.io/pages/about.html</loc>
+    <lastmod>2026-01-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mediabrilliance.io/contact.html</loc>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://mediabrilliance.io/pages/contact.html</loc>
+    <lastmod>2026-01-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mediabrilliance.io/privacy.html</loc>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://mediabrilliance.io/pages/privacy.html</loc>
+    <lastmod>2026-01-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://mediabrilliance.io/accessibility.html</loc>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://mediabrilliance.io/pages/accessibility.html</loc>
+    <lastmod>2026-01-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://mediabrilliance.io/cc0.html</loc>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://mediabrilliance.io/pages/cc0.html</loc>
+    <lastmod>2026-01-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>

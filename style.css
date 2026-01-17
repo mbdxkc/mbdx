@@ -691,6 +691,390 @@ button{
 }
 
 /* =========================================================
+   19) homepage stack layout
+   override main flex centering for homepage vertical stack.
+   ========================================================= */
+.home-stack{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.page-home main{
+  display: block;
+}
+
+
+/* =========================================================
+   20) portfolio slider
+   horizontal scrolling portfolio showcase for homepage.
+   shows 3 cards with scroll to reveal 4th.
+   ========================================================= */
+.portfolio-slider{
+  width: 100%;
+  max-width: var(--container);
+  margin: 2rem auto 0;
+  padding: 0;
+}
+
+.portfolio-heading{
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  color: var(--blue);
+  margin: 0 0 1.25rem 1rem;
+}
+
+.portfolio-wrapper{
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: 0 .5rem;
+}
+
+.portfolio-nav{
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50%;
+
+  color: var(--text);
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    color .2s ease;
+}
+
+.portfolio-nav:hover{
+  background: rgba(255,45,241,.15);
+  border-color: var(--pink);
+  color: var(--pink);
+}
+
+.portfolio-nav:active{
+  transform: scale(.95);
+}
+
+.portfolio-track{
+  flex: 1;
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: .5rem 0;
+
+  /* hide scrollbar but keep functionality */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.portfolio-track::-webkit-scrollbar{
+  display: none;
+}
+
+.portfolio-card{
+  /* 3 cards visible: calc container width minus nav buttons and gaps */
+  flex: 0 0 calc((100% - 2.5rem) / 3);
+  min-width: 240px;
+  aspect-ratio: 4 / 3;
+
+  scroll-snap-align: start;
+
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255,255,255,.25);
+
+  background: linear-gradient(135deg, rgba(0,141,218,.15), rgba(255,45,241,.1));
+
+  text-decoration: none;
+  color: var(--text);
+
+  overflow: hidden;
+  position: relative;
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.portfolio-card:hover{
+  transform: translateY(-4px);
+  border-color: var(--pink);
+  box-shadow: 0 12px 32px rgba(255,45,241,.2);
+  color: var(--text);
+}
+
+.portfolio-preview{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.portfolio-card-inner{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.85) 0%,
+    rgba(0,0,0,.4) 40%,
+    transparent 100%
+  );
+}
+
+.portfolio-card h3{
+  margin: 0 0 .25rem;
+  font-size: clamp(1.1rem, 3vw, 1.35rem);
+  font-weight: 700;
+  color: #fff;
+  text-transform: lowercase;
+}
+
+.portfolio-card p{
+  margin: 0;
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+/* tablet: 2 cards visible */
+@media (max-width: 900px){
+  .portfolio-card{
+    flex: 0 0 calc((100% - 1.25rem) / 2);
+    min-width: 200px;
+  }
+}
+
+/* mobile: single card, hide nav buttons */
+@media (max-width: 600px){
+  .portfolio-wrapper{
+    padding: 0;
+  }
+
+  .portfolio-nav{
+    display: none;
+  }
+
+  .portfolio-track{
+    gap: 1rem;
+    padding: .5rem 1rem;
+  }
+
+  .portfolio-card{
+    flex: 0 0 85%;
+    min-width: 0;
+  }
+
+  .portfolio-heading{
+    margin-left: 1rem;
+  }
+}
+
+
+/* =========================================================
+   21) portfolio case study pages
+   modeled after feelsincubator about page layout.
+   ========================================================= */
+.portfolio-page{
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.portfolio-hero{
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+}
+
+.portfolio-hero h1{
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 800;
+  margin: 0 0 .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.portfolio-hero .tagline{
+  font-size: 1.25rem;
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+}
+
+.portfolio-hero .visit-link{
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .75rem 1.5rem;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 999px;
+  color: var(--blue);
+  font-weight: 600;
+  transition: all .2s ease;
+}
+
+.portfolio-hero .visit-link:hover{
+  background: rgba(255,45,241,.15);
+  border-color: var(--pink);
+  color: var(--pink);
+}
+
+.portfolio-section{
+  margin-bottom: 3rem;
+}
+
+.section-label{
+  font-size: .85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  color: var(--blue);
+  margin: 0 0 1rem;
+}
+
+.portfolio-section p{
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0 0 1rem;
+}
+
+/* tech stack grid */
+.tech-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.tech-card{
+  padding: 1rem;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: border-color .2s ease;
+}
+
+.tech-card:hover{
+  border-color: var(--pink);
+}
+
+.tech-card strong{
+  display: block;
+  color: #fff;
+  margin-bottom: .25rem;
+}
+
+.tech-card span{
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+/* process list */
+.process-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: process;
+}
+
+.process-list li{
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  counter-increment: process;
+}
+
+.process-list li::before{
+  content: counter(process);
+  flex: 0 0 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pink);
+  color: #fff;
+  font-weight: 700;
+  font-size: .85rem;
+  border-radius: 50%;
+}
+
+.process-list li span{
+  color: var(--text);
+  line-height: 1.6;
+  padding-top: .25rem;
+}
+
+/* screenshot gallery */
+.screenshot-gallery{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.screenshot-card{
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(0,0,0,.3);
+}
+
+.screenshot-card img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.screenshot-card figcaption{
+  padding: .75rem 1rem;
+  font-size: .85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* back link */
+.portfolio-back{
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: 2rem;
+  color: var(--muted);
+  font-size: .9rem;
+  transition: color .2s ease;
+}
+
+.portfolio-back:hover{
+  color: var(--pink);
+}
+
+
+/* =========================================================
    end of style.css
    mBdx v3.1 | (c) 2026 mediaBrilliance
    ========================================================= */

@@ -33,8 +33,8 @@
 
   // check if current page matches each nav item
   const isHome = pageName === "index.html" || pageName === "";
-  const isServices = pageName === "services.html";
-  const isContact = pageName === "contact.html";
+  const isServices = currentPath.includes("/pages/services.html");
+  const isContact = currentPath.includes("/pages/contact.html");
 
   // -------------------------------------------------------------------------
   // 2. dynamic icon selection - active pages get highlighted icons
@@ -62,10 +62,10 @@
           <a href="/index.html"${homeAria}>
             <img src="${homeIcon}" alt="mediaBrilliance home icon" width="24" height="24" />
           </a>
-          <a href="/services.html"${servicesAria}>
+          <a href="/pages/services.html"${servicesAria}>
             <img src="${servicesIcon}" alt="mediaBrilliance services icon" width="24" height="24" />
           </a>
-          <a href="/contact.html"${contactAria}>
+          <a href="/pages/contact.html"${contactAria}>
             <img src="${contactIcon}" alt="mediaBrilliance contact icon" width="24" height="24" />
           </a>
         </div>

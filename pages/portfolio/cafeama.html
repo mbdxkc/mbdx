@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preload" href="/js/rive.min.js" as="script">
+  <!--
+  ============================================================================
+  mBdx (mediaBrilliance digitalxtudio)
+  ============================================================================
+  @project    mBdx - mediaBrilliance digitalxtudio website
+  @version    3.1
+  @author     valdez campos <dez@mediabrilliance.io>
+  @date       2026-01-17
+  @file       portfolio/cafeama.html
+  @desc       portfolio case study - Cafe Ama website project
+  @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
+  @requires   - /js/header.min.js, /js/footer.min.js, /js/page-transition.min.js
+              - rive-app/canvas, /style.min.css
+  @a11y       - skip link, semantic html, wcag 2.1 aa compliant
+  ============================================================================
+  mBdx v3.1 | portfolio - cafe ama
+  ============================================================================
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cafe Ama portfolio case study - A Latinx bistro and bar website designed and developed by mediaBrilliance digitalxtudio." />
+  <title>Cafe Ama :: portfolio :: mediaBrilliance digitalxtudio</title>
+  <link rel="canonical" href="https://mediabrilliance.io/pages/portfolio/cafeama.html" />
+  <!-- Social media meta tags -->
+  <meta property="og:title" content="Cafe Ama - Portfolio | mediaBrilliance" />
+  <meta property="og:description" content="A Latinx bistro and bar website designed and developed by mediaBrilliance digitalxtudio." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mediabrilliance.io/pages/portfolio/cafeama.html" />
+  <meta property="og:image" content="https://mediabrilliance.io/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cafe Ama - Portfolio | mediaBrilliance" />
+  <meta name="twitter:description" content="A Latinx bistro and bar website designed and developed by mediaBrilliance digitalxtudio." />
+  <meta name="twitter:image" content="https://mediabrilliance.io/og.png" />
+  <!-- Icons -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+  <link rel="shortcut icon" href="/favicon.png">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+  <!-- Scripts -->
+  <script src="/js/rive.min.js" fetchpriority="high"></script>
+  <script src="/js/page-transition.min.js" defer></script>
+  <script src="/js/header.min.js" defer></script>
+  <script src="/js/footer.min.js" defer></script>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/style.min.css?v=10">
+</head>
+<body class="is-loading">
+  <!-- Page transition overlay + skip link -->
+  <div id="page-transition" aria-hidden="true"></div>
+  <a class="skip-link" href="#main_container">skip to main content</a>
+  <!-- Header (injected by /js/header.min.js) -->
+  <header id="site-header" class="site-header" role="banner"></header>
+  <!-- Main content -->
+  <main id="main_container">
+    <article class="portfolio-page">
+      <a href="/index.html" class="portfolio-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        back to portfolio
+      </a>
+
+      <header class="portfolio-hero">
+        <h1>Cafe Ama</h1>
+        <p class="tagline">latinx bistro & bar · springfield</p>
+        <a href="https://cafeama.mediabrilliance.io" target="_blank" rel="noopener" class="visit-link">
+          visit live site
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </header>
+
+      <section class="portfolio-section">
+        <h2 class="section-label">overview</h2>
+        <p>
+          Cafe Ama is a family-owned Latinx bistro specializing in craft cocktails and tapas.
+          the site needed to capture the warmth and vibrancy of the restaurant while providing
+          clear information about their menu, hours, and upcoming events.
+        </p>
+        <p>
+          working closely with the owners, we developed a brand identity that honors their
+          latin american heritage while feeling modern and inviting. the website serves as
+          both a digital storefront and a community hub for their regular patrons.
+        </p>
+      </section>
+
+      <section class="portfolio-section">
+        <h2 class="section-label">tech stack</h2>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <strong>html5</strong>
+            <span>semantic markup</span>
+          </div>
+          <div class="tech-card">
+            <strong>css3</strong>
+            <span>custom properties</span>
+          </div>
+          <div class="tech-card">
+            <strong>javascript</strong>
+            <span>vanilla es6+</span>
+          </div>
+          <div class="tech-card">
+            <strong>netlify</strong>
+            <span>hosting & forms</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="portfolio-section">
+        <h2 class="section-label">process</h2>
+        <ol class="process-list">
+          <li><span>discovery call to understand brand values and target audience</span></li>
+          <li><span>competitive analysis of local restaurant websites</span></li>
+          <li><span>wireframing and visual design exploration</span></li>
+          <li><span>responsive development with accessibility focus</span></li>
+          <li><span>menu integration and reservation system setup</span></li>
+        </ol>
+      </section>
+
+      <section class="portfolio-section">
+        <h2 class="section-label">screenshots</h2>
+        <div class="screenshot-gallery">
+          <figure class="screenshot-card">
+            <img src="/images/portfolio/cafeama-preview.svg" alt="Cafe Ama homepage" />
+            <figcaption>homepage hero section</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="portfolio-section">
+        <h2 class="section-label">features</h2>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <strong>responsive</strong>
+            <span>mobile-first design</span>
+          </div>
+          <div class="tech-card">
+            <strong>menu</strong>
+            <span>digital menu system</span>
+          </div>
+          <div class="tech-card">
+            <strong>events</strong>
+            <span>calendar integration</span>
+          </div>
+          <div class="tech-card">
+            <strong>reservations</strong>
+            <span>online booking</span>
+          </div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+  <!-- Footer (injected by /js/footer.min.js) -->
+  <footer id="site-footer" class="footer" role="contentinfo"></footer>
+</body>
+</html>
