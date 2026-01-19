@@ -44,7 +44,7 @@
     <script src="/js/rive.min.js" defer></script>
 
     <!-- styles -->
-    <link rel="stylesheet" href="/style.min.css?v=10" />
+    <link rel="stylesheet" href="/style.css?v=10" />
   </head>
 
   <body class="page-home is-loading">
@@ -83,11 +83,6 @@
         <h2 class="portfolio-heading">portfolio</h2>
 
         <div class="portfolio-wrapper">
-          <button class="portfolio-nav portfolio-prev" aria-label="Previous projects" type="button">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
 
           <div class="portfolio-track">
             <a href="/pages/portfolio/cafeama.html" class="portfolio-card">
@@ -123,11 +118,19 @@
             </a>
           </div>
 
-          <button class="portfolio-nav portfolio-next" aria-label="Next projects" type="button">
+          <div class="portfolio-nav-buttons">
+          <button class="portfolio-nav portfolio-prev" aria-label="Previous projects" type="button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+                  <button class="portfolio-nav portfolio-next" aria-label="Next projects" type="button">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
           </button>
+          </div>
+          
         </div>
       </section>
     </main>

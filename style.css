@@ -731,10 +731,17 @@ button{
 
 .portfolio-wrapper{
   display: flex;
-  align-items: center;
-  gap: .75rem;
+  flex-direction: column; 
+  align-items: stretch;
   padding: 0 .5rem;
 }
+
+.portfolio-nav-buttons{
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+
 
 .portfolio-nav{
   flex: 0 0 auto;
