@@ -917,9 +917,19 @@ button{
   font-size: clamp(2.5rem, 8vw, 4rem);
   font-weight: 800;
   margin: 0 0 .5rem;
+}
 
-  display: inline-block;   /* REQUIRED */
-  color: transparent;      /* REQUIRED */
+.portfolio-hero img{
+  display: block;        /* removes inline-image weirdness */
+  max-width: 100%;       /* responsive scaling */
+  width: 500px;          /* desktop intent */
+  height: auto;          /* preserve aspect ratio */
+  margin: 0 auto;        /* horizontal centering */
+}
+
+
+  display: inline-block;   
+  color: transparent;     
 
   background: linear-gradient(
     120deg,
