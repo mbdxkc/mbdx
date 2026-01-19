@@ -723,7 +723,6 @@ button{
 .portfolio-heading{
   font-size: 1rem;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: .15em;
   color: var(--blue);
   margin: 0 0 1.25rem 1rem;
