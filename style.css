@@ -1113,6 +1113,175 @@ button{
 
 
 /* =========================================================
+   22) mobile optimizations
+   comprehensive responsive adjustments for mobile devices.
+   ========================================================= */
+
+/* --- tablet breakpoint (900px) --- */
+@media (max-width: 900px){
+  .section_container{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section_left,
+  .section_right{
+    width: 95%;
+    margin: 1rem auto;
+  }
+
+  .section_box_left,
+  .section_box_right{
+    width: 60%;
+    margin: -2rem auto 1rem;
+    height: auto;
+  }
+}
+
+/* --- mobile breakpoint (600px) --- */
+@media (max-width: 600px){
+  /* reduce container padding */
+  #main_container,
+  #main-container{
+    padding: 0 .75rem;
+  }
+
+  /* stack sections full width */
+  .section_left,
+  .section_right{
+    width: 100%;
+    min-height: auto;
+    padding: 1.5rem;
+    font-size: 1rem;
+    margin: .5rem 0;
+  }
+
+  /* hide decorative overlap boxes on mobile */
+  .section_box_left,
+  .section_box_right{
+    display: none;
+  }
+
+  /* homepage logo sizing */
+  .logo-solo{
+    width: min(85vw, 400px);
+  }
+
+  /* footer mobile adjustments */
+  .footer{
+    height: auto;
+    min-height: 44px;
+    padding: .75rem 1rem;
+    flex-wrap: wrap;
+    gap: .5rem;
+    font-size: .65rem;
+  }
+
+  /* portfolio page mobile */
+  .portfolio-page{
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .portfolio-hero h1{
+    font-size: clamp(2rem, 10vw, 2.5rem);
+  }
+
+  .portfolio-hero .tagline{
+    font-size: 1rem;
+  }
+
+  .portfolio-hero img{
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .portfolio-section p{
+    font-size: 1rem;
+  }
+
+  /* tech grid single column on mobile */
+  .tech-grid{
+    grid-template-columns: 1fr;
+  }
+
+  /* screenshot gallery single column */
+  .screenshot-gallery{
+    grid-template-columns: 1fr;
+  }
+
+  /* process list tighter spacing */
+  .process-list li{
+    gap: .75rem;
+    margin-bottom: 1rem;
+  }
+
+  /* typography scaling */
+  .section_left h1,
+  .section_right h1{
+    font-size: clamp(1.75rem, 6vw, 2.2rem);
+  }
+
+  h1{ font-size: clamp(1.5rem, 6vw, 2rem); }
+  h2{ font-size: clamp(1.25rem, 5vw, 1.5rem); }
+  h3{ font-size: clamp(1rem, 4vw, 1.25rem); }
+}
+
+/* --- small mobile breakpoint (400px) --- */
+@media (max-width: 400px){
+  /* even tighter padding */
+  .section_left,
+  .section_right{
+    padding: 1.25rem 1rem;
+  }
+
+  /* smaller logo */
+  .logo-solo{
+    width: min(90vw, 300px);
+  }
+
+  /* portfolio cards smaller text */
+  .portfolio-card h3{
+    font-size: 1rem;
+  }
+
+  .portfolio-card p{
+    font-size: .75rem;
+  }
+
+  .portfolio-card-inner{
+    padding: 1rem;
+  }
+
+  /* contact form tighter */
+  #contact-form{
+    padding: 1rem;
+  }
+
+  #contact-form input,
+  #contact-form textarea{
+    padding: .75rem;
+  }
+
+  .mb-submit{
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+/* --- landscape phone fix --- */
+@media (max-height: 500px) and (orientation: landscape){
+  .logo-solo{
+    width: min(50vh, 300px);
+  }
+
+  .home-stack{
+    padding-top: .5rem;
+    padding-bottom: 1rem;
+  }
+}
+
+
+/* =========================================================
    end of style.css
    mBdx v3.1 | (c) 2026 mediaBrilliance
    ========================================================= */
