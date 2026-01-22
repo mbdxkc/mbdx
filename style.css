@@ -937,9 +937,10 @@ button{
   margin: 0 auto;        /* horizontal centering */
 }
 
-
-  display: inline-block;   
-  color: transparent;     
+/* gradient text effect for portfolio hero h1 */
+.portfolio-hero h1 span{
+  display: inline-block;
+  color: transparent;
 
   background: linear-gradient(
     120deg,

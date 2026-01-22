@@ -1,0 +1,17 @@
+# macOS system files
+.DS_Store
+*/.DS_Store
+**/.DS_Store
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node modules (if ever needed)
+node_modules/
+
+# Build artifacts
+*.map
