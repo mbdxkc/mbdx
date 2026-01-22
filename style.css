@@ -280,6 +280,8 @@ a:hover{ color: var(--pink); }
 
   width: 100%;
   height: var(--header-h);
+  min-height: var(--header-h);
+  contain: layout style;
 
   backdrop-filter: saturate(140%) blur(6px);
   -webkit-backdrop-filter: saturate(140%) blur(6px);
@@ -434,6 +436,7 @@ main{
 .logo-solo{
   width: min(100%, 600px);
   aspect-ratio: 1 / 1;
+  contain: layout;
 }
 
 #mb_logo_riv{
