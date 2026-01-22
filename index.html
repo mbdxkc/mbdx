@@ -2,35 +2,42 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <!--
-    ============================================================================
-    KC Roast Co - Case Study Website
-    ============================================================================
-    @project    KC Roast Co - case study by mediaBrilliance digitalxtudio
-    @version    1.0
-    @author     mediaBrilliance digitalxtudio
-    @date       2026-01-22
-    @file       index.html
-    @desc       case study homepage - craft coffee roasters concept
-    ============================================================================
-    -->
+  <!--
+  ============================================================================
+  mBdx (mediaBrilliance digitalxtudio)
+  ============================================================================
+  @project    mBdx - mediaBrilliance digitalxtudio website
+  @version    3.1
+  @author     valdez campos <dez@mediabrilliance.io>
+  @date       2026-01-15
+  @file       index.html
+  @desc       homepage - studio landing page with portfolio slider
+  @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
+              see /cc0.html for public domain dedications on select assets.
+  @requires   - /js/header.min.js, /js/footer.min.js, /js/page-transition.min.js
+              - rive-app/canvas, /style.css
+  @a11y       - skip link, semantic html, wcag 2.1 aa compliant
+  ============================================================================
+  mBdx v3.1 | about
+  ============================================================================
+  -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>KC Roast Co :: case study :: mediaBrilliance digitalxtudio</title>
+    <title>home :: mediaBrilliance digitalxtudio</title>
 
-    <meta name="description" content="KC Roast Co case study - A concept website for a craft coffee roaster, designed and developed by mediaBrilliance digitalxtudio." />
-    <link rel="canonical" href="https://kcroastco.mediabrilliance.io/" />
+    <meta name="description" content="mediaBrilliance digitalxtudio offers digital strategy and modern web development for small businesses, creators, and startups. clean, modern websites and apps tailored to your needs." />
+    <link rel="canonical" href="https://mediabrilliance.io/" />
 
     <!-- social / previews -->
-    <meta property="og:title" content="KC Roast Co - Case Study | mediaBrilliance" />
-    <meta property="og:description" content="A concept website for a craft coffee roaster, designed and developed by mediaBrilliance digitalxtudio." />
+    <meta property="og:title" content="mediaBrilliance digitalxtudio" />
+    <meta property="og:description" content="digital strategy and clean, modern websites and apps for small businesses, creators, and startups." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://kcroastco.mediabrilliance.io/" />
-    <meta property="og:image" content="https://kcroastco.mediabrilliance.io/og.png" />
+    <meta property="og:url" content="https://mediabrilliance.io/" />
+    <meta property="og:image" content="https://mediabrilliance.io/og.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="KC Roast Co - Case Study | mediaBrilliance" />
-    <meta name="twitter:description" content="A concept website for a craft coffee roaster, designed and developed by mediaBrilliance digitalxtudio." />
-    <meta name="twitter:image" content="https://kcroastco.mediabrilliance.io/og.png" />
+    <meta name="twitter:title" content="mediaBrilliance" />
+    <meta name="twitter:description" content="mediaBrilliance digitalxtudio provides digital strategy and clean, modern websites and apps for small businesses, creators, and startups." />
+    <meta name="twitter:image" content="https://mediabrilliance.io/og.png" />
 
     <!-- icons -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
@@ -39,7 +46,7 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="shortcut icon" href="/favicon.png" />
 
-    <!-- fonts -->
+    <!-- fonts (preconnect + preload for faster FCP) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" as="style" />
@@ -48,515 +55,179 @@
       rel="stylesheet"
     />
 
-    <!-- styles -->
+    <!-- styles (preload for faster rendering) -->
     <link rel="preload" href="/style.min.css?v=11" as="style" />
     <link rel="stylesheet" href="/style.min.css?v=11" />
 
-    <style>
-      :root {
-        --coffee-dark: #2c1810;
-        --coffee-medium: #5c3d2e;
-        --coffee-light: #8b5a3c;
-        --cream: #f5f0e8;
-        --cream-dark: #e8dfd3;
-        --accent: #c9a66b;
-      }
+    <!-- preload critical images -->
+    <link rel="preload" href="/images/mB.svg" as="image" />
 
-      body {
-        background: var(--cream);
-        color: var(--coffee-dark);
-      }
-
-      .hero {
-        min-height: 80vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 2rem;
-        background: linear-gradient(135deg, var(--coffee-dark) 0%, var(--coffee-medium) 100%);
-        color: var(--cream);
-      }
-
-      .hero-logo {
-        width: 180px;
-        height: 180px;
-        margin-bottom: 2rem;
-        border-radius: 50%;
-        background: var(--cream);
-        padding: 1rem;
-      }
-
-      .hero h1 {
-        font-size: clamp(2.5rem, 8vw, 4.5rem);
-        font-weight: 800;
-        margin: 0 0 0.5rem;
-        letter-spacing: -0.02em;
-      }
-
-      .hero .tagline {
-        font-size: clamp(1rem, 3vw, 1.5rem);
-        font-weight: 300;
-        opacity: 0.9;
-        margin-bottom: 2rem;
-      }
-
-      .hero-cta {
-        display: inline-flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .btn {
-        display: inline-block;
-        padding: 1rem 2rem;
-        font-size: 1rem;
-        font-weight: 600;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: transform 0.2s, box-shadow 0.2s;
-      }
-
-      .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      }
-
-      .btn-primary {
-        background: var(--accent);
-        color: var(--coffee-dark);
-      }
-
-      .btn-secondary {
-        background: transparent;
-        color: var(--cream);
-        border: 2px solid var(--cream);
-      }
-
-      .section {
-        padding: 5rem 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .section-title {
-        font-size: clamp(1.75rem, 5vw, 2.5rem);
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: var(--coffee-dark);
-      }
-
-      .section-subtitle {
-        font-size: 1.1rem;
-        color: var(--coffee-medium);
-        margin-bottom: 3rem;
-        max-width: 600px;
-      }
-
-      .section-alt {
-        background: var(--cream-dark);
-      }
-
-      /* Features grid */
-      .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-      }
-
-      .feature-card {
-        background: white;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      }
-
-      .feature-card h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        color: var(--coffee-dark);
-      }
-
-      .feature-card p {
-        color: var(--coffee-medium);
-        line-height: 1.6;
-      }
-
-      .feature-icon {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-      }
-
-      /* Products preview */
-      .products-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-      }
-
-      .product-card {
-        background: white;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        transition: transform 0.2s, box-shadow 0.2s;
-      }
-
-      .product-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-      }
-
-      .product-image {
-        width: 100%;
-        height: 200px;
-        background: var(--coffee-light);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 3rem;
-      }
-
-      .product-info {
-        padding: 1.5rem;
-      }
-
-      .product-info h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        margin-bottom: 0.25rem;
-      }
-
-      .product-origin {
-        font-size: 0.9rem;
-        color: var(--coffee-light);
-        margin-bottom: 0.5rem;
-      }
-
-      .product-notes {
-        font-size: 0.95rem;
-        color: var(--coffee-medium);
-        margin-bottom: 1rem;
-      }
-
-      .product-price {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: var(--coffee-dark);
-      }
-
-      /* Story section */
-      .story-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: center;
-      }
-
-      @media (max-width: 768px) {
-        .story-content {
-          grid-template-columns: 1fr;
-          gap: 2rem;
-        }
-      }
-
-      .story-text p {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: var(--coffee-medium);
-        margin-bottom: 1.5rem;
-      }
-
-      .story-image {
-        background: var(--coffee-medium);
-        height: 400px;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--cream);
-        font-size: 4rem;
-      }
-
-      /* Subscribe section */
-      .subscribe-box {
-        background: var(--coffee-dark);
-        color: var(--cream);
-        padding: 4rem;
-        border-radius: 12px;
-        text-align: center;
-      }
-
-      .subscribe-box h2 {
-        color: var(--cream);
-        margin-bottom: 1rem;
-      }
-
-      .subscribe-box p {
-        opacity: 0.9;
-        max-width: 500px;
-        margin: 0 auto 2rem;
-      }
-
-      /* Contact/Footer */
-      .contact-section {
-        background: var(--coffee-dark);
-        color: var(--cream);
-        padding: 4rem 2rem;
-      }
-
-      .contact-grid {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 3rem;
-      }
-
-      .contact-block h3 {
-        font-size: 1.1rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: var(--accent);
-      }
-
-      .contact-block p,
-      .contact-block a {
-        color: var(--cream);
-        opacity: 0.9;
-        line-height: 1.8;
-        text-decoration: none;
-      }
-
-      .contact-block a:hover {
-        opacity: 1;
-        text-decoration: underline;
-      }
-
-      .footer-bottom {
-        max-width: 1200px;
-        margin: 3rem auto 0;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(255,255,255,0.1);
-        text-align: center;
-        font-size: 0.9rem;
-        opacity: 0.7;
-      }
-
-      /* Case study banner */
-      .case-study-banner {
-        background: var(--accent);
-        color: var(--coffee-dark);
-        text-align: center;
-        padding: 0.75rem 1rem;
-        font-size: 0.9rem;
-        font-weight: 600;
-      }
-
-      .case-study-banner a {
-        color: var(--coffee-dark);
-        text-decoration: underline;
-      }
-
-      .case-study-banner a:hover {
-        opacity: 0.8;
-      }
-    </style>
+    <!-- Rive (deferred, loaded after critical content) -->
+    <script src="/js/rive.min.js" defer></script>
   </head>
 
-  <body>
-    <!-- case study banner -->
-    <div class="case-study-banner">
-      This is a case study website by <a href="https://mediabrilliance.io">mediaBrilliance digitalxtudio</a>
-    </div>
+  <body class="page-home is-loading">
+    <!-- page transition + skip link -->
+    <div id="page-transition" aria-hidden="true"></div>
+    <a class="skip-link" href="#main_container">skip to main content</a>
 
-    <!-- skip link -->
-    <a class="skip-link" href="#main">skip to main content</a>
+    <!-- header (injected by JS) -->
+    <header id="site-header" class="site-header" role="banner"></header>
 
-    <!-- hero -->
-    <header class="hero">
-      <img
-        class="hero-logo"
-        src="/images/kcroastco_logo_pv.png"
-        alt="KC Roast Co logo"
-        width="180"
-        height="180"
-      />
-      <h1>KC Roast Co</h1>
-      <p class="tagline">craft coffee roasters &middot; kansas city</p>
-      <div class="hero-cta">
-        <a href="#shop" class="btn btn-primary">shop beans</a>
-        <a href="#subscribe" class="btn btn-secondary">subscribe</a>
+    <!-- main -->
+    <main id="main_container" class="container home-stack">
+      <!-- logo / rive -->
+      <div class="logo-solo" role="img" aria-label="mediaBrilliance logo animation">
+        <img
+          id="mb_logo_placeholder"
+          src="/images/mB.svg"
+          alt=""
+          width="600"
+          height="600"
+          aria-hidden="true"
+          fetchpriority="high"
+        />
+
+        <canvas
+          id="mb_logo_riv"
+          width="600"
+          height="600"
+          aria-hidden="true"
+          style="display:none;"
+        ></canvas>
+
       </div>
-    </header>
 
-    <!-- main content -->
-    <main id="main">
+      <!-- portfolio slider -->
+      <section class="portfolio-slider" aria-label="Featured portfolio work">
+        <h2 class="portfolio-heading">recent projects</h2>
 
-      <!-- features -->
-      <section class="section">
-        <h2 class="section-title">why KC Roast Co?</h2>
-        <p class="section-subtitle">Small-batch specialty coffee, roasted with care and delivered fresh to your door.</p>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">&#9752;</div>
-            <h3>sustainably sourced</h3>
-            <p>Direct relationships with farmers who share our commitment to quality and ethical practices.</p>
+        <div class="portfolio-wrapper">
+
+          <div class="portfolio-track">
+
+            <a href="/pages/portfolio/feelsincubator.html" class="portfolio-card">
+              <img src="/images/portfolio/feelsIncubator_card.webp" alt="feelsIncubator website preview" class="portfolio-preview" width="400" height="300" decoding="async" />
+              <div class="portfolio-card-inner">
+                <h3>feelsIncubator case study</h3>
+                <p>creative design studio</p>
+              </div>
+            </a>
+
+            <a href="/pages/portfolio/cafeama.html" class="portfolio-card">
+              <img src="/images/portfolio/cafeama-preview.svg" alt="Café Ama website preview" class="portfolio-preview" width="400" height="300" decoding="async" />
+              <div class="portfolio-card-inner">
+                <h3>café ama case study</h3>
+                <p>latinx bistro & bar</p>
+              </div>
+            </a>
+
+            <a href="/pages/portfolio/theembers.html" class="portfolio-card">
+              <img src="/images/portfolio/embers.webp" alt="The Embers logo" class="portfolio-preview" width="400" height="300" loading="lazy" decoding="async" />
+              <div class="portfolio-card-inner">
+                <h3>The Embers</h3>
+                <p>kansas city cover band</p>
+              </div>
+            </a>
+
+            <a href="/pages/portfolio/kcroastco.html" class="portfolio-card">
+              <img src="/images/kcroastco_logo_pv.png" alt="KC Roast Co website preview" class="portfolio-preview" width="400" height="300" loading="lazy" decoding="async" />
+              <div class="portfolio-card-inner">
+                <h3>kc roast co case study</h3>
+                <p>craft coffee roasters</p>
+              </div>
+            </a>
           </div>
-          <div class="feature-card">
-            <div class="feature-icon">&#128293;</div>
-            <h3>artisan roasted</h3>
-            <p>Small-batch roasting in Kansas City ensures peak freshness and flavor in every cup.</p>
+
+          <div class="portfolio-nav-buttons">
+          <button class="portfolio-nav portfolio-prev" aria-label="Previous projects" type="button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+                  <button class="portfolio-nav portfolio-next" aria-label="Next projects" type="button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
           </div>
-          <div class="feature-card">
-            <div class="feature-icon">&#128230;</div>
-            <h3>fresh delivery</h3>
-            <p>Roasted to order and shipped within 24 hours. Subscriptions available for ultimate convenience.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">&#127809;</div>
-            <h3>origin transparency</h3>
-            <p>Know exactly where your beans come from with detailed origin stories and sourcing information.</p>
-          </div>
+          
         </div>
       </section>
-
-      <!-- shop preview -->
-      <section id="shop" class="section section-alt">
-        <h2 class="section-title">our beans</h2>
-        <p class="section-subtitle">Explore our current offerings, roasted fresh each week.</p>
-        <div class="products-grid">
-          <div class="product-card">
-            <div class="product-image">&#9749;</div>
-            <div class="product-info">
-              <h3>morning ritual</h3>
-              <p class="product-origin">Ethiopia Yirgacheffe</p>
-              <p class="product-notes">bright, floral, citrus notes</p>
-              <p class="product-price">$18 / 12oz</p>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="product-image">&#9749;</div>
-            <div class="product-info">
-              <h3>KC classic</h3>
-              <p class="product-origin">Colombia Huila</p>
-              <p class="product-notes">chocolate, caramel, balanced</p>
-              <p class="product-price">$16 / 12oz</p>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="product-image">&#9749;</div>
-            <div class="product-info">
-              <h3>night owl</h3>
-              <p class="product-origin">Sumatra Mandheling</p>
-              <p class="product-notes">earthy, bold, low acidity</p>
-              <p class="product-price">$17 / 12oz</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- story -->
-      <section class="section">
-        <div class="story-content">
-          <div class="story-text">
-            <h2 class="section-title">our story</h2>
-            <p>
-              KC Roast Co started with a simple belief: great coffee should be accessible to everyone.
-              Based in the heart of Kansas City, we source beans from small farms around the world
-              and roast them in small batches to bring out their unique character.
-            </p>
-            <p>
-              Every bag tells a story of craft and quality&mdash;from the farmer who grew the beans
-              to the moment you take your first sip. We're committed to sustainable sourcing
-              and transparent practices, because we believe you deserve to know where your coffee comes from.
-            </p>
-            <a href="#" class="btn btn-primary">learn more</a>
-          </div>
-          <div class="story-image">&#127793;</div>
-        </div>
-      </section>
-
-      <!-- subscribe -->
-      <section id="subscribe" class="section section-alt">
-        <div class="subscribe-box">
-          <h2 class="section-title">never run out of coffee</h2>
-          <p>
-            Subscribe and get freshly roasted beans delivered on your schedule.
-            Choose your roast, frequency, and we'll handle the rest.
-          </p>
-          <a href="#" class="btn btn-primary">start subscription</a>
-        </div>
-      </section>
-
-      <!-- brewing guides -->
-      <section class="section">
-        <h2 class="section-title">brewing guides</h2>
-        <p class="section-subtitle">Get the most out of your beans with our expert brewing tips.</p>
-        <div class="features-grid">
-          <div class="feature-card">
-            <h3>pour over</h3>
-            <p>The classic method for highlighting delicate flavor notes and bright acidity.</p>
-          </div>
-          <div class="feature-card">
-            <h3>french press</h3>
-            <p>Full-bodied and rich, perfect for those who love a bold cup.</p>
-          </div>
-          <div class="feature-card">
-            <h3>cold brew</h3>
-            <p>Smooth, refreshing, and naturally sweet. Perfect for hot KC summers.</p>
-          </div>
-          <div class="feature-card">
-            <h3>espresso</h3>
-            <p>Concentrated and intense. The foundation for lattes, cappuccinos, and more.</p>
-          </div>
-        </div>
-      </section>
-
     </main>
 
-    <!-- footer/contact -->
-    <footer class="contact-section">
-      <div class="contact-grid">
-        <div class="contact-block">
-          <h3>visit us</h3>
-          <p>
-            KC Roast Co<br />
-            Kansas City, MO<br />
-            <em>roastery tours by appointment</em>
-          </p>
-        </div>
-        <div class="contact-block">
-          <h3>contact</h3>
-          <p>
-            <a href="mailto:hello@kcroastco.com">hello@kcroastco.com</a><br />
-            <a href="tel:+18165551234">(816) 555-1234</a>
-          </p>
-        </div>
-        <div class="contact-block">
-          <h3>follow along</h3>
-          <p>
-            <a href="#">Instagram</a><br />
-            <a href="#">Facebook</a><br />
-            <a href="#">Twitter</a>
-          </p>
-        </div>
-        <div class="contact-block">
-          <h3>hours</h3>
-          <p>
-            Mon&ndash;Fri: 7am&ndash;6pm<br />
-            Sat: 8am&ndash;4pm<br />
-            Sun: Closed
-          </p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>This is a concept website &mdash; a case study by <a href="https://mediabrilliance.io">mediaBrilliance digitalxtudio</a></p>
-      </div>
-    </footer>
+    <!-- footer (injected by JS) -->
+    <footer id="site-footer" class="footer" role="contentinfo"></footer>
+
+    <!-- =====================================================
+         scripts 
+         ===================================================== -->
+
+        <script src="/js/page-transition.min.js" defer></script>
+        <script src="/js/header.min.js" defer></script>
+        <script src="/js/footer.min.js" defer></script>
+        <script src="/js/portfolio-slider.min.js" defer></script>
+
+        <script>
+      /* =====================================================
+        mBdx — homepage rive loader (INLINE, STABLE)
+        ===================================================== */
+
+      (function () {
+        var initialized = false;
+
+        function initLogoAnimation() {
+          if (initialized) return;
+
+          var canvas = document.getElementById('mb_logo_riv');
+          var placeholder = document.getElementById('mb_logo_placeholder');
+
+          if (!canvas || typeof window.rive === 'undefined') return;
+
+          initialized = true;
+
+          new rive.Rive({
+            src: '/media/mb_logo.riv',
+            canvas: canvas,
+            autoplay: true,
+            stateMachines: 'State Machine 1',
+            onLoad: function () {
+              canvas.style.display = 'block';
+
+              if (placeholder) {
+                placeholder.style.transition = 'opacity 0.3s ease';
+                placeholder.style.opacity = '0';
+                setTimeout(function () {
+                  placeholder.style.display = 'none';
+                }, 300);
+              }
+            }
+          });
+        }
+
+        function observeLogo() {
+          var target = document.querySelector('.logo-solo');
+          if (!target) return;
+
+          if (!('IntersectionObserver' in window)) {
+            initLogoAnimation();
+            return;
+          }
+
+          var observer = new IntersectionObserver(function (entries) {
+            if (entries[0].isIntersecting) {
+              observer.disconnect();
+              initLogoAnimation();
+            }
+          }, { rootMargin: '200px' });
+
+          observer.observe(target);
+        }
+
+        window.addEventListener('load', observeLogo);
+      })();
+      </script>
+
 
   </body>
 </html>
