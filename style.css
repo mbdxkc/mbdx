@@ -186,9 +186,11 @@ body{
   transform: translateX(-100%);
 }
 
-/* content fade */
+/* content fade + page layout */
 main{
   flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
   opacity: 1;
   transition: opacity var(--t-fade) ease;
 }
@@ -357,24 +359,15 @@ a:hover{ color: var(--pink); }
   display: block;
 }
 
-/* active state */
-.pages a.is-active img{ filter: none; }
-
-
 /* =========================================================
-   9) icon hover swaps
-   changes nav icons to brighter versions on hover.
-   uses css content property to swap images.
-   note: this technique works in modern browsers but may
-   not be supported in all contexts.
+   9) icon hover effects
+   nav icons use opacity change on hover for visual feedback.
    ========================================================= */
-a[href*="instagram"] img:hover{ content: url("/images/instagram_bright.svg"); }
-a[href*="dribbble"]  img:hover{ content: url("/images/dribbble_bright.svg"); }
-a[href*="x.com"]     img:hover{ content: url("/images/twitter_bright.svg"); }
-a[href*="github"]    img:hover{ content: url("/images/github_bright.svg"); }
-a[href*="index"]     img:hover{ content: url("/images/home_dark.svg"); }
-a[href*="services"]  img:hover{ content: url("/images/services_dark.svg"); }
-a[href*="contact"]   img:hover{ content: url("/images/contact_dark.svg"); }
+.pages a:hover img,
+.socials a:hover img {
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
 
 
 /* =========================================================
@@ -411,13 +404,8 @@ a[href*="contact"]   img:hover{ content: url("/images/contact_dark.svg"); }
 
 
 /* =========================================================
-   12) page-level layout
+   12) page-level layout (main rules consolidated in section 4)
    ========================================================= */
-main{
-  flex: 1 0 auto;
-  display: flex;
-  justify-content: center;
-}
 
 /* center contact page content vertically-ish */
 .page-contact main{
