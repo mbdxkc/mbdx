@@ -59,17 +59,19 @@
 
     <!-- critical inline styles to prevent FOUC -->
     <style>
-      body.is-loading main{opacity:0;visibility:hidden}
+      body.is-loading main{opacity:0}
       #page-transition{position:fixed;inset:0;z-index:9999;background:#000}
     </style>
 
     <!-- styles (preload for faster rendering) -->
     <link rel="preload" href="/style.min.css?v=15" as="style" />
+    <link rel="preload" href="/images/mB.svg" as="image" type="image/svg+xml" fetchpriority="high" />
+    <link rel="preload" href="/images/portfolio/embers.webp" as="image" type="image/webp" />
+    <link rel="preload" href="/images/kcroastco_logo_pv.png" as="image" type="image/png" />
     <link rel="stylesheet" href="/style.min.css?v=15" />
 
 
-    <!-- Rive (deferred, loaded after critical content) -->
-    <script src="/js/rive.min.js" defer></script>
+    <!-- Rive loaded lazily via JS after page paint -->
   </head>
 
   <body class="page-home is-loading">
@@ -82,13 +84,23 @@
 
     <!-- main -->
     <main id="main_container" class="container home-stack">
-      <!-- logo / rive -->
+      <!-- logo / rive (static fallback shown until Rive loads) -->
       <div class="logo-solo" role="img" aria-label="mediaBrilliance logo animation">
+        <img
+          id="mb_logo_static"
+          src="/images/mB.svg"
+          alt=""
+          width="600"
+          height="600"
+          aria-hidden="true"
+          fetchpriority="high"
+        />
         <canvas
           id="mb_logo_riv"
           width="600"
           height="600"
           aria-hidden="true"
+          style="display:none"
         ></canvas>
       </div>
 
@@ -101,7 +113,7 @@
           <div class="portfolio-track">
 
             <a href="/pages/portfolio/theembers.html" class="portfolio-card">
-              <img src="/images/portfolio/embers.webp" alt="The Embers logo" class="portfolio-preview" width="400" height="300" loading="lazy" decoding="async" />
+              <img src="/images/portfolio/embers.webp" alt="The Embers logo" class="portfolio-preview" width="400" height="300" fetchpriority="high" decoding="async" />
               <div class="portfolio-card-inner">
                 <h3>The Embers Official Site</h3>
                 <p>kansas city cover band</p>
@@ -109,7 +121,7 @@
             </a>
 
             <a href="/pages/portfolio/kcroastco.html" class="portfolio-card">
-              <img src="/images/kcroastco_logo_pv.png" alt="KC Roast Co website preview" class="portfolio-preview" width="400" height="300" loading="lazy" decoding="async" />
+              <img src="/images/kcroastco_logo_pv.png" alt="KC Roast Co website preview" class="portfolio-preview" width="400" height="300" fetchpriority="high" decoding="async" />
               <div class="portfolio-card-inner">
                 <h3>kc roast co case study</h3>
                 <p>craft coffee roasters</p>
@@ -164,25 +176,37 @@
 
         <script>
       /* =====================================================
-        mBdx — homepage rive loader (INLINE, STABLE)
+        mBdx — homepage rive loader (LAZY LOADED)
+        loads rive library after page paint for better LCP
         ===================================================== */
 
       (function () {
         var initialized = false;
         var riveInstance = null;
         var canvas = null;
+        var staticImg = null;
+
+        function loadRiveLibrary() {
+          // don't load if already loaded or loading
+          if (window.rive || document.querySelector('script[src*="rive.min.js"]')) {
+            initLogoAnimation();
+            return;
+          }
+
+          var script = document.createElement('script');
+          script.src = '/js/rive.min.js';
+          script.onload = initLogoAnimation;
+          document.head.appendChild(script);
+        }
 
         function initLogoAnimation() {
           if (initialized) return;
 
           canvas = document.getElementById('mb_logo_riv');
+          staticImg = document.getElementById('mb_logo_static');
           if (!canvas || typeof window.rive === 'undefined') return;
 
           initialized = true;
-
-          // keep canvas hidden until page transition completes
-          canvas.style.opacity = '0';
-          canvas.style.transition = 'opacity 0.3s ease';
 
           riveInstance = new rive.Rive({
             src: '/media/mb_logo.riv',
@@ -197,24 +221,41 @@
         }
 
         function waitForTransition() {
-          // check if page transition is done (is-loading removed)
           if (!document.body.classList.contains('is-loading')) {
             showAnimation();
           } else {
-            // poll until transition completes
             setTimeout(waitForTransition, 50);
           }
         }
 
         function showAnimation() {
-          if (canvas && riveInstance) {
-            canvas.style.opacity = '1';
-            riveInstance.play();
+          if (canvas && riveInstance && staticImg) {
+            // fade out static image, show canvas, play animation
+            staticImg.style.transition = 'opacity 0.3s ease';
+            staticImg.style.opacity = '0';
+
+            setTimeout(function() {
+              staticImg.style.display = 'none';
+              canvas.style.display = 'block';
+              canvas.style.opacity = '0';
+              canvas.style.transition = 'opacity 0.3s ease';
+
+              // force reflow then fade in
+              canvas.offsetHeight;
+              canvas.style.opacity = '1';
+              riveInstance.play();
+            }, 300);
           }
         }
 
-        // start loading rive immediately on window load
-        window.addEventListener('load', initLogoAnimation);
+        // lazy load rive after page is interactive
+        if (document.readyState === 'complete') {
+          setTimeout(loadRiveLibrary, 100);
+        } else {
+          window.addEventListener('load', function() {
+            setTimeout(loadRiveLibrary, 100);
+          });
+        }
       })();
       </script>
 
