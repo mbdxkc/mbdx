@@ -196,10 +196,16 @@ main{
 }
 
 /* on first paint, keep content hidden */
-body.is-loading main{ opacity: 0; }
+body.is-loading main{
+  opacity: 0;
+  visibility: hidden;
+}
 
 /* when leaving, fade content out */
-body.is-leaving main{ opacity: 0; }
+body.is-leaving main{
+  opacity: 0;
+  visibility: hidden;
+}
 
 /* reduced motion */
 @media (prefers-reduced-motion: reduce){
@@ -429,7 +435,7 @@ a:hover{ color: var(--pink); }
 
 #mb_logo_riv{
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
 }
 
@@ -696,10 +702,6 @@ button{
   justify-content: flex-start;
   padding-top: 1rem;
   padding-bottom: 2rem;
-}
-
-.page-home main{
-  display: block;
 }
 
 

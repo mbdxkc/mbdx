@@ -123,15 +123,28 @@
       var canvas = document.getElementById("mb_wordmark");
       var staticImg = document.getElementById("mb_wordmark_static");
       if (canvas) {
-        new rive.Rive({
+        // prepare canvas with hidden state
+        canvas.style.opacity = "0";
+        canvas.style.transition = "opacity 0.3s ease";
+
+        var riveInstance = new rive.Rive({
           src: "/media/mb_wordmark.riv",
           canvas: canvas,
-          autoplay: true,
+          autoplay: false,
           stateMachines: "State Machine 1",
           onLoad: function() {
-            // swap static image for animated canvas
-            if (staticImg) staticImg.style.display = "none";
-            canvas.style.display = "block";
+            // wait for page transition to complete
+            function showWhenReady() {
+              if (!document.body.classList.contains("is-loading")) {
+                if (staticImg) staticImg.style.display = "none";
+                canvas.style.display = "block";
+                canvas.style.opacity = "1";
+                riveInstance.play();
+              } else {
+                setTimeout(showWhenReady, 50);
+              }
+            }
+            showWhenReady();
           }
         });
       }

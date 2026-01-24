@@ -44,6 +44,9 @@
   // ensure body starts with is-loading (should also be in HTML for no-flash)
   document.body.classList.add("is-loading");
 
+  // ensure page starts at top (prevents scroll restoration issues on mobile)
+  window.scrollTo(0, 0);
+
   // double rAF ensures browser has painted the hidden state before we reveal
   // single rAF is unreliable - transition may not trigger if paint hasn't happened
   requestAnimationFrame(() => {

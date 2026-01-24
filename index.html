@@ -57,12 +57,16 @@
       rel="stylesheet"
     />
 
-    <!-- styles (preload for faster rendering) -->
-    <link rel="preload" href="/style.min.css?v=12" as="style" />
-    <link rel="stylesheet" href="/style.min.css?v=12" />
+    <!-- critical inline styles to prevent FOUC -->
+    <style>
+      body.is-loading main{opacity:0;visibility:hidden}
+      #page-transition{position:fixed;inset:0;z-index:9999;background:#000}
+    </style>
 
-    <!-- preload critical images -->
-    <link rel="preload" href="/images/mB.svg" as="image" />
+    <!-- styles (preload for faster rendering) -->
+    <link rel="preload" href="/style.min.css?v=15" as="style" />
+    <link rel="stylesheet" href="/style.min.css?v=15" />
+
 
     <!-- Rive (deferred, loaded after critical content) -->
     <script src="/js/rive.min.js" defer></script>
@@ -80,24 +84,12 @@
     <main id="main_container" class="container home-stack">
       <!-- logo / rive -->
       <div class="logo-solo" role="img" aria-label="mediaBrilliance logo animation">
-        <img
-          id="mb_logo_placeholder"
-          src="/images/mB.svg"
-          alt=""
-          width="600"
-          height="600"
-          aria-hidden="true"
-          fetchpriority="high"
-        />
-
         <canvas
           id="mb_logo_riv"
           width="600"
           height="600"
           aria-hidden="true"
-          style="display:none;"
         ></canvas>
-
       </div>
 
       <!-- portfolio slider -->
@@ -177,56 +169,52 @@
 
       (function () {
         var initialized = false;
+        var riveInstance = null;
+        var canvas = null;
 
         function initLogoAnimation() {
           if (initialized) return;
 
-          var canvas = document.getElementById('mb_logo_riv');
-          var placeholder = document.getElementById('mb_logo_placeholder');
-
+          canvas = document.getElementById('mb_logo_riv');
           if (!canvas || typeof window.rive === 'undefined') return;
 
           initialized = true;
 
-          new rive.Rive({
+          // keep canvas hidden until page transition completes
+          canvas.style.opacity = '0';
+          canvas.style.transition = 'opacity 0.3s ease';
+
+          riveInstance = new rive.Rive({
             src: '/media/mb_logo.riv',
             canvas: canvas,
-            autoplay: true,
+            autoplay: false,
             stateMachines: 'State Machine 1',
             onLoad: function () {
-              canvas.style.display = 'block';
-
-              if (placeholder) {
-                placeholder.style.transition = 'opacity 0.3s ease';
-                placeholder.style.opacity = '0';
-                setTimeout(function () {
-                  placeholder.style.display = 'none';
-                }, 300);
-              }
+              // wait for page transition to complete before showing
+              waitForTransition();
             }
           });
         }
 
-        function observeLogo() {
-          var target = document.querySelector('.logo-solo');
-          if (!target) return;
-
-          if (!('IntersectionObserver' in window)) {
-            initLogoAnimation();
-            return;
+        function waitForTransition() {
+          // check if page transition is done (is-loading removed)
+          if (!document.body.classList.contains('is-loading')) {
+            showAnimation();
+          } else {
+            // poll until transition completes
+            setTimeout(waitForTransition, 50);
           }
-
-          var observer = new IntersectionObserver(function (entries) {
-            if (entries[0].isIntersecting) {
-              observer.disconnect();
-              initLogoAnimation();
-            }
-          }, { rootMargin: '200px' });
-
-          observer.observe(target);
         }
 
-        window.addEventListener('load', observeLogo);
+        function showAnimation() {
+          if (canvas && riveInstance) {
+            canvas.style.opacity = '1';
+            riveInstance.play();
+          }
+        }
+
+        // start loading rive immediately on window load
+        window.addEventListener('load', initLogoAnimation);
       })();
       </script>
 
