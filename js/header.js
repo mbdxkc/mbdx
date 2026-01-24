@@ -70,11 +70,10 @@
           </a>
         </div>
 
-        <!-- center: wordmark (static svg fallback, replaced by rive when loaded) -->
+        <!-- center: wordmark (rive animation) -->
         <div class="header-title">
           <a href="/index.html" aria-label="mediaBrilliance home">
-            <img id="mb_wordmark_static" src="/images/mBwordmark.svg" alt="mediaBrilliance" width="200" height="42" />
-            <canvas id="mb_wordmark" width="200" height="42" style="display:none;">mediaBrilliance</canvas>
+            <canvas id="mb_wordmark" width="200" height="42">mediaBrilliance</canvas>
           </a>
         </div>
 
@@ -116,23 +115,16 @@
   // -------------------------------------------------------------------------
   // 6. rive animation - initialize wordmark canvas animation
   //    uses state machine for interactive/animated wordmark
-  //    falls back to static svg if rive not available
   // -------------------------------------------------------------------------
   function initWordmark() {
     if (typeof rive !== "undefined") {
       var canvas = document.getElementById("mb_wordmark");
-      var staticImg = document.getElementById("mb_wordmark_static");
       if (canvas) {
         new rive.Rive({
           src: "/media/mb_wordmark.riv",
           canvas: canvas,
           autoplay: true,
-          stateMachines: "State Machine 1",
-          onLoad: function() {
-            // swap static image for animated canvas
-            if (staticImg) staticImg.style.display = "none";
-            canvas.style.display = "block";
-          }
+          stateMachines: "State Machine 1"
         });
       }
     }
