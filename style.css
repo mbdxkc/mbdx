@@ -396,6 +396,160 @@ a:hover {
   transition: opacity 0.15s ease;
 }
 
+/* --- Mobile Menu Button ---
+   Hamburger icon, hidden on desktop */
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10001;
+}
+
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hamburger to X animation */
+.mobile-menu-btn.is-active .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-btn.is-active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-btn.is-active .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- Mobile Menu Drawer ---
+   Full-screen overlay, hidden by default */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: saturate(140%) blur(20px);
+  -webkit-backdrop-filter: saturate(140%) blur(20px);
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 3rem;
+  padding: 2rem;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.mobile-nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mobile-nav-links a:hover,
+.mobile-nav-links a:focus {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--blue);
+}
+
+.mobile-nav-links a.is-active {
+  color: var(--blue);
+}
+
+.mobile-nav-links img {
+  width: 28px;
+  height: 28px;
+}
+
+.mobile-social-links {
+  display: flex;
+  gap: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.mobile-social-links a:hover,
+.mobile-social-links a:focus {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
+}
+
+.mobile-social-links img {
+  width: 32px;
+  height: 32px;
+}
+
+/* --- Visibility Classes --- */
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* Prevent body scroll when menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+
 
 /* =============================================================================
    7. MAIN CONTAINER
@@ -1119,6 +1273,49 @@ button {
   .portfolio-card {
     flex: 0 0 calc((100% - 1.25rem) / 2);
     min-width: 200px;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   TABLET/MOBILE: 768px and below
+   Switch to mobile menu
+   ----------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* Hide desktop nav, show mobile menu button */
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  /* Reconfigure header for mobile */
+  .header-grid > .nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .header-title {
+    flex: 1;
+    justify-content: center;
+    padding: 0 3.5rem; /* space for hamburger */
+  }
+
+  .header-title img,
+  .header-title canvas {
+    max-width: min(70vw, 280px);
+    height: auto;
+  }
+
+  :root {
+    --header-h: 56px;
   }
 }
 
