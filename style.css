@@ -482,18 +482,22 @@ a:hover {
 }
 
 /* --- Left Section ---
-   Blue gradient, shadow on left side */
+   Blue gradient with glass effect, shadow on left side */
 .section_left {
   padding: 1.75rem 12% 2rem 2rem;          /* Asymmetric for content flow */
-  background: var(--grad-blue);
+  background: linear-gradient(135deg, rgba(0, 141, 218, 0.65), rgba(202, 236, 255, 0.55));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);     /* Safari support */
   box-shadow: var(--shadow-left);
 }
 
 /* --- Right Section ---
-   Silver gradient, shadow on right side */
+   Silver gradient with glass effect, shadow on right side */
 .section_right {
   padding: 2rem 2rem 2rem 12%;
-  background: var(--grad-silver);
+  background: linear-gradient(135deg, rgba(234, 234, 234, 0.55), rgba(55, 55, 55, 0.45));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);     /* Safari support */
   box-shadow: var(--shadow);
 }
 
@@ -512,6 +516,112 @@ a:hover {
 
 .section_box_right {
   margin: 0 0 -10% -10%;                   /* Pull right, overlap section */
+}
+
+/* --- Section Hover Effects ---
+   Lift and glow on hover for interactive feel */
+.section_left,
+.section_right {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.section_left:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    var(--shadow-left),
+    0 0 30px rgba(0, 141, 218, 0.35);       /* Blue glow */
+  border-color: rgba(0, 141, 218, 0.6);
+}
+
+.section_right:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    var(--shadow),
+    0 0 30px rgba(255, 255, 255, 0.25);     /* White glow */
+  border-color: rgba(255, 255, 255, 1);
+}
+
+/* --- Animated Gradient Border ---
+   Shifting gradient border on sections using pseudo-element */
+.section_left,
+.section_right {
+  position: relative;
+  overflow: visible;
+}
+
+.section_left::before,
+.section_right::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius-lg) + 2px);
+  padding: 2px;
+  background: linear-gradient(
+    var(--gradient-angle, 135deg),
+    var(--blue),
+    var(--pink),
+    var(--yellow),
+    var(--blue)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  animation: gradient-rotate 4s linear infinite;
+}
+
+.section_left:hover::before,
+.section_right:hover::before {
+  opacity: 1;
+}
+
+@keyframes gradient-rotate {
+  0% { --gradient-angle: 0deg; }
+  100% { --gradient-angle: 360deg; }
+}
+
+/* Register custom property for animation */
+@property --gradient-angle {
+  syntax: '<angle>';
+  initial-value: 135deg;
+  inherits: false;
+}
+
+/* --- Overlap Box Glow ---
+   Soft radial glow behind decorative boxes */
+.section_box_left,
+.section_box_right {
+  position: relative;
+}
+
+.section_box_left::after,
+.section_box_right::after {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 141, 218, 0.3) 0%,
+    rgba(255, 45, 241, 0.15) 40%,
+    transparent 70%
+  );
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.7;
+  filter: blur(20px);
+  animation: glow-pulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow-pulse {
+  0% { opacity: 0.5; transform: scale(0.95); }
+  100% { opacity: 0.8; transform: scale(1.05); }
 }
 
 
@@ -851,7 +961,7 @@ button {
 }
 
 /* --- Portfolio Cards ---
-   Individual project preview cards */
+   Individual project preview cards with glass effect */
 .portfolio-card {
   /* Show 3 cards: calc width minus gaps divided by 3 */
   flex: 0 0 calc((100% - 2.5rem) / 3);
@@ -859,22 +969,26 @@ button {
   aspect-ratio: 4 / 3;
   scroll-snap-align: start;
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, .25);
-  background: linear-gradient(135deg, rgba(0, 141, 218, .15), rgba(255, 45, 241, .1));
+  border: 1px solid rgba(255, 255, 255, .3);
+  background: linear-gradient(135deg, rgba(0, 141, 218, .2), rgba(255, 45, 241, .15));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   text-decoration: none;
   color: var(--text);
   overflow: hidden;
   position: relative;
   transition:
-    transform .2s ease,
-    border-color .2s ease,
-    box-shadow .2s ease;
+    transform .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
 }
 
 .portfolio-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.02);
   border-color: var(--pink);
-  box-shadow: 0 12px 32px rgba(255, 45, 241, .2);
+  box-shadow:
+    0 16px 40px rgba(255, 45, 241, .25),
+    0 0 20px rgba(255, 45, 241, .15);
   color: var(--text);
 }
 
@@ -1417,6 +1531,82 @@ button {
   .home-stack {
     padding-top: .5rem;
     padding-bottom: 1rem;
+  }
+}
+
+
+/* =============================================================================
+   17. SCROLL ANIMATIONS
+   Fade-in effects triggered by intersection observer.
+   Elements start hidden and animate in when entering viewport.
+   ============================================================================= */
+
+/* --- Base State: Hidden ---
+   Elements with scroll-reveal class start invisible and translated */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Stagger delays for sequential reveals */
+.scroll-reveal:nth-child(2) { transition-delay: 0.1s; }
+.scroll-reveal:nth-child(3) { transition-delay: 0.2s; }
+.scroll-reveal:nth-child(4) { transition-delay: 0.3s; }
+
+/* --- Revealed State ---
+   Applied by JS when element enters viewport */
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Variation: Fade from Left --- */
+.scroll-reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- Variation: Fade from Right --- */
+.scroll-reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- Variation: Scale Up --- */
+.scroll-reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.scroll-reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- Respect Reduced Motion ---
+   Skip animations for users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-reveal-left,
+  .scroll-reveal-right,
+  .scroll-reveal-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 
