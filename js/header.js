@@ -53,7 +53,7 @@
   // -------------------------------------------------------------------------
   // 4. header html template - three-column grid layout
   //    left: page navigation | center: wordmark | right: social links
-  //    mobile: wordmark centered + hamburger menu
+  //    mobile: wordmark only (nav moves to footer)
   // -------------------------------------------------------------------------
   const headerHTML = `
     <div class="header-grid">
@@ -99,42 +99,7 @@
             <img src="/images/github_dark.svg" alt="" aria-hidden="true" width="24" height="24" />
           </a>
         </div>
-
-        <!-- mobile: hamburger button -->
-        <button class="mobile-menu-btn mobile-only" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
       </nav>
-    </div>
-
-    <!-- mobile menu drawer -->
-    <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
-      <div class="mobile-menu-inner">
-        <div class="mobile-nav-links">
-          <a href="/index.html"${homeAria}>
-            <img src="${homeIcon}" alt="" aria-hidden="true" width="28" height="28" />
-            <span>Home</span>
-          </a>
-          <a href="/pages/services.html"${servicesAria}>
-            <img src="${servicesIcon}" alt="" aria-hidden="true" width="28" height="28" />
-            <span>Services</span>
-          </a>
-          <a href="/pages/contact.html"${contactAria}>
-            <img src="${contactIcon}" alt="" aria-hidden="true" width="28" height="28" />
-            <span>Contact</span>
-          </a>
-        </div>
-        <div class="mobile-social-links">
-          <a href="https://www.instagram.com/mediaBrilliance/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-            <img src="/images/instagram_dark.svg" alt="" aria-hidden="true" width="32" height="32" />
-          </a>
-          <a href="https://github.com/mbdxkc/" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-            <img src="/images/github_dark.svg" alt="" aria-hidden="true" width="32" height="32" />
-          </a>
-        </div>
-      </div>
     </div>
   `;
 
@@ -146,53 +111,7 @@
     if (headerEl) {
       headerEl.innerHTML = headerHTML;
       initWordmark();
-      initMobileMenu();
     }
-  }
-
-  // -------------------------------------------------------------------------
-  // 5b. mobile menu - hamburger toggle functionality
-  // -------------------------------------------------------------------------
-  function initMobileMenu() {
-    const menuBtn = document.querySelector(".mobile-menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const menuLinks = mobileMenu?.querySelectorAll("a");
-
-    if (!menuBtn || !mobileMenu) return;
-
-    function toggleMenu() {
-      const isOpen = menuBtn.getAttribute("aria-expanded") === "true";
-      menuBtn.setAttribute("aria-expanded", !isOpen);
-      menuBtn.setAttribute("aria-label", isOpen ? "Open menu" : "Close menu");
-      mobileMenu.setAttribute("aria-hidden", isOpen);
-      mobileMenu.classList.toggle("is-open", !isOpen);
-      menuBtn.classList.toggle("is-active", !isOpen);
-      document.body.classList.toggle("menu-open", !isOpen);
-    }
-
-    function closeMenu() {
-      menuBtn.setAttribute("aria-expanded", "false");
-      menuBtn.setAttribute("aria-label", "Open menu");
-      mobileMenu.setAttribute("aria-hidden", "true");
-      mobileMenu.classList.remove("is-open");
-      menuBtn.classList.remove("is-active");
-      document.body.classList.remove("menu-open");
-    }
-
-    menuBtn.addEventListener("click", toggleMenu);
-
-    // close menu when clicking a link
-    menuLinks?.forEach(link => {
-      link.addEventListener("click", closeMenu);
-    });
-
-    // close menu on escape key
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && mobileMenu.classList.contains("is-open")) {
-        closeMenu();
-        menuBtn.focus();
-      }
-    });
   }
 
   // -------------------------------------------------------------------------
