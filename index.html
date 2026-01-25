@@ -178,12 +178,16 @@
         function loadRiveLibrary() {
           if (window.rive || document.querySelector('script[src*="rive.min.js"]')) {
             initLogoAnimation();
+            if (window.initHeaderWordmark) window.initHeaderWordmark();
             return;
           }
 
           var script = document.createElement('script');
           script.src = '/js/rive.min.js';
-          script.onload = initLogoAnimation;
+          script.onload = function() {
+            initLogoAnimation();
+            if (window.initHeaderWordmark) window.initHeaderWordmark();
+          };
           document.head.appendChild(script);
         }
 
