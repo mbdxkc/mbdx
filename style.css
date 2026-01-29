@@ -337,6 +337,7 @@ a:hover {
   display: flex;
   align-items: center;
   min-width: 0;                            /* Allow shrinking */
+  position: relative;                      /* Position context for canvas */
 }
 
 /* Ensure wordmark link is tappable */
@@ -346,13 +347,22 @@ a:hover {
   justify-content: center;
   min-height: 44px;                        /* WCAG touch target */
   padding: 0.25rem;
+  position: relative;                      /* Create stacking context */
+  z-index: 1;                              /* Ensure above canvas */
 }
 
-.header-title img,
-.header-title canvas {
+.header-title img {
   max-width: clamp(120px, 30vw, 200px);    /* Fluid logo sizing */
   height: auto;
-  pointer-events: none;                    /* Let clicks pass through to link */
+}
+
+.header-title canvas {
+  pointer-events: none !important;         /* Never intercept clicks */
+}
+
+#mb_wordmark_overlay {
+  display: block;
+  pointer-events: none;                    /* Transparent click area */
 }
 
 /* --- Nav Clusters ---
@@ -1343,6 +1353,11 @@ button {
   .header-title canvas {
     max-width: min(70vw, 280px);
     height: auto;
+    pointer-events: none;                    /* Ensure clicks pass to link on mobile */
+  }
+
+  .header-title a {
+    touch-action: manipulation;              /* Optimize touch response */
   }
 
   :root {

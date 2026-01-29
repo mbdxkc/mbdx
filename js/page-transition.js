@@ -78,6 +78,8 @@
   // -------------------------------------------------------------------------
   // 4. click listener - intercept internal links for smooth transitions
   // -------------------------------------------------------------------------
+  let isTransitioning = false;
+
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (!a) return;
@@ -93,8 +95,21 @@
     const url = new URL(a.href, location.href);
     if (url.origin !== location.origin) return;
 
+    // skip if already transitioning (prevent double-clicks)
+    if (isTransitioning) {
+      e.preventDefault();
+      return;
+    }
+
+    // skip if navigating to current page (same path)
+    if (url.pathname === location.pathname) {
+      e.preventDefault();
+      return;
+    }
+
     // intercept and animate
     e.preventDefault();
+    isTransitioning = true;
     leaveTo(url.href);
   });
 
@@ -108,5 +123,6 @@
     }
     document.body.classList.remove("is-leaving");
     document.body.classList.remove("is-loading");
+    isTransitioning = false;
   });
 })();
