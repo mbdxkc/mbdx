@@ -525,8 +525,12 @@ a:hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.section_left:hover {
+.section_left:hover,
+.section_right:hover {
   transform: translateY(-4px);
+}
+
+.section_left:hover {
   box-shadow:
     var(--shadow-left),
     0 0 30px rgba(0, 141, 218, 0.35);       /* Blue glow */
@@ -534,7 +538,6 @@ a:hover {
 }
 
 .section_right:hover {
-  transform: translateY(-4px);
   box-shadow:
     var(--shadow),
     0 0 30px rgba(255, 255, 255, 0.25);     /* White glow */
@@ -574,12 +577,12 @@ a:hover {
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
-  animation: gradient-rotate 4s linear infinite;
 }
 
 .section_left:hover::before,
 .section_right:hover::before {
   opacity: 1;
+  animation: gradient-rotate 4s linear infinite;
 }
 
 @keyframes gradient-rotate {
@@ -655,7 +658,10 @@ a:hover {
 .footer-nav a {
   color: var(--text);
   text-decoration: none;
-  padding: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   transition: color 0.2s ease;
 }
 
@@ -697,13 +703,14 @@ a:hover {
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem;
-  font-size: 0.55rem;
+  font-size: 0.75rem;
   opacity: 0.6;
 }
 
 .footer-info a {
   color: var(--blue);
   text-decoration: none;
+  padding: 0.35rem 0.5rem;
 }
 
 .footer-info a:hover {
@@ -1386,7 +1393,7 @@ button {
   }
 
   .footer-info {
-    font-size: 0.5rem;
+    font-size: 0.7rem;
     gap: 0.4rem;
   }
 
@@ -1554,12 +1561,24 @@ button {
    ============================================================================= */
 
 /* --- Base State: Hidden ---
-   Elements with scroll-reveal class start invisible and translated */
-.scroll-reveal {
+   All scroll-reveal variants share opacity and transition */
+.scroll-reveal,
+.scroll-reveal-left,
+.scroll-reveal-right,
+.scroll-reveal-scale {
   opacity: 0;
-  transform: translateY(30px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
+
+.scroll-reveal-scale {
+  transition-duration: 0.5s;
+}
+
+/* Individual transforms */
+.scroll-reveal       { transform: translateY(30px); }
+.scroll-reveal-left  { transform: translateX(-40px); }
+.scroll-reveal-right { transform: translateX(40px); }
+.scroll-reveal-scale { transform: scale(0.9); }
 
 /* Stagger delays for sequential reveals */
 .scroll-reveal:nth-child(2) { transition-delay: 0.1s; }
@@ -1568,45 +1587,12 @@ button {
 
 /* --- Revealed State ---
    Applied by JS when element enters viewport */
-.scroll-reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* --- Variation: Fade from Left --- */
-.scroll-reveal-left {
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.scroll-reveal-left.revealed {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* --- Variation: Fade from Right --- */
-.scroll-reveal-right {
-  opacity: 0;
-  transform: translateX(40px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.scroll-reveal-right.revealed {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* --- Variation: Scale Up --- */
-.scroll-reveal-scale {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
+.scroll-reveal.revealed,
+.scroll-reveal-left.revealed,
+.scroll-reveal-right.revealed,
 .scroll-reveal-scale.revealed {
   opacity: 1;
-  transform: scale(1);
+  transform: none;
 }
 
 /* --- Respect Reduced Motion ---

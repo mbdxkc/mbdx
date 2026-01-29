@@ -36,6 +36,12 @@
   const isServices = currentPath.includes("/pages/services.html");
   const isContact = currentPath.includes("/pages/contact.html");
 
+  // expose page detection for footer.js (avoids recomputing)
+  const ds = document.documentElement.dataset;
+  ds.isHome = isHome;
+  ds.isServices = isServices;
+  ds.isContact = isContact;
+
   // -------------------------------------------------------------------------
   // 2. dynamic icon selection - active pages get highlighted icons
   // -------------------------------------------------------------------------

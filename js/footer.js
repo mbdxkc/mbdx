@@ -21,14 +21,12 @@
 
 (function () {
   // -------------------------------------------------------------------------
-  // 1. page detection - determine which page is currently active
+  // 1. page detection - read from header.js dataset (avoids recomputing)
   // -------------------------------------------------------------------------
-  const currentPath = window.location.pathname;
-  const pageName = currentPath.split("/").pop() || "index.html";
-
-  const isHome = pageName === "index.html" || pageName === "";
-  const isServices = currentPath.includes("/pages/services.html");
-  const isContact = currentPath.includes("/pages/contact.html");
+  const ds = document.documentElement.dataset;
+  const isHome = ds.isHome === "true";
+  const isServices = ds.isServices === "true";
+  const isContact = ds.isContact === "true";
 
   // aria attributes for current page indication
   const homeAria = isHome ? ' aria-current="page" class="is-active"' : "";
