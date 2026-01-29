@@ -969,7 +969,6 @@ button {
   aspect-ratio: 4 / 3;
   scroll-snap-align: start;
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, .3);
   background: linear-gradient(135deg, rgba(0, 141, 218, .2), rgba(255, 45, 241, .15));
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -979,17 +978,30 @@ button {
   position: relative;
   transition:
     transform .3s ease,
-    border-color .3s ease,
     box-shadow .3s ease;
 }
 
+.portfolio-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, .3);
+  pointer-events: none;
+  z-index: 2;
+  transition: border-color .3s ease;
+}
+
 .portfolio-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  border-color: var(--pink);
+  transform: translateY(-6px);
   box-shadow:
     0 16px 40px rgba(255, 45, 241, .25),
     0 0 20px rgba(255, 45, 241, .15);
   color: var(--text);
+}
+
+.portfolio-card:hover::after {
+  border-color: var(--pink);
 }
 
 /* --- Card Preview Image ---
