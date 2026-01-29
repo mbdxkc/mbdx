@@ -48,19 +48,12 @@
     <meta name="theme-color" content="#2a2a2a" />
     <meta name="msapplication-TileColor" content="#2a2a2a" />
 
-    <!-- fonts (preconnect + preload for faster FCP) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" as="style" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
-      rel="stylesheet"
-    />
+    <!-- fonts (self-hosted for faster LCP) -->
+    <link rel="preload" href="/fonts/nunito-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- critical inline styles to prevent FOUC -->
     <style>
-      body.is-loading main{opacity:0}
-      #page-transition{position:fixed;inset:0;z-index:9999;background:#000}
+      #page-transition{position:fixed;inset:0;z-index:9999;background:#000;transform:translateX(-100%)}
     </style>
 
     <!-- styles (preload for faster rendering) -->
@@ -73,7 +66,7 @@
     <!-- Rive loaded lazily via JS after page paint -->
   </head>
 
-  <body class="page-home is-loading">
+  <body class="page-home">
     <!-- page transition + skip link -->
     <div id="page-transition" aria-hidden="true"></div>
     <a class="skip-link" href="#main_container">skip to main content</a>
@@ -95,7 +88,7 @@
       </div>
 
       <!-- portfolio slider -->
-      <section class="portfolio-slider scroll-reveal" aria-label="Featured portfolio work">
+      <section class="portfolio-slider" aria-label="Featured portfolio work">
         <h2 class="portfolio-heading">recent projects</h2>
 
         <div class="portfolio-wrapper">
@@ -212,11 +205,7 @@
         }
 
         function waitForTransition() {
-          if (!document.body.classList.contains('is-loading')) {
-            showAnimation();
-          } else {
-            setTimeout(waitForTransition, 50);
-          }
+          showAnimation();
         }
 
         function showAnimation() {

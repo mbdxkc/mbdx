@@ -140,18 +140,10 @@
           autoplay: false,
           stateMachines: "State Machine 1",
           onLoad: function() {
-            // wait for page transition to complete
-            function showWhenReady() {
-              if (!document.body.classList.contains("is-loading")) {
-                if (staticImg) staticImg.style.display = "none";
-                canvas.style.display = "block";
-                canvas.style.opacity = "1";
-                riveInstance.play();
-              } else {
-                setTimeout(showWhenReady, 50);
-              }
-            }
-            showWhenReady();
+            if (staticImg) staticImg.style.display = "none";
+            canvas.style.display = "block";
+            canvas.style.opacity = "1";
+            riveInstance.play();
           }
         });
       }

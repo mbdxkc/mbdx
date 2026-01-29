@@ -3,18 +3,18 @@
  * mBdx (mediaBrilliance digitalxtudio) - Page Transition Controller
  * ============================================================================
  * @project    mBdx - mediaBrilliance digitalxtudio website
- * @version    3.1
+ * @version    3.2
  * @author     valdez campos <dez@mediabrilliance.io>
- * @date       2026-01-15
+ * @date       2026-01-29
  * @file       js/page-transition.js
  *
  * @desc       handles smooth page transitions with overlay animation.
- *             - on page load: overlay slides away, content fades in
+ *             - on page load: overlay starts off-screen so content paints immediately (fast LCP)
  *             - on navigation: content fades out, overlay slides in, then navigate
  *             - respects prefers-reduced-motion for accessibility
  *
  * @requires   - #page-transition element in html
- *             - css classes: .is-loading, .is-leaving, .exit
+ *             - css classes: .is-leaving, .enter
  *             - css transitions defined in style.css
  *
  * @exports    none (iife - self-executing)
@@ -39,22 +39,9 @@
   }
 
   // -------------------------------------------------------------------------
-  // 2. initial page load - reveal content with transition
+  // 2. initial page load - overlay starts off-screen via CSS for instant LCP
+  //    no is-loading class needed, content is visible immediately
   // -------------------------------------------------------------------------
-  // ensure body starts with is-loading (should also be in HTML for no-flash)
-  document.body.classList.add("is-loading");
-
-  // ensure page starts at top (prevents scroll restoration issues on mobile)
-  window.scrollTo(0, 0);
-
-  // double rAF ensures browser has painted the hidden state before we reveal
-  // single rAF is unreliable - transition may not trigger if paint hasn't happened
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      overlay.classList.add("exit");                // slide overlay off screen
-      document.body.classList.remove("is-loading"); // fade content in
-    });
-  });
 
   // -------------------------------------------------------------------------
   // 3. navigation handler - animate out before leaving page
@@ -67,7 +54,7 @@
     }
 
     document.body.classList.add("is-leaving");   // fade content out
-    overlay.classList.remove("exit");            // bring overlay back (translateX(0))
+    overlay.classList.add("enter");              // bring overlay back (translateX(0))
 
     // wait until overlay has covered the page, then navigate
     window.setTimeout(() => {
@@ -102,11 +89,10 @@
   // 5. bfcache handler - reset state when using back/forward navigation
   // -------------------------------------------------------------------------
   window.addEventListener("pageshow", (e) => {
-    // if page was restored from bfcache, ensure proper state
+    // if page was restored from bfcache, ensure overlay is off-screen
     if (e.persisted) {
-      overlay.classList.add("exit");
+      overlay.classList.remove("enter");
     }
     document.body.classList.remove("is-leaving");
-    document.body.classList.remove("is-loading");
   });
 })();
