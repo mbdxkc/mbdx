@@ -55,7 +55,14 @@
       "Bash(if [[ ! -f \"$minf\" ]])",
       "Bash(echo:*)",
       "Bash(elif [[ \"$f\" -nt \"$minf\" ]])",
-      "Bash(fi)"
+      "Bash(fi)",
+      "Bash(git stash:*)",
+      "WebFetch(domain:mbdx.vercel.app)",
+      "WebFetch(domain:localhost)",
+      "Bash(kill:*)",
+      "Bash(pkill:*)",
+      "WebFetch(domain:fonts.googleapis.com)",
+      "Bash(git status:*)"
     ]
   }
 }
