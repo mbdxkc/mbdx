@@ -5,99 +5,116 @@
  * @project    mBdx - mediaBrilliance digitalxtudio website
  * @version    3.2
  * @author     valdez campos <dez@mediabrilliance.io>
- * @date       2026-01-28
+ * @date       2026-01-24
  * @file       style.css
  *
  * TABLE OF CONTENTS
  * -----------------
- * 1.  Design Tokens        - CSS custom properties (colors, spacing, timing)
- * 2.  Base Reset           - Normalize, box-sizing, document defaults
- * 3.  Accessibility        - Skip links, screen reader utilities
- * 4.  Page Transitions     - Smooth page-to-page navigation animations
- * 5.  Typography           - Text defaults, headings, links
- * 6.  Header               - Sticky nav with 3-column grid layout
+ * 1.  Design Tokens        - CSS custom properties (colors, spacing, etc.)
+ * 2.  Base Reset           - Normalize browser defaults, box-sizing, scrollbar
+ * 3.  Accessibility        - Screen reader helpers, skip link for keyboard nav
+ * 4.  Page Transitions     - Overlay slide + content fade animations
+ * 5.  Typography           - Headings, paragraphs, links, text defaults
+ * 6.  Header               - Sticky header shell, 3-column grid nav, icons
  * 7.  Main Container       - Content width constraints
- * 8.  Home Logo            - Homepage animated logo component
- * 9.  Sections             - Content cards with gradient backgrounds
- * 10. Footer               - Site footer with nav and social links
+ * 8.  Home Logo            - Logo-solo component for homepage
+ * 9.  Sections             - Content card components (left/right variants)
+ * 10. Footer               - Site footer with backdrop blur
  * 11. Images               - Global image defaults
- * 12. Contact Form         - Form layout and input styles
- * 13. Buttons              - Submit button component
- * 14. Portfolio Slider     - Horizontal scrolling showcase
- * 15. Portfolio Pages      - Case study page layouts
- * 16. Scroll Animations    - Intersection observer reveal effects
- * 17. Responsive           - Media queries consolidated by breakpoint
+ * 12. Contact Form         - Form container, inputs, focus states
+ * 13. Buttons              - Submit button component with states
+ * 14. Portfolio Slider     - Horizontal scrolling showcase on homepage
+ * 15. Portfolio Pages      - Case study page layout
+ * 16. Responsive           - All media queries consolidated by breakpoint
  *
  * @fonts      Nunito Sans (Google Fonts)
- * @a11y       WCAG AA compliant - focus indicators, motion preferences, touch targets
- * @browser    Modern browsers (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+)
+ * @a11y       WCAG AA compliant colors, focus-visible, reduced-motion support
+ * @browser    Modern browsers (Chrome, Firefox, Safari, Edge)
  * ============================================================================
  */
 
 
 /* =============================================================================
    1. DESIGN TOKENS
-   CSS custom properties - change values here to update the entire site
+   Single source of truth for colors, spacing, and effects.
+   Change values here to update the entire site.
    ============================================================================= */
 :root {
-  /* Colors - brand palette */
-  --bg:    rgba(0, 0, 0, .9);              /* Dark background with transparency */
-  --text:  rgba(255, 255, 255, .87);       /* Primary text (high contrast) */
-  --muted: rgba(255, 255, 255, .7);        /* Secondary text */
-  --blue:   #008DDA;                       /* Brand blue - links, accents */
-  --pink:   #FF2DF1;                       /* Brand pink - hover states */
-  --yellow: #FFFF00;                       /* Highlight yellow - CTAs, focus */
+  /* --- Base Colors ---
+     bg:    Dark background with slight transparency
+     text:  Primary text color (87% white for readability)
+     muted: Secondary text for less important content */
+  --bg:    rgba(0, 0, 0, .9);
+  --text:  rgba(255, 255, 255, .87);
+  --muted: rgba(255, 255, 255, .7);
 
-  /* Gradients - section backgrounds */
-  --grad-blue:   linear-gradient(135deg, #008DDA, #caecff);
-  --grad-silver: linear-gradient(135deg, #eaeaea, #373737);
+  /* --- Brand Accent Colors ---
+     Primary brand palette used for links, highlights, and accents */
+  --blue:   #008DDA;  /* Primary brand blue - used for links, headings */
+  --pink:   #FF2DF1;  /* Accent pink - used for hover states */
+  --yellow: #FFFF00;  /* Highlight yellow - used for CTAs, focus states */
 
-  /* Layout measurements */
-  --container: 1200px;                     /* Max content width */
-  --header-h:  42px;                       /* Header height (overridden mobile) */
+  /* --- Gradient Definitions ---
+     Used for section backgrounds and decorative elements */
+  --grad-blue:   linear-gradient(135deg, #008DDA, #caecff);    /* Blue cards */
+  --grad-silver: linear-gradient(135deg, #eaeaea, #373737);    /* Silver cards */
 
-  /* Border radius */
-  --radius-lg: 20px;                       /* Cards, forms */
-  --radius-xl: 28px;                       /* Larger elements */
+  /* --- Layout Measurements ---
+     container: Max content width
+     header-h:  Fixed header height (overridden on mobile) */
+  --container: 1200px;
+  --header-h:  42px;
 
-  /* Shadows - subtle white shadows for depth */
-  --shadow:       6px 4px 4px 2px rgba(255, 255, 255, .2);
-  --shadow-left: -6px 4px 4px 2px rgba(255, 255, 255, .2);
+  /* --- Border Radius ---
+     Consistent rounded corners across components */
+  --radius-lg: 20px;   /* Cards, form containers */
+  --radius-xl: 28px;   /* Larger elements */
 
-  /* Animation timing */
-  --t-fade:  .3s;                          /* Quick transitions */
-  --t-slide: .6s;                          /* Page transitions */
-  --ease-slide: cubic-bezier(.25, .8, .25, 1);
+  /* --- Box Shadows ---
+     Subtle white shadows for depth on dark background */
+  --shadow:       6px 4px 4px 2px rgba(255, 255, 255, .2);   /* Right-side */
+  --shadow-left: -6px 4px 4px 2px rgba(255, 255, 255, .2);   /* Left-side */
+
+  /* --- Animation Timing ---
+     Consistent motion across the site */
+  --t-fade:  .3s;                           /* Quick fades */
+  --t-slide: .6s;                           /* Page transitions */
+  --ease-slide: cubic-bezier(.25, .8, .25, 1);  /* Smooth slide easing */
 }
 
 
 /* =============================================================================
    2. BASE RESET
-   Normalize browser defaults and establish foundational styles
+   Normalize browser defaults and establish foundational styles.
    ============================================================================= */
 
-/* Box sizing - include padding/border in width calculations */
+/* --- Box Sizing ---
+   Include padding/border in element dimensions */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-/* Full viewport height support */
+/* --- Document Height ---
+   Ensure full viewport coverage for sticky footer */
 html, body {
   height: 100%;
 }
 
-/* HTML root - prevent horizontal scroll, stabilize scrollbar */
+/* --- HTML Root ---
+   Prevent horizontal scroll, stabilize scrollbar to avoid layout shift */
 html {
   overflow-x: hidden;
   scrollbar-gutter: stable both-edges;
 }
 
-/* Body - flex column for sticky footer, dark background with texture */
+/* --- Body Defaults ---
+   Flex column layout enables sticky footer pattern
+   min-height: 100dvh uses dynamic viewport for mobile browsers */
 body {
   margin: 0;
-  padding-top: 0 !important;               /* Override injected padding */
+  padding-top: 0 !important;               /* Override any injected padding */
   min-height: 100vh;
-  min-height: 100dvh;                      /* Dynamic viewport (mobile) */
+  min-height: 100dvh;                      /* Dynamic viewport height fallback */
   display: flex;
   flex-direction: column;
   color: var(--text);
@@ -108,10 +125,12 @@ body {
 
 /* =============================================================================
    3. ACCESSIBILITY
-   Screen reader helpers and keyboard navigation support
+   Screen reader utilities and keyboard navigation helpers.
    ============================================================================= */
 
-/* Screen reader only - visually hidden but accessible to assistive tech */
+/* --- Screen Reader Only ---
+   Visually hidden but accessible to screen readers.
+   Use for labels, descriptions, and skip links. */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -124,12 +143,14 @@ body {
   border: 0;
 }
 
-/* Skip link - appears on Tab key for keyboard users to bypass navigation */
+/* --- Skip Link ---
+   Hidden link for keyboard users to bypass navigation.
+   Appears on focus (Tab key) at top of page. */
 .skip-link {
   position: absolute;
   top: -40px;                              /* Hidden above viewport */
   left: 0;
-  z-index: 10000;
+  z-index: 10000;                          /* Above everything */
   padding: 8px 16px;
   background: var(--blue);
   color: #fff;
@@ -137,57 +158,64 @@ body {
 }
 
 .skip-link:focus {
-  top: 0;                                  /* Reveal on focus */
+  top: 0;                                  /* Reveal on keyboard focus */
 }
 
 
 /* =============================================================================
    4. PAGE TRANSITIONS
-   Smooth page-to-page navigation with slide overlay
+   Smooth page-to-page navigation animations.
    Works with /js/page-transition.js
 
-   Flow: overlay covers → content fades in → click link → content fades out →
-         overlay slides back → new page loads
+   Flow:
+   1. Page loads → overlay covers screen
+   2. Content loads → overlay slides left, content fades in
+   3. Link clicked → content fades out, overlay slides back
+   4. New page loads → repeat
    ============================================================================= */
 
-/* Full-screen overlay that slides to reveal content */
+/* --- Transition Overlay ---
+   Full-screen cover that slides to reveal content */
 #page-transition {
   position: fixed;
-  inset: 0;
+  inset: 0;                                /* Cover entire viewport */
   z-index: 9999;
   background: var(--bg);
   pointer-events: none;                    /* Don't block interactions */
-  transform: translateX(0);                /* Start covering screen */
+  transform: translateX(0);                /* Start covering */
   transition: transform var(--t-slide) var(--ease-slide);
   will-change: transform;                  /* GPU optimization */
 }
 
-/* Exit state - overlay slides left */
+/* Slide overlay left to reveal content */
 #page-transition.exit {
   transform: translateX(-100%);
 }
 
-/* Main content - fades in after overlay reveals */
+/* --- Main Content Fade ---
+   Content fades in after overlay reveals */
 main {
-  flex: 1 0 auto;                          /* Grow to fill, push footer down */
+  flex: 1 0 auto;                          /* Grow to fill, don't shrink */
   display: flex;
   justify-content: center;
   opacity: 1;
   transition: opacity var(--t-fade) ease;
 }
 
-/* Loading state - hide content while page loads */
+/* --- Loading & Leaving States ---
+   Hide content during page transitions.
+   Using opacity only (not visibility) so images still preload. */
 body.is-loading main {
   opacity: 0;
 }
 
-/* Leaving state - hide content when navigating away */
 body.is-leaving main {
   opacity: 0;
   visibility: hidden;
 }
 
-/* Respect user's motion preferences */
+/* --- Reduced Motion ---
+   Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
   #page-transition,
   main {
@@ -198,28 +226,31 @@ body.is-leaving main {
 
 /* =============================================================================
    5. TYPOGRAPHY
-   Text defaults, headings, links, and content card typography
+   Text defaults for headings, paragraphs, and links.
    ============================================================================= */
 
-/* Headings - consistent spacing and weight */
+/* --- Headings ---
+   Consistent margin and line-height across all levels */
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 .5em;
   font-weight: 700;
   line-height: 1.2;
 }
 
-/* Paragraphs */
+/* --- Paragraphs --- */
 p {
   margin: 0 0 1em;
 }
 
-/* Small text - muted color for secondary info */
+/* --- Small Text ---
+   Muted color for secondary information */
 small {
   color: var(--muted);
   font-size: .875rem;
 }
 
-/* Links - yellow default, pink on hover */
+/* --- Links ---
+   Yellow default, pink on hover */
 a {
   color: var(--yellow);
   text-decoration: none;
@@ -229,10 +260,12 @@ a:hover {
   color: var(--pink);
 }
 
-/* Section card headings - enhanced h1 with shadow and glow */
+/* --- Section Card Headings ---
+   Enhanced h1 styling within content cards.
+   Larger size, text shadow for depth and brand glow. */
 .section_left h1,
 .section_right h1 {
-  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-size: clamp(2.2rem, 5vw, 3rem);     /* Fluid sizing */
   font-weight: 800;
   line-height: 1.05;
   margin: 0 0 1rem;
@@ -240,11 +273,12 @@ a:hover {
   text-transform: lowercase;
   letter-spacing: -0.015em;
   text-shadow:
-    0 2px 12px rgba(0, 0, 0, .35),          /* Depth */
-    0 0 18px rgba(0, 141, 218, .35);        /* Brand glow */
+    0 2px 12px rgba(0, 0, 0, .35),          /* Depth shadow */
+    0 0 18px rgba(0, 141, 218, .35);         /* Brand blue glow */
 }
 
-/* Section card text - darker for contrast on light backgrounds */
+/* --- Section Card Text ---
+   Darker text for contrast against light gradient backgrounds */
 .section_left p,
 .section_right p,
 .section_left li,
@@ -252,7 +286,9 @@ a:hover {
   color: rgba(0, 0, 0, .65);
 }
 
-/* Section card links - inverted colors (pink default, yellow hover) */
+/* --- Section Card Links ---
+   Pink default, yellow on hover (inverted from global).
+   Excludes .mb-submit buttons which have their own styling. */
 .section_left a:not(.mb-submit),
 .section_right a:not(.mb-submit) {
   color: var(--pink);
@@ -266,11 +302,12 @@ a:hover {
 
 /* =============================================================================
    6. HEADER
-   Sticky navigation with 3-column grid layout
-   Left: page nav | Center: logo/wordmark | Right: social links
+   Sticky navigation bar with 3-column grid layout.
+   Left: page nav | Center: logo | Right: social links
    ============================================================================= */
 
-/* Header container - frosted glass effect */
+/* --- Header Shell ---
+   Full-width sticky container with frosted glass effect */
 .site-header {
   position: sticky;
   top: 0;
@@ -280,10 +317,12 @@ a:hover {
   min-height: var(--header-h);
   contain: layout style;                   /* Performance optimization */
   backdrop-filter: saturate(140%) blur(6px);
-  -webkit-backdrop-filter: saturate(140%) blur(6px);
+  -webkit-backdrop-filter: saturate(140%) blur(6px);  /* Safari support */
 }
 
-/* Three-column grid - keeps center logo perfectly centered */
+/* --- Header Grid ---
+   Three equal-flex columns keep title perfectly centered
+   regardless of left/right content width */
 .header-grid > .nav {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -291,60 +330,47 @@ a:hover {
   width: 100%;
 }
 
-/* Center column - logo/wordmark */
+/* --- Center Title ---
+   Logo/wordmark in center column */
 .header-title {
   justify-self: center;
   display: flex;
   align-items: center;
-  min-width: 0;
-  position: relative;
+  min-width: 0;                            /* Allow shrinking */
 }
 
-.header-title a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;                        /* WCAG touch target */
-  padding: 0.25rem;
-  position: relative;
-  z-index: 1;
-}
-
-.header-title img {
-  max-width: clamp(120px, 30vw, 200px);
+.header-title img,
+.header-title canvas {
+  max-width: clamp(120px, 30vw, 200px);    /* Fluid logo sizing */
   height: auto;
 }
 
-.header-title canvas {
-  pointer-events: none !important;         /* Never block clicks */
-}
-
-#mb_wordmark_overlay {
-  display: block;
-  pointer-events: none;
-}
-
-/* Left and right nav clusters */
+/* --- Nav Clusters ---
+   Shared base styles for left (pages) and right (socials) nav groups */
 .pages,
 .socials {
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: clamp(.35rem, 1.5vw, .75rem);
+  gap: clamp(.35rem, 1.5vw, .75rem);       /* Fluid gap */
   flex-wrap: nowrap;
 }
 
+/* Left nav - page links */
 .pages {
   justify-self: start;
   padding-left: .5rem;
 }
 
+/* Right nav - social links */
 .socials {
   justify-self: end;
   padding-right: .5rem;
 }
 
-/* Icon links - 44x44px touch targets for accessibility */
+/* --- Icon Touch Targets ---
+   44x44px minimum for accessibility (WCAG 2.5.5)
+   Visual icons are smaller but tap area meets requirements */
 .pages a,
 .socials a {
   display: inline-flex;
@@ -354,6 +380,7 @@ a:hover {
   min-height: 44px;
 }
 
+/* --- Icon Sizing --- */
 .pages img,
 .socials img {
   width: clamp(20px, 5vw, 28px);
@@ -361,14 +388,15 @@ a:hover {
   display: block;
 }
 
-/* Icon hover - subtle opacity change */
+/* --- Icon Hover ---
+   Subtle opacity change for visual feedback */
 .pages a:hover img,
 .socials a:hover img {
   opacity: 0.7;
   transition: opacity 0.15s ease;
 }
 
-/* Desktop-only elements */
+/* --- Visibility Classes --- */
 .desktop-only {
   display: flex;
 }
@@ -376,7 +404,8 @@ a:hover {
 
 /* =============================================================================
    7. MAIN CONTAINER
-   Content width constraints and page-specific layouts
+   Content width constraints.
+   Supports both id variants for backward compatibility.
    ============================================================================= */
 #main_container,
 #main-container {
@@ -385,7 +414,8 @@ a:hover {
   padding: 0 1rem;
 }
 
-/* Contact page - vertically center content */
+/* --- Contact Page Centering ---
+   Vertically center content on contact page */
 .page-contact main {
   align-items: center;
 }
@@ -393,8 +423,8 @@ a:hover {
 
 /* =============================================================================
    8. HOME LOGO
-   Large animated logo for homepage
-   Shows static fallback until Rive animation loads
+   Large animated logo component for homepage.
+   Shows static SVG fallback until Rive animation loads.
    ============================================================================= */
 #main_container > .logo-solo,
 #main-container > .logo-solo {
@@ -404,18 +434,18 @@ a:hover {
 .logo-solo {
   width: min(100%, 600px);
   aspect-ratio: 1 / 1;
-  contain: layout;
-  position: relative;
+  contain: layout;                         /* Isolate layout calculations */
+  position: relative;                      /* For absolute positioning of children */
 }
 
-/* Static fallback image */
+/* Static fallback image (shown until Rive loads) */
 #mb_logo_static {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-/* Rive canvas (hidden until loaded) */
+/* Rive canvas element (hidden until animation ready) */
 #mb_logo_riv {
   width: 100%;
   height: 100%;
@@ -425,19 +455,21 @@ a:hover {
 
 /* =============================================================================
    9. SECTIONS
-   Content card components with gradient backgrounds
-   Two variants: left-aligned (blue) and right-aligned (silver)
-   Includes decorative overlap boxes with animated effects
+   Content card components used across pages.
+   Two variants: left-aligned (blue) and right-aligned (silver).
+   Includes decorative overlap boxes.
    ============================================================================= */
 
-/* Section container - flex wrapper for card + overlap box */
+/* --- Section Container ---
+   Flex wrapper for card + overlap box pairs */
 .section_container {
   display: flex;
   justify-content: start;
   margin: 2%;
 }
 
-/* Section cards - shared base styles */
+/* --- Section Cards (Shared) ---
+   Base styles for both left and right variants */
 .section_left,
 .section_right {
   z-index: 1;
@@ -447,35 +479,57 @@ a:hover {
   margin: 2rem auto;
   border: 1px solid rgba(255, 255, 255, .8);
   border-radius: var(--radius-lg);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  position: relative;
-  overflow: visible;
 }
 
-/* Left section - blue gradient with glass effect */
+/* --- Left Section ---
+   Blue gradient with glass effect, shadow on left side */
 .section_left {
-  padding: 1.75rem 12% 2rem 2rem;
+  padding: 1.75rem 12% 2rem 2rem;          /* Asymmetric for content flow */
   background: linear-gradient(135deg, rgba(0, 141, 218, 0.65), rgba(202, 236, 255, 0.55));
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);     /* Safari support */
   box-shadow: var(--shadow-left);
 }
 
-/* Right section - silver gradient with glass effect */
+/* --- Right Section ---
+   Silver gradient with glass effect, shadow on right side */
 .section_right {
   padding: 2rem 2rem 2rem 12%;
   background: linear-gradient(135deg, rgba(234, 234, 234, 0.55), rgba(55, 55, 55, 0.45));
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);     /* Safari support */
   box-shadow: var(--shadow);
 }
 
-/* Hover effects - lift and glow */
+/* --- Overlap Boxes ---
+   Decorative elements that overlap section cards */
+.section_box_left,
+.section_box_right {
+  z-index: 2;
+  width: 40%;
+  height: 80%;
+}
+
+.section_box_left {
+  margin: 0 -10% -10% 0;                   /* Pull left, overlap section */
+}
+
+.section_box_right {
+  margin: 0 0 -10% -10%;                   /* Pull right, overlap section */
+}
+
+/* --- Section Hover Effects ---
+   Lift and glow on hover for interactive feel */
+.section_left,
+.section_right {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
 .section_left:hover {
   transform: translateY(-4px);
   box-shadow:
     var(--shadow-left),
-    0 0 30px rgba(0, 141, 218, 0.35);
+    0 0 30px rgba(0, 141, 218, 0.35);       /* Blue glow */
   border-color: rgba(0, 141, 218, 0.6);
 }
 
@@ -483,11 +537,18 @@ a:hover {
   transform: translateY(-4px);
   box-shadow:
     var(--shadow),
-    0 0 30px rgba(255, 255, 255, 0.25);
+    0 0 30px rgba(255, 255, 255, 0.25);     /* White glow */
   border-color: rgba(255, 255, 255, 1);
 }
 
-/* Animated gradient border - appears on hover */
+/* --- Animated Gradient Border ---
+   Shifting gradient border on sections using pseudo-element */
+.section_left,
+.section_right {
+  position: relative;
+  overflow: visible;
+}
+
 .section_left::before,
 .section_right::before {
   content: '';
@@ -526,30 +587,20 @@ a:hover {
   100% { --gradient-angle: 360deg; }
 }
 
+/* Register custom property for animation */
 @property --gradient-angle {
   syntax: '<angle>';
   initial-value: 135deg;
   inherits: false;
 }
 
-/* Decorative overlap boxes */
+/* --- Overlap Box Glow ---
+   Soft radial glow behind decorative boxes */
 .section_box_left,
 .section_box_right {
-  z-index: 2;
-  width: 40%;
-  height: 80%;
   position: relative;
 }
 
-.section_box_left {
-  margin: 0 -10% -10% 0;
-}
-
-.section_box_right {
-  margin: 0 0 -10% -10%;
-}
-
-/* Overlap box glow effect */
 .section_box_left::after,
 .section_box_right::after {
   content: '';
@@ -576,8 +627,8 @@ a:hover {
 
 /* =============================================================================
    10. FOOTER
-   Site footer with nav links, social icons, and legal info
-   Sticks to bottom via flex grow on main
+   Site footer with site nav, social links, and legal info.
+   Sticks to bottom via flex grow on main.
    ============================================================================= */
 .footer {
   margin-top: auto;                        /* Push to bottom */
@@ -592,7 +643,7 @@ a:hover {
   -webkit-backdrop-filter: saturate(140%) blur(6px);
 }
 
-/* Footer navigation */
+/* --- Footer Navigation --- */
 .footer-nav {
   display: flex;
   justify-content: center;
@@ -604,10 +655,7 @@ a:hover {
 .footer-nav a {
   color: var(--text);
   text-decoration: none;
-  padding: 0.75rem 0.5rem;
-  min-height: 44px;                        /* WCAG touch target */
-  display: inline-flex;
-  align-items: center;
+  padding: 0.25rem;
   transition: color 0.2s ease;
 }
 
@@ -619,7 +667,7 @@ a:hover {
   color: var(--blue);
 }
 
-/* Footer social icons */
+/* --- Footer Social Links --- */
 .footer-social {
   display: flex;
   gap: 1rem;
@@ -629,8 +677,6 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
   opacity: 0.8;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -645,7 +691,7 @@ a:hover {
   height: 20px;
 }
 
-/* Footer info links (legal, etc.) */
+/* --- Footer Info Links --- */
 .footer-info {
   display: flex;
   justify-content: center;
@@ -658,10 +704,6 @@ a:hover {
 .footer-info a {
   color: var(--blue);
   text-decoration: none;
-  padding: 0.5rem 0.35rem;
-  min-height: 32px;
-  display: inline-flex;
-  align-items: center;
 }
 
 .footer-info a:hover {
@@ -671,37 +713,38 @@ a:hover {
 
 /* =============================================================================
    11. IMAGES
-   Global image defaults
+   Global image defaults.
    ============================================================================= */
 img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+  display: block;                          /* Remove inline spacing */
+  max-width: 100%;                         /* Responsive by default */
+  height: auto;                            /* Maintain aspect ratio */
 }
 
 .logo,
 .section_image {
   width: 100%;
   height: auto;
-  object-fit: cover;
+  object-fit: cover;                       /* Fill container, crop if needed */
 }
 
 
 /* =============================================================================
    12. CONTACT FORM
-   Form styling for contact page
-   16px font-size on inputs prevents iOS zoom on focus
+   Form styling for the contact page.
+   16px font-size on inputs prevents iOS zoom on focus.
    ============================================================================= */
 
-/* Form elements - prevent iOS zoom */
+/* --- Form Element Defaults --- */
 input,
 textarea,
 button {
-  font-size: 16px;
+  font-size: 16px;                         /* Prevent iOS zoom */
   max-width: 100%;
 }
 
-/* Form container - glass card with silver gradient */
+/* --- Form Container ---
+   Glass-effect card with silver gradient */
 #contact-form {
   margin-top: 1.25rem;
   padding: 1.25rem;
@@ -715,13 +758,14 @@ button {
   box-shadow: 0 12px 28px rgba(0, 0, 0, .25);
 }
 
-/* Field grouping */
+/* --- Field Grouping ---
+   Label + input pairs */
 #contact-form .form-field {
   display: grid;
   gap: .35rem;
 }
 
-/* Text inputs and textarea */
+/* --- Text Inputs & Textarea --- */
 #contact-form input,
 #contact-form textarea {
   width: 100%;
@@ -734,13 +778,14 @@ button {
   transition: border-color .15s ease, box-shadow .15s ease;
 }
 
-/* Textarea specific */
+/* --- Textarea Specific --- */
 #contact-form textarea {
   resize: vertical;
   min-height: 9rem;
 }
 
-/* Focus states - yellow border with glow */
+/* --- Focus States ---
+   Yellow border with glow for visibility */
 #contact-form input:focus,
 #contact-form textarea:focus {
   outline: none;
@@ -751,34 +796,37 @@ button {
 
 /* =============================================================================
    13. BUTTONS
-   Standard button component (.mb-submit)
-   Works with both <button> and <a> elements
-   Dark gradient with pill shape and interactive states
+   Standard button component used site-wide.
+   Works with both <button> and <a> elements.
+   Dark gradient background with subtle border and shadow effects.
    ============================================================================= */
+
+/* --- Base Button Styles ---
+   Core styles shared by all .mb-submit elements */
 .mb-submit {
   appearance: none;
   cursor: pointer;
-  display: inline-flex;
+  display: inline-flex;                    /* Inline for flow, flex for centering */
   align-items: center;
   justify-content: center;
   width: 200px;
   height: 50px;
   margin: 1.25rem auto 0;
-  padding: 0 1.5rem;
+  padding: 0 1.5rem;                       /* Horizontal padding for text */
   font-family: "Nunito Sans", sans-serif;
   font-size: .95rem;
   font-weight: 600;
   letter-spacing: .02em;
   text-align: center;
   text-transform: lowercase;
-  text-decoration: none;
-  color: silver;
+  text-decoration: none;                   /* Remove underline for <a> tags */
+  color: silver;                           /* Light silver text */
   border-radius: 999px;                    /* Pill shape */
   border: 1px solid rgba(234, 234, 234, .45);
   background: linear-gradient(135deg, #111 0%, #222 40%, #000 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .15),
-    0 8px 18px rgba(0, 0, 0, .35);
+    inset 0 1px 0 rgba(255, 255, 255, .15),  /* Top highlight */
+    0 8px 18px rgba(0, 0, 0, .35);            /* Drop shadow */
   transition:
     transform .15s ease,
     box-shadow .15s ease,
@@ -786,18 +834,20 @@ button {
     color .15s ease;
 }
 
-/* Hover - lift and glow */
+/* --- Hover State ---
+   Lift up, brighten border, add pink glow */
 .mb-submit:hover {
   color: var(--blue);
   transform: translateY(-1px);
   border-color: rgba(234, 234, 234, .75);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, .2),
-    0 0 0 2px rgba(255, 45, 241, .35),
+    0 0 0 2px rgba(255, 45, 241, .35),        /* Pink ring */
     0 12px 26px rgba(0, 0, 0, .45);
 }
 
-/* Active - push down */
+/* --- Active/Pressed State ---
+   Push down, inset shadow */
 .mb-submit:active {
   transform: translateY(1px);
   box-shadow:
@@ -805,7 +855,8 @@ button {
     0 4px 10px rgba(0, 0, 0, .4);
 }
 
-/* Focus visible - keyboard focus ring */
+/* --- Focus Visible ---
+   Keyboard focus indicator (pink ring) */
 .mb-submit:focus-visible {
   outline: none;
   box-shadow:
@@ -813,7 +864,8 @@ button {
     inset 0 1px 0 rgba(255, 255, 255, .2);
 }
 
-/* Disabled state */
+/* --- Disabled State ---
+   Dim, no pointer, no transform */
 .mb-submit:disabled {
   opacity: .6;
   cursor: not-allowed;
@@ -826,9 +878,8 @@ button {
 
 /* =============================================================================
    14. PORTFOLIO SLIDER
-   Horizontal scrolling portfolio showcase for homepage
-   Shows 3 cards on desktop, 2 on tablet, 1 on mobile
-   Navigation buttons and scroll-snap behavior
+   Horizontal scrolling portfolio showcase for homepage.
+   Shows 3 cards with scroll-snap, navigation buttons on sides.
    ============================================================================= */
 .portfolio-slider {
   width: 100%;
@@ -852,14 +903,15 @@ button {
   padding: 0 .5rem;
 }
 
-/* Navigation buttons container */
+/* --- Navigation Buttons Container --- */
 .portfolio-nav-buttons {
   display: inline-flex;
   align-items: center;
   gap: .5rem;
 }
 
-/* Circular navigation buttons */
+/* --- Navigation Buttons ---
+   Circular buttons for scrolling left/right */
 .portfolio-nav {
   flex: 0 0 auto;
   width: 44px;
@@ -888,7 +940,8 @@ button {
   transform: scale(.95);
 }
 
-/* Scroll track - horizontal scrolling with snap */
+/* --- Scroll Track ---
+   Horizontal scrolling container with snap behavior */
 .portfolio-track {
   flex: 1;
   display: flex;
@@ -896,8 +949,9 @@ button {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;       /* Momentum scroll on iOS */
   padding: .5rem 0;
+  /* Hide scrollbar but keep functionality */
   scrollbar-width: none;                   /* Firefox */
   -ms-overflow-style: none;                /* IE/Edge */
 }
@@ -906,9 +960,11 @@ button {
   display: none;                           /* Chrome/Safari */
 }
 
-/* Portfolio cards - glass effect with image background */
+/* --- Portfolio Cards ---
+   Individual project preview cards with glass effect */
 .portfolio-card {
-  flex: 0 0 calc((100% - 2.5rem) / 3);     /* Show 3 cards */
+  /* Show 3 cards: calc width minus gaps divided by 3 */
+  flex: 0 0 calc((100% - 2.5rem) / 3);
   min-width: 240px;
   aspect-ratio: 4 / 3;
   scroll-snap-align: start;
@@ -936,7 +992,8 @@ button {
   color: var(--text);
 }
 
-/* Card preview image - full bleed background */
+/* --- Card Preview Image ---
+   Full-bleed background image */
 .portfolio-preview {
   position: absolute;
   inset: 0;
@@ -947,7 +1004,8 @@ button {
   display: block;
 }
 
-/* Card content overlay - gradient with text at bottom */
+/* --- Card Content Overlay ---
+   Gradient overlay with text at bottom */
 .portfolio-card-inner {
   position: absolute;
   inset: 0;
@@ -980,18 +1038,19 @@ button {
 
 /* =============================================================================
    15. PORTFOLIO PAGES
-   Case study page layout for individual portfolio items
-   Includes hero, content sections, tech grid, process list, screenshot gallery
+   Case study page layout for individual portfolio items.
+   Hero section, content sections, tech grid, process list, gallery.
    ============================================================================= */
 
-/* Page container */
+/* --- Page Container --- */
 .portfolio-page {
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem 1.5rem 4rem;
 }
 
-/* Hero section */
+/* --- Hero Section ---
+   Centered title, tagline, and visit link */
 .portfolio-hero {
   text-align: center;
   margin-bottom: 3rem;
@@ -1012,7 +1071,8 @@ button {
   margin: 0 auto;
 }
 
-/* Gradient text effect on hero title */
+/* --- Gradient Text Effect ---
+   Blue to silver gradient on hero title */
 .portfolio-hero h1 span {
   display: inline-block;
   color: transparent;
@@ -1033,7 +1093,8 @@ button {
   margin: 0 0 1.5rem;
 }
 
-/* Visit site link - pill button */
+/* --- Visit Site Link ---
+   Pill-shaped button to external site */
 .portfolio-hero .visit-link {
   display: inline-flex;
   align-items: center;
@@ -1052,7 +1113,7 @@ button {
   color: var(--pink);
 }
 
-/* Content sections */
+/* --- Content Sections --- */
 .portfolio-section {
   margin-bottom: 3rem;
 }
@@ -1073,7 +1134,8 @@ button {
   margin: 0 0 1rem;
 }
 
-/* Tech stack grid */
+/* --- Tech Stack Grid ---
+   Auto-fit grid of technology cards */
 .tech-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -1104,7 +1166,8 @@ button {
   color: var(--muted);
 }
 
-/* Process list - numbered steps */
+/* --- Process List ---
+   Numbered list with circular step indicators */
 .process-list {
   list-style: none;
   padding: 0;
@@ -1120,6 +1183,7 @@ button {
   counter-increment: process;
 }
 
+/* Step number circle */
 .process-list li::before {
   content: counter(process);
   flex: 0 0 2rem;
@@ -1140,7 +1204,8 @@ button {
   padding-top: .25rem;
 }
 
-/* Screenshot gallery */
+/* --- Screenshot Gallery ---
+   Auto-fit grid of project screenshots */
 .screenshot-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1168,7 +1233,8 @@ button {
   text-align: center;
 }
 
-/* Back link */
+/* --- Back Link ---
+   Navigation to return to portfolio */
 .portfolio-back {
   display: inline-flex;
   align-items: center;
@@ -1183,7 +1249,8 @@ button {
   color: var(--pink);
 }
 
-/* Homepage stack layout */
+/* --- Homepage Stack Layout ---
+   Override main flex centering for homepage vertical stack */
 .home-stack {
   display: flex;
   flex-direction: column;
@@ -1195,85 +1262,14 @@ button {
 
 
 /* =============================================================================
-   16. SCROLL ANIMATIONS
-   Fade-in effects triggered by intersection observer (/js/scroll-reveal.js)
-   Elements start hidden and animate when entering viewport
+   16. RESPONSIVE BREAKPOINTS
+   All media queries consolidated by breakpoint.
+   Ordering: largest → smallest for proper cascade.
    ============================================================================= */
 
-/* Base fade-in from bottom */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.scroll-reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Stagger delays for sequential reveals */
-.scroll-reveal:nth-child(2) { transition-delay: 0.1s; }
-.scroll-reveal:nth-child(3) { transition-delay: 0.2s; }
-.scroll-reveal:nth-child(4) { transition-delay: 0.3s; }
-
-/* Fade from left */
-.scroll-reveal-left {
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.scroll-reveal-left.revealed {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Fade from right */
-.scroll-reveal-right {
-  opacity: 0;
-  transform: translateX(40px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.scroll-reveal-right.revealed {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Scale up from 90% */
-.scroll-reveal-scale {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.scroll-reveal-scale.revealed {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Respect user's motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  .scroll-reveal,
-  .scroll-reveal-left,
-  .scroll-reveal-right,
-  .scroll-reveal-scale {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
-
-/* =============================================================================
-   17. RESPONSIVE - MEDIA QUERIES
-   All breakpoints consolidated
-   Ordering: largest → smallest for proper cascade
-   ============================================================================= */
-
-/* TABLET: 900px and below
-   -------------------------------------------------------------------------- */
+/* -----------------------------------------------------------------------------
+   TABLET: 900px and below
+   ----------------------------------------------------------------------------- */
 @media (max-width: 900px) {
   /* Stack sections vertically */
   .section_container {
@@ -1302,16 +1298,17 @@ button {
   }
 }
 
-/* TABLET/MOBILE: 768px and below
-   Hide header nav, show wordmark only
-   -------------------------------------------------------------------------- */
+/* -----------------------------------------------------------------------------
+   TABLET/MOBILE: 768px and below
+   Hide header nav, show wordmark only (nav is in footer)
+   ----------------------------------------------------------------------------- */
 @media (max-width: 768px) {
-  /* Hide desktop nav */
+  /* Hide desktop nav (nav is in footer on mobile) */
   .desktop-only {
     display: none !important;
   }
 
-  /* Reconfigure header for mobile */
+  /* Reconfigure header for mobile - wordmark only, centered */
   .header-grid > .nav {
     display: flex;
     justify-content: center;
@@ -1327,11 +1324,6 @@ button {
   .header-title canvas {
     max-width: min(70vw, 280px);
     height: auto;
-    pointer-events: none;
-  }
-
-  .header-title a {
-    touch-action: manipulation;
   }
 
   :root {
@@ -1339,8 +1331,9 @@ button {
   }
 }
 
-/* MOBILE: 600px and below
-   -------------------------------------------------------------------------- */
+/* -----------------------------------------------------------------------------
+   MOBILE: 600px and below
+   ----------------------------------------------------------------------------- */
 @media (max-width: 600px) {
   /* Reduce container padding */
   #main_container,
@@ -1348,7 +1341,7 @@ button {
     padding: 0 .75rem;
   }
 
-  /* Full-width sections */
+  /* Full-width sections with equal padding */
   .section_left,
   .section_right {
     width: 100%;
@@ -1358,31 +1351,31 @@ button {
     margin: .5rem 0;
   }
 
-  /* Hide decorative boxes */
+  /* Hide decorative overlap boxes */
   .section_box_left,
   .section_box_right {
     display: none;
   }
 
-  /* Smaller logo */
+  /* Smaller homepage logo */
   .logo-solo {
     width: min(85vw, 400px);
   }
 
-  /* Footer adjustments */
+  /* Footer adjustments for small mobile */
   .footer {
-    padding: 0.5rem 0.5rem 0.5rem;
-    gap: 0.25rem;
+    padding: 0.5rem 0.5rem 0.35rem;
+    gap: 0.35rem;
   }
 
   .footer-nav {
-    gap: 0.25rem;
-    font-size: 0.85rem;
+    gap: 1rem;
+    font-size: 0.8rem;
   }
 
   .footer-info {
-    font-size: 0.6rem;
-    gap: 0;
+    font-size: 0.5rem;
+    gap: 0.4rem;
   }
 
   /* Contact form centering */
@@ -1459,14 +1452,17 @@ button {
   h3 { font-size: clamp(1rem, 4vw, 1.25rem); }
 }
 
-/* SMALL MOBILE: 450px and below
-   -------------------------------------------------------------------------- */
+/* -----------------------------------------------------------------------------
+   SMALL MOBILE: 450px and below
+   Header adjustments
+   ----------------------------------------------------------------------------- */
 @media (max-width: 450px) {
+  /* Taller header for touch targets */
   :root {
     --header-h: 64px;
   }
 
-  /* Scale down nav icons */
+  /* Scale down nav icons slightly */
   .pages {
     transform: scale(.9);
     transform-origin: left center;
@@ -1480,18 +1476,22 @@ button {
   }
 }
 
-/* EXTRA SMALL MOBILE: 400px and below
-   -------------------------------------------------------------------------- */
+/* -----------------------------------------------------------------------------
+   EXTRA SMALL MOBILE: 400px and below
+   ----------------------------------------------------------------------------- */
 @media (max-width: 400px) {
+  /* Tighter section padding */
   .section_left,
   .section_right {
     padding: 1.25rem 1rem;
   }
 
+  /* Smaller logo */
   .logo-solo {
     width: min(90vw, 300px);
   }
 
+  /* Smaller portfolio card text */
   .portfolio-card h3 {
     font-size: 1rem;
   }
@@ -1504,6 +1504,7 @@ button {
     padding: 1rem;
   }
 
+  /* Tighter contact form */
   #contact-form {
     padding: 1rem;
   }
@@ -1519,8 +1520,9 @@ button {
   }
 }
 
-/* LANDSCAPE PHONE: Short viewport
-   -------------------------------------------------------------------------- */
+/* -----------------------------------------------------------------------------
+   LANDSCAPE PHONE: Short viewport with landscape orientation
+   ----------------------------------------------------------------------------- */
 @media (max-height: 500px) and (orientation: landscape) {
   .logo-solo {
     width: min(50vh, 300px);
@@ -1529,6 +1531,82 @@ button {
   .home-stack {
     padding-top: .5rem;
     padding-bottom: 1rem;
+  }
+}
+
+
+/* =============================================================================
+   17. SCROLL ANIMATIONS
+   Fade-in effects triggered by intersection observer.
+   Elements start hidden and animate in when entering viewport.
+   ============================================================================= */
+
+/* --- Base State: Hidden ---
+   Elements with scroll-reveal class start invisible and translated */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Stagger delays for sequential reveals */
+.scroll-reveal:nth-child(2) { transition-delay: 0.1s; }
+.scroll-reveal:nth-child(3) { transition-delay: 0.2s; }
+.scroll-reveal:nth-child(4) { transition-delay: 0.3s; }
+
+/* --- Revealed State ---
+   Applied by JS when element enters viewport */
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Variation: Fade from Left --- */
+.scroll-reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- Variation: Fade from Right --- */
+.scroll-reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- Variation: Scale Up --- */
+.scroll-reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.scroll-reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- Respect Reduced Motion ---
+   Skip animations for users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-reveal-left,
+  .scroll-reveal-right,
+  .scroll-reveal-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 

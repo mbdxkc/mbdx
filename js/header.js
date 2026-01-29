@@ -73,10 +73,9 @@
 
         <!-- center: wordmark (static svg fallback, replaced by rive when loaded) -->
         <div class="header-title">
-          <canvas id="mb_wordmark" width="200" height="42" style="display:none;position:absolute;pointer-events:none;">mediaBrilliance</canvas>
           <a href="/index.html" aria-label="mediaBrilliance home">
             <img id="mb_wordmark_static" src="/images/mBwordmark.svg" alt="mediaBrilliance" width="200" height="42" />
-            <span id="mb_wordmark_overlay" style="display:none;width:200px;height:42px;"></span>
+            <canvas id="mb_wordmark" width="200" height="42" style="display:none;">mediaBrilliance</canvas>
           </a>
         </div>
 
@@ -111,22 +110,6 @@
     const headerEl = document.getElementById("site-header");
     if (headerEl) {
       headerEl.innerHTML = headerHTML;
-
-      // add explicit click handler to wordmark link as failsafe
-      // this ensures navigation works even if canvas/rive interferes
-      const wordmarkLink = headerEl.querySelector(".header-title a");
-      if (wordmarkLink) {
-        const titleContainer = headerEl.querySelector(".header-title");
-        if (titleContainer) {
-          titleContainer.addEventListener("click", function(e) {
-            // if click is anywhere in the title area, trigger the link
-            if (!e.defaultPrevented && e.target !== wordmarkLink) {
-              wordmarkLink.click();
-            }
-          }, true); // use capture phase to intercept before rive
-        }
-      }
-
       initWordmark();
     }
   }
@@ -140,17 +123,10 @@
     if (typeof rive !== "undefined") {
       var canvas = document.getElementById("mb_wordmark");
       var staticImg = document.getElementById("mb_wordmark_static");
-      var overlay = document.getElementById("mb_wordmark_overlay");
       if (canvas) {
-        // prepare canvas - positioned absolutely behind link
-        canvas.style.position = "absolute";
+        // prepare canvas with hidden state
         canvas.style.opacity = "0";
         canvas.style.transition = "opacity 0.3s ease";
-        canvas.style.pointerEvents = "none";
-        canvas.style.left = "50%";
-        canvas.style.top = "50%";
-        canvas.style.transform = "translate(-50%, -50%)";
-        canvas.style.zIndex = "0";
 
         var riveInstance = new rive.Rive({
           src: "/media/mb_wordmark.riv",
@@ -162,7 +138,6 @@
             function showWhenReady() {
               if (!document.body.classList.contains("is-loading")) {
                 if (staticImg) staticImg.style.display = "none";
-                if (overlay) overlay.style.display = "block";
                 canvas.style.display = "block";
                 canvas.style.opacity = "1";
                 riveInstance.play();
