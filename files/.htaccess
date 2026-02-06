@@ -1,0 +1,34 @@
+# ============================================================================
+# Files Directory - Hotlink Protection
+# ============================================================================
+# Only allow access to files when linked from this site
+# Direct URL access or external hotlinking is blocked
+# ============================================================================
+
+# Prevent directory listing
+Options -Indexes
+
+# Block direct access - only allow requests with valid referer from this site
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Allow requests from our own domain (adjust domain as needed)
+  RewriteCond %{HTTP_REFERER} !^$
+  RewriteCond %{HTTP_REFERER} !^https?://(www\.)?mediabrilliance\.io [NC]
+  RewriteCond %{HTTP_REFERER} !^https?://localhost [NC]
+  RewriteCond %{HTTP_REFERER} !^https?://127\.0\.0\.1 [NC]
+  RewriteRule \.(pdf|doc|docx|xls|xlsx|zip)$ - [F,NC,L]
+
+  # Block requests with NO referer (direct URL access)
+  RewriteCond %{HTTP_REFERER} ^$
+  RewriteRule \.(pdf|doc|docx|xls|xlsx|zip)$ - [F,NC,L]
+</IfModule>
+
+# Fallback for servers without mod_rewrite
+<IfModule !mod_rewrite.c>
+  # Deny all by default, specific access must be handled at application level
+  <FilesMatch "\.(pdf|doc|docx|xls|xlsx|zip)$">
+    Order Deny,Allow
+    Deny from all
+  </FilesMatch>
+</IfModule>
