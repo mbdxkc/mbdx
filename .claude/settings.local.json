@@ -62,7 +62,8 @@
       "Bash(kill:*)",
       "Bash(pkill:*)",
       "WebFetch(domain:fonts.googleapis.com)",
-      "Bash(git status:*)"
+      "Bash(git status:*)",
+      "Bash(brew install:*)"
     ]
   }
 }

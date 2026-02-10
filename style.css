@@ -169,7 +169,7 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--text);
-  background: var(--bg) url("/images/themlines.png") top left / auto repeat;
+  background: var(--bg) url("/images/themlines.webp") top left / auto repeat;
   font-family: "Nunito Sans", sans-serif;
 }
 
