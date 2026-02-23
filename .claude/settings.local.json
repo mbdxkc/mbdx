@@ -63,7 +63,8 @@
       "Bash(pkill:*)",
       "WebFetch(domain:fonts.googleapis.com)",
       "Bash(git status:*)",
-      "Bash(brew install:*)"
+      "Bash(brew install:*)",
+      "Bash(git -C /Users/dez/Documents/design/mbdx status --short)"
     ]
   }
 }
