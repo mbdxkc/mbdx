@@ -57,7 +57,7 @@ most projects are scoped as fixed-price engagements after a free consultation. w
 
 ## bilingual services
 
-all services available in english and spanish. content translation and bilingual site development included at no additional cost.
+all services available in English and Spanish. content translation and bilingual site development included at no additional cost.
 
 ---
 

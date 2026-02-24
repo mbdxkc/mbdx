@@ -24,7 +24,7 @@ custom-designed websites built on the right platform for your needs, whether tha
 - content management system setup
 - contact forms and integrations
 - SEO fundamentals
-- bilingual (english/spanish) available
+- bilingual (English/Spanish) available
 
 ### website optimization
 

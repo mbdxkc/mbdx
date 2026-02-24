@@ -45,7 +45,7 @@ this is not an interrogation, it's a conversation. if a question doesn't apply, 
   - *if you don't know, that's fine. just tell us who built it or where you log in*
 - what do you like about your current site? what frustrates you?
 - are you active on social media? which platforms?
-  - *instagram, facebook, tiktok, linkedin, etc. how often do you post?*
+  - *Instagram, Facebook, TikTok, LinkedIn, etc. How often do you post?*
 - do you have a google business profile? is it up to date?
 - do you send emails or newsletters to customers?
 - do you update it yourself, or does someone else handle it?
@@ -66,7 +66,7 @@ this is not an interrogation, it's a conversation. if a question doesn't apply, 
 - do you want to manage and update content yourself, or have someone handle it?
 - for a website, what pages or sections do you definitely need?
   - *home, about, services, contact, blog, portfolio, menu, booking, etc.*
-- do you need bilingual content (english/spanish)?
+- do you need bilingual content (English/Spanish)?
 
 ---
 
@@ -132,7 +132,7 @@ this is not an interrogation, it's a conversation. if a question doesn't apply, 
   - *honesty helps us both. if it doesn't match our rates, we can recommend other options.*
 - are you open to a phased approach? (launch with essentials, add features later)
 - what's your monthly budget for ongoing costs? (hosting, domain, platform fees)
-  - *usually $10-50/month depending on platform*
+  - *usually $10-$50 a month depending on platform*
 
 ---
 
