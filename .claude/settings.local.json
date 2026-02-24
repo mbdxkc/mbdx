@@ -64,7 +64,11 @@
       "WebFetch(domain:fonts.googleapis.com)",
       "Bash(git status:*)",
       "Bash(brew install:*)",
-      "Bash(git -C /Users/dez/Documents/design/mbdx status --short)"
+      "Bash(git -C /Users/dez/Documents/design/mbdx status --short)",
+      "Bash(pandoc:*)",
+      "Bash(pip3 install:*)",
+      "Bash(/Users/dez/Library/Python/3.9/bin/weasyprint:*)",
+      "Bash(git restore:*)"
     ]
   }
 }
