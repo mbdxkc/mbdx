@@ -148,35 +148,37 @@
    HTML: <span class="highlight-brilliant">brilliant</span>
    Used on: about.html, services.html, rates.html, contact.html
 
-   Timing: 8s cycle, shine sweeps across in ~1s
+   Timing: 12s cycle - holds 4.8s, sweeps in 1.2s, holds 6s, repeats
 */
 .highlight-brilliant {
   background: linear-gradient(
     90deg,
     rgba(0, 0, 0, .65) 0%,
-    rgba(0, 0, 0, .65) 55%,
-    var(--blue) 62%,
-    var(--pink) 67%,
-    silver 71%,
-    silver 73%,
-    var(--yellow) 77%,
-    rgba(0, 0, 0, .65) 82%,
+    rgba(0, 0, 0, .65) 30%,
+    var(--blue) 38%,
+    var(--pink) 44%,
+    silver 50%,
+    silver 52%,
+    var(--yellow) 58%,
+    rgba(0, 0, 0, .65) 66%,
     rgba(0, 0, 0, .65) 100%
   );
   background-size: 400% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: brilliantShimmer 12s linear infinite;
-  animation-delay: -8.5s;
+  animation: brilliantShimmer 10s infinite;
+  animation-delay: -6s;
 }
 
 @keyframes brilliantShimmer {
-  0% { background-position: 100% 0; }
-  20% { background-position: 85% 0; }
-  30% { background-position: 50% 0; }
-  40% { background-position: 15% 0; }
-  100% { background-position: 0% 0; }
+  0%, 50% {
+    background-position: 100% 0;
+    animation-timing-function: cubic-bezier(0.2, 0.6, 0.4, 1);
+  }
+  65%, 100% {
+    background-position: 0% 0;
+  }
 }
 
 
