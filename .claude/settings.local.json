@@ -73,7 +73,10 @@
       "Bash(brew list:*)",
       "Bash(md-to-pdf:*)",
       "Bash(/Applications/Google\\\\ Chrome.app/Contents/MacOS/Google\\\\ Chrome:*)",
-      "Bash(/Applications/Google Chrome.app/Contents/MacOS/Google Chrome:*)"
+      "Bash(/Applications/Google Chrome.app/Contents/MacOS/Google Chrome:*)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --print-to-pdf=\"/Users/dez/Library/Mobile Documents/com~apple~CloudDocs/mBcode/mbdx/files/rate-card.pdf\" --no-margins --print-background \"file:///Users/dez/Library/Mobile Documents/com~apple~CloudDocs/mBcode/mbdx/files/rate-card.html\")",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --print-to-pdf=\"/Users/dez/Library/Mobile Documents/com~apple~CloudDocs/mBcode/mbdx/files/digital-services.pdf\" --no-margins --print-background \"file:///Users/dez/Library/Mobile Documents/com~apple~CloudDocs/mBcode/mbdx/files/digital-services.html\")",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --print-to-pdf=\"/Users/dez/Library/Mobile Documents/com~apple~CloudDocs/mBcode/mbdx/files/client-discovery-questions.pdf\" --no-margins --print-background \"file:///Users/dez/Library/Mobile Documents/com~apple~CloudDocs/mBcode/mbdx/files/client-discovery-questions.html\")"
     ]
   }
 }

@@ -83,6 +83,17 @@ body {
   position: relative;
 }
 
+/* Links */
+a {
+  color: var(--mb-blue);
+  text-decoration: none;
+  font-weight: inherit;
+}
+
+a:hover {
+  color: rgba(255, 45, 241, 0.7);
+}
+
 @media print {
   :root {
     /* Light theme for print/PDF */
@@ -93,6 +104,10 @@ body {
     --mb-border-light: #ddd;
     --mb-border-lighter: #e0e0e0;
     --mb-border-lightest: #f0f0f0;
+  }
+
+  a {
+    color: var(--mb-blue);
   }
 
   body {

@@ -356,7 +356,7 @@ a {
 }
 
 a:hover {
-  color: var(--pink);
+  color: rgba(255, 45, 241, 0.75);
 }
 
 /* --- Section Card Headings ---
@@ -386,11 +386,11 @@ a:hover {
 }
 
 /* --- Section Card Links ---
-   Pink default, yellow on hover (inverted from global).
+   Pink default (softened), yellow on hover (inverted from global).
    Excludes .mb-submit buttons which have their own styling. */
 .section_left a:not(.mb-submit),
 .section_right a:not(.mb-submit) {
-  color: var(--pink);
+  color: rgba(255, 45, 241, 0.75);
 }
 
 .section_left a:not(.mb-submit):hover,
@@ -765,7 +765,7 @@ a:hover {
 }
 
 .footer-nav a:hover {
-  color: var(--pink);
+  color: rgba(255, 45, 241, 0.75);
 }
 
 .footer-nav a.is-active {
@@ -813,7 +813,7 @@ a:hover {
 }
 
 .footer-info a:hover {
-  color: var(--pink);
+  color: rgba(255, 45, 241, 0.75);
 }
 
 
@@ -1038,8 +1038,8 @@ button {
 
 .portfolio-nav:hover {
   background: rgba(255, 45, 241, .15);
-  border-color: var(--pink);
-  color: var(--pink);
+  border-color: rgba(255, 45, 241, 0.25);
+  color: rgba(255, 45, 241, 0.25);
 }
 
 .portfolio-nav:active {
@@ -1107,7 +1107,7 @@ button {
 }
 
 .portfolio-card:hover::after {
-  border-color: var(--pink);
+  border-color: rgba(255, 45, 241, 0.25);
 }
 
 /* --- Card Preview Image ---
@@ -1227,8 +1227,8 @@ button {
 }
 
 .portfolio-hero .visit-link:hover {
-  border-color: var(--pink);
-  color: var(--pink);
+  border-color: rgba(255, 45, 241, 0.25);
+  color: rgba(255, 45, 241, 0.75);
 }
 
 /* --- Content Sections --- */
@@ -1270,7 +1270,7 @@ button {
 }
 
 .tech-card:hover {
-  border-color: var(--pink);
+  border-color: rgba(255, 45, 241, 0.25);
 }
 
 .tech-card strong {
@@ -1309,7 +1309,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--pink);
+  background: rgba(255, 45, 241, 0.25);
   color: #fff;
   font-weight: 700;
   font-size: .85rem;
@@ -1364,7 +1364,7 @@ button {
 }
 
 .portfolio-back:hover {
-  color: var(--pink);
+  color: rgba(255, 45, 241, 0.75);
 }
 
 /* --- Homepage Stack Layout ---
