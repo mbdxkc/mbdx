@@ -2,6 +2,8 @@
 
 User-agent: *
 Allow: /
+Disallow: /files/client-discovery-questions.html
+Disallow: /files/client-discovery-questions.pdf
 
 # Sitemap location
 Sitemap: https://www.mediabrilliance.io/sitemap.xml

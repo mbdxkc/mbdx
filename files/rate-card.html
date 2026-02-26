@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+============================================================================
+mBdx (mediaBrilliance digitalxtudio)
+============================================================================
+@project    mBdx - mediaBrilliance digitalxtudio
+@version    1.0
+@author     valdez campos <dez@mediabrilliance.io>
+@date       2026-02-26
+@file       rate-card.html
+@desc       Service rates and pricing document. Links to document-styles.css.
+            Dark theme for screen, light theme for print/PDF.
+@license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
+============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Rates | mediaBrilliance</title>
+  <link rel="stylesheet" href="document-styles.css">
+  <style>
+    /* Page-specific overrides */
+    @page { margin: 0.75in; }
+    body { font-size: 11pt; }
+
+    .service { margin-bottom: 1.25em; page-break-inside: avoid; }
+    .service h2 { margin-bottom: 0.25em; }
+    .service h2::after { display: none; }
+    .service h2::before {
+      content: '◆ ';
+      color: var(--mb-yellow);
+      font-size: 8pt;
+      text-shadow: 0 0 1px rgba(0,0,0,0.4);
+    }
+
+    .rate-table { margin: 1.25em 0; page-break-inside: avoid; }
+    .rate-table h2 { margin-bottom: 0.5em; }
+    .rate-table h2::after { display: none; }
+    .rate-table h2::before {
+      content: '◆ ';
+      color: var(--mb-yellow);
+      font-size: 8pt;
+      text-shadow: 0 0 1px rgba(0,0,0,0.4);
+    }
+
+    .info-section { margin: 1.25em 0; page-break-inside: avoid; }
+    .info-section h2 {
+      font-size: 11pt;
+      margin-bottom: 0.35em;
+    }
+    .info-section h2::after { display: none; }
+    .info-section .accent {
+      color: var(--mb-yellow);
+      text-shadow: 0 0 1px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <img src="../images/mB.svg" alt="" class="watermark" aria-hidden="true">
+
+  <header class="doc-header">
+    <p class="brand-name">med<span class="highlight-i">i</span>a<span class="highlight-b">B</span>rilliance</p>
+    <p class="brand-tagline">digital systems and strategy | design. code. clarity.</p>
+    <hr class="double-line">
+  </header>
+
+  <main>
+    <h1>Service Rates</h1>
+
+    <p class="intro">Clean, accessible websites and digital experiences for small businesses, creators, nonprofits and other cool people. Every project starts with understanding your goals and constraints. Then we build something that actually works for you.</p>
+
+    <section class="service">
+      <h2>Website Projects</h2>
+      <p class="price">Starting at $1,500</p>
+      <p>Custom-designed, responsive websites built on the right platform for your needs (Squarespace, WordPress or custom code). Includes consultation, design, development, SEO basics and training.</p>
+    </section>
+
+    <section class="service">
+      <h2>Website Optimization</h2>
+      <p class="price">$300 – $600</p>
+      <p>SEO audit and optimization, accessibility improvements, performance tuning, meta tag optimization and image compression for existing sites. Includes recommendations document.</p>
+    </section>
+
+    <section class="service">
+      <h2>Digital Presence Strategy</h2>
+      <p class="price">$400 – $800</p>
+      <p>Audit of your current digital presence, competitive analysis, content strategy and actionable roadmap. Perfect for businesses figuring out their online approach.</p>
+    </section>
+
+    <section class="rate-table">
+      <h2>Hourly Consulting and Custom Work</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Site maintenance and updates</td>
+            <td>$50/hr</td>
+          </tr>
+          <tr>
+            <td>Design work</td>
+            <td>$75/hr</td>
+          </tr>
+          <tr>
+            <td>Development and coding</td>
+            <td>$75/hr</td>
+          </tr>
+          <tr>
+            <td>Strategy and consulting</td>
+            <td>$75/hr</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="double-line-subtle">
+
+    <section class="info-section">
+      <h2><span class="accent">»</span> How We Work</h2>
+      <p>Most projects are scoped as fixed-price engagements after a <span class="highlight">free consultation</span>. We'll discuss your needs, timeline and budget, then provide a clear proposal. For smaller tasks or ongoing work, hourly rates apply.</p>
+    </section>
+
+    <section class="info-section">
+      <h2><span class="accent">»</span> Bilingual Services</h2>
+      <p>All services available in English and Spanish. Content translation and bilingual site development included at no additional cost.</p>
+    </section>
+
+    <section class="info-section">
+      <h2><span class="accent">»</span> Student and Nonprofit Rates</h2>
+      <p>Reduced rates and value exchange (barter) arrangements available for students, nonprofits and community organizations on a case-by-case basis.</p>
+    </section>
+  </main>
+
+  <footer class="doc-footer">
+    <hr class="double-line">
+    <p style="margin-top: 0.75em;"><strong>Valdez Campos</strong> | mediaBrilliance.io</p>
+    <p class="tagline">Digital systems and strategy<span class="dot">.</span> Design<span class="dot">.</span> Code<span class="dot">.</span> Clarity<span class="dot">.</span></p>
+  </footer>
+</body>
+</html>

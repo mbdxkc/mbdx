@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--
+============================================================================
+mBdx (mediaBrilliance digitalxtudio)
+============================================================================
+@project    mBdx - mediaBrilliance digitalxtudio
+@version    1.0
+@author     valdez campos <dez@mediabrilliance.io>
+@date       2026-02-26
+@file       digital-services.html
+@desc       Full services overview document. Links to document-styles.css.
+            Dark theme for screen, light theme for print/PDF.
+@license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
+============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Services | mediaBrilliance</title>
+  <link rel="stylesheet" href="document-styles.css">
+  <style>
+    /* Page-specific overrides */
+    @page { margin: 0.65in; }
+
+    .category { margin-bottom: 1em; page-break-inside: avoid; }
+    .category > h2 { margin-bottom: 0.5em; }
+
+    .service-item { margin-bottom: 0.75em; page-break-inside: avoid; }
+    .service-item > p { margin-bottom: 0.25em; }
+    .service-item li:nth-child(odd)::marker { color: var(--mb-pink); }
+    .service-item li:nth-child(even)::marker { color: var(--mb-yellow); }
+
+    .approach { margin: 1.25em 0; page-break-inside: avoid; }
+
+    .who-section {
+      margin: 1em 0;
+      page-break-inside: avoid;
+      background: linear-gradient(90deg, rgba(255,255,0,0.18), rgba(255,45,241,0.08));
+      padding: 0.5em 0.75em;
+      border-left: 3px solid var(--mb-yellow);
+    }
+    .who-section h2 { margin-top: 0; }
+    .who-section h2::after { display: none; }
+
+    @media print {
+      .who-section {
+        background: linear-gradient(90deg, rgba(255,255,0,0.1), rgba(255,45,241,0.05));
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="../images/mB.svg" alt="" class="watermark" aria-hidden="true">
+
+  <header class="doc-header">
+    <p class="brand-name">med<span class="highlight-i">i</span>a<span class="highlight-b">B</span>rilliance</p>
+    <p class="brand-tagline">digital systems and strategy | design. code. clarity.</p>
+    <hr class="double-line">
+  </header>
+
+  <main>
+    <h1>Digital Services</h1>
+
+    <p class="intro">Clean, accessible digital experiences for small businesses, creators, nonprofits and other cool people. We focus on what works, not what's trendy. Every project prioritizes clarity, functionality and thoughtful design.</p>
+
+    <section class="category">
+      <h2>Websites and Digital Presence</h2>
+      <div class="services-grid">
+        <div class="service-item">
+          <h3>Website Development</h3>
+          <p>Custom-designed websites built on the right platform for your needs, whether that's Squarespace, WordPress or custom code.</p>
+          <ul>
+            <li>Responsive design for all devices</li>
+            <li>Content management system setup</li>
+            <li>Contact forms and integrations</li>
+            <li>SEO fundamentals</li>
+            <li>Bilingual (English/Spanish) available</li>
+          </ul>
+        </div>
+
+        <div class="service-item">
+          <h3>Website Optimization</h3>
+          <p>Improve your existing site's performance, accessibility and search visibility through audits and targeted improvements.</p>
+          <ul>
+            <li>SEO audit and optimization</li>
+            <li>Accessibility improvements (WCAG)</li>
+            <li>Performance tuning</li>
+            <li>Meta tag and social sharing setup</li>
+            <li>Recommendations document</li>
+          </ul>
+        </div>
+
+        <div class="service-item">
+          <h3>Site Maintenance and Updates</h3>
+          <p>Ongoing support for existing websites: content updates, bug fixes and keeping things running smoothly.</p>
+          <ul>
+            <li>Content and image updates</li>
+            <li>Plugin/theme updates</li>
+            <li>Bug fixes and troubleshooting</li>
+            <li>Backup and security monitoring</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="category">
+      <h2>Strategy and Planning</h2>
+      <div class="services-grid">
+        <div class="service-item">
+          <h3>Digital Presence Audit</h3>
+          <p>Comprehensive review of your current online presence: website, social media, search visibility and competitor analysis.</p>
+          <ul>
+            <li>Website and SEO audit</li>
+            <li>Social media presence review</li>
+            <li>Competitor analysis</li>
+            <li>Actionable recommendations</li>
+          </ul>
+        </div>
+
+        <div class="service-item">
+          <h3>Content Strategy</h3>
+          <p>Planning and structuring your website content to serve your audience and business goals.</p>
+          <ul>
+            <li>Content audit and gap analysis</li>
+            <li>Information architecture</li>
+            <li>Messaging framework</li>
+            <li>Implementation roadmap</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="category">
+      <h2>Design and User Experience</h2>
+      <div class="services-grid">
+        <div class="service-item">
+          <h3>UX Design</h3>
+          <p>User-centered design work to improve how people interact with your digital products.</p>
+          <ul>
+            <li>User research and personas</li>
+            <li>Wireframes and prototypes</li>
+            <li>Usability testing</li>
+            <li>Design documentation</li>
+          </ul>
+        </div>
+
+        <div class="service-item">
+          <h3>Brand Identity</h3>
+          <p>Visual identity development for new businesses or refreshes for existing brands.</p>
+          <ul>
+            <li>Logo design</li>
+            <li>Color palette and typography</li>
+            <li>Brand guidelines</li>
+            <li>Basic marketing materials</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="approach">
+      <h2>Our Approach</h2>
+      <div class="approach-item">
+        <strong>Accessibility first.</strong>
+        <p>We build with accessibility in mind from the start, not as an afterthought. Clean semantic HTML, proper contrast, keyboard navigation and screen reader support are standard.</p>
+      </div>
+      <div class="approach-item">
+        <strong>Right tool for the job.</strong>
+        <p>We're platform-agnostic. Sometimes Squarespace is the right choice. Sometimes WordPress. Sometimes custom code. We recommend what actually makes sense for your situation.</p>
+      </div>
+      <div class="approach-item">
+        <strong>Honest about limitations.</strong>
+        <p>Every platform has constraints. We're transparent about what's possible within your budget and technical environment.</p>
+      </div>
+      <div class="approach-item">
+        <strong>Documentation matters.</strong>
+        <p>Every project includes clear documentation so you (or your next developer) understand how things work. We don't build dependency. We build capability.</p>
+      </div>
+    </section>
+
+    <section class="who-section">
+      <h2>Who We Work With</h2>
+      <p>Small businesses, creative professionals, nonprofits and other cool people who value thoughtful work over quick fixes.</p>
+      <p>Flexible arrangements for community organizations and projects that align with our values.</p>
+    </section>
+  </main>
+
+  <footer class="doc-footer">
+    <hr class="double-line">
+    <p style="margin-top: 0.5em;"><strong>Valdez Campos</strong> | mediaBrilliance.io</p>
+    <p class="tagline">Digital systems and strategy<span class="dot">.</span> Design<span class="dot">.</span> Code<span class="dot">.</span> Clarity<span class="dot">.</span></p>
+  </footer>
+</body>
+</html>

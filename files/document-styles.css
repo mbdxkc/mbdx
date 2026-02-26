@@ -1,0 +1,569 @@
+/**
+ * ============================================================================
+ * mediaBrilliance Document Scheme
+ * ============================================================================
+ * Official styling for mediaBrilliance print documents and PDFs.
+ * Use this stylesheet as the base for all client-facing documents.
+ *
+ * @project    mBdx - mediaBrilliance digitalxtudio
+ * @version    1.0
+ * @author     valdez campos <dez@mediabrilliance.io>
+ * @date       2026-02-26
+ * @file       document-styles.css
+ * @desc       Shared stylesheet for all mB client-facing documents.
+ *             Dark theme for screen viewing, light theme for print/PDF.
+ * @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
+ *
+ * BRAND COLORS
+ * ------------
+ * --mb-blue:   #008DDA  (primary - headings, links, primary accents)
+ * --mb-pink:   #FF2DF1  (accent - prices, sub-markers, highlights)
+ * --mb-yellow: #FFFF00  (highlight - bullets, borders, callouts)
+ *
+ * USAGE
+ * -----
+ * Link this stylesheet or copy styles into document <head>.
+ * Include watermark: <img src="../images/mB.svg" class="watermark" aria-hidden="true">
+ * Use .double-line class on <hr> elements for brand separator.
+ *
+ * ============================================================================
+ */
+
+/* =============================================================================
+   CSS CUSTOM PROPERTIES (Design Tokens)
+   ============================================================================= */
+:root {
+  /* Brand Colors */
+  --mb-blue: #008DDA;
+  --mb-pink: #FF2DF1;
+  --mb-yellow: #FFFF00;
+
+  /* Text Colors - Dark Theme */
+  --mb-text: rgba(255, 255, 255, 0.87);
+  --mb-text-muted: rgba(255, 255, 255, 0.7);
+  --mb-text-subtle: rgba(255, 255, 255, 0.5);
+
+  /* Background - Dark Theme */
+  --mb-bg: rgba(0, 0, 0, 0.9);
+
+  /* Borders - Dark Theme */
+  --mb-border-light: rgba(255, 255, 255, 0.2);
+  --mb-border-lighter: rgba(255, 255, 255, 0.15);
+  --mb-border-lightest: rgba(255, 255, 255, 0.1);
+}
+
+
+/* =============================================================================
+   PAGE SETUP (Print)
+   ============================================================================= */
+@page {
+  size: letter;
+  margin: 0.65in;
+}
+
+
+/* =============================================================================
+   BASE RESET
+   ============================================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 10pt;
+  line-height: 1.45;
+  color: var(--mb-text);
+  background: var(--mb-bg);
+  max-width: 7in;
+  margin: 0 auto;
+  padding: 0.5in;
+  position: relative;
+}
+
+@media print {
+  :root {
+    /* Light theme for print/PDF */
+    --mb-text: #1a1a1a;
+    --mb-text-muted: #444;
+    --mb-text-subtle: #666;
+    --mb-bg: #ffffff;
+    --mb-border-light: #ddd;
+    --mb-border-lighter: #e0e0e0;
+    --mb-border-lightest: #f0f0f0;
+  }
+
+  body {
+    padding: 0;
+    max-width: none;
+    background: #ffffff;
+    color: #1a1a1a;
+  }
+
+  .watermark {
+    opacity: 0.045;
+  }
+
+  th {
+    background: linear-gradient(90deg, rgba(0,141,218,0.1), rgba(255,255,0,0.12));
+  }
+
+  .callout,
+  .note {
+    background: linear-gradient(90deg, rgba(255,255,0,0.1), transparent);
+  }
+
+  .callout-blue {
+    background: linear-gradient(90deg, rgba(0,141,218,0.08), transparent);
+  }
+}
+
+
+/* =============================================================================
+   WATERMARK
+   Centered, low-opacity brand mark behind content.
+   Usage: <img src="../images/mB.svg" class="watermark" aria-hidden="true">
+   ============================================================================= */
+.watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 5in;
+  height: 5in;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: -1;
+}
+
+
+/* =============================================================================
+   DOUBLE LINE SEPARATOR
+   Brand signature: blue on top, yellow on bottom.
+   Usage: <hr class="double-line">
+   ============================================================================= */
+.double-line {
+  border: none;
+  border-top: 1px solid var(--mb-blue);
+  border-bottom: 1px solid var(--mb-yellow);
+  height: 3px;
+  margin: 0;
+}
+
+.double-line-subtle {
+  border: none;
+  border-top: 1px solid var(--mb-border-lighter);
+  border-bottom: 1px solid var(--mb-border-lightest);
+  height: 3px;
+}
+
+
+/* =============================================================================
+   DOCUMENT HEADER
+   Brand name with colored letters + tagline.
+   ============================================================================= */
+.doc-header {
+  margin-bottom: 1.25em;
+  padding-bottom: 0.75em;
+}
+
+.brand-name {
+  font-size: 18pt;
+  font-weight: 700;
+  color: var(--mb-text);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.brand-name .highlight-b {
+  color: var(--mb-blue);
+}
+
+.brand-name .highlight-i {
+  color: var(--mb-pink);
+}
+
+.brand-tagline {
+  font-size: 8pt;
+  color: var(--mb-text-subtle);
+  margin-top: 0.2em;
+  text-transform: lowercase;
+}
+
+/* Header HTML structure:
+   <header class="doc-header">
+     <p class="brand-name">med<span class="highlight-i">i</span>a<span class="highlight-b">B</span>rilliance</p>
+     <p class="brand-tagline">digital systems and strategy | design. code. clarity.</p>
+     <hr class="double-line">
+   </header>
+*/
+
+
+/* =============================================================================
+   TYPOGRAPHY
+   ============================================================================= */
+
+/* Main document title */
+h1 {
+  font-size: 16pt;
+  font-weight: 700;
+  color: var(--mb-blue);
+  margin: 0.75em 0 0.35em;
+}
+
+/* Section headings with double-line underline */
+h2 {
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--mb-blue);
+  margin: 0.9em 0 0.5em;
+  padding-bottom: 0.2em;
+}
+
+h2::after {
+  content: '';
+  display: block;
+  margin-top: 0.2em;
+  border-top: 1px solid var(--mb-blue);
+  border-bottom: 1px solid var(--mb-yellow);
+  height: 3px;
+}
+
+/* Subsection headings with yellow diamond */
+h3 {
+  font-size: 10pt;
+  font-weight: 700;
+  color: var(--mb-text);
+  margin-bottom: 0.15em;
+}
+
+h3::before {
+  content: '◆ ';
+  color: var(--mb-yellow);
+  font-size: 7pt;
+  text-shadow: 0 0 1px rgba(0,0,0,0.3);
+}
+
+/* Intro/lead paragraph */
+.intro {
+  font-size: 9.5pt;
+  color: var(--mb-text-muted);
+  margin-bottom: 1.25em;
+  line-height: 1.5;
+}
+
+/* Standard paragraph */
+p {
+  font-size: 9pt;
+  color: var(--mb-text-muted);
+  line-height: 1.5;
+}
+
+
+/* =============================================================================
+   LISTS
+   Yellow markers for main items, pink for sub-items.
+   ============================================================================= */
+ul {
+  margin: 0.25em 0 0.5em 1.25em;
+  padding: 0;
+  font-size: 9pt;
+  color: var(--mb-text-muted);
+}
+
+li {
+  margin-bottom: 0.15em;
+}
+
+li::marker {
+  color: var(--mb-yellow);
+}
+
+/* Nested list items */
+li ul {
+  margin-top: 0.15em;
+  margin-bottom: 0.15em;
+}
+
+li li {
+  font-size: 8.5pt;
+  color: var(--mb-text-subtle);
+  font-style: italic;
+}
+
+li li::marker {
+  color: var(--mb-pink);
+}
+
+
+/* =============================================================================
+   PRICES / RATES
+   Pink color for monetary values.
+   ============================================================================= */
+.price {
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--mb-pink);
+  margin-bottom: 0.25em;
+}
+
+
+/* =============================================================================
+   TABLES
+   Blue-to-yellow gradient header, pink values in right column.
+   ============================================================================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10pt;
+}
+
+th, td {
+  padding: 0.4em 0.75em;
+  text-align: left;
+  border-bottom: 1px solid var(--mb-border-light);
+}
+
+th {
+  background: linear-gradient(90deg, rgba(0,141,218,0.25), rgba(255,255,0,0.2));
+  font-weight: 600;
+  color: var(--mb-text);
+}
+
+td:last-child {
+  text-align: right;
+  font-weight: 600;
+  color: var(--mb-pink);
+}
+
+
+/* =============================================================================
+   CALLOUT BOXES
+   Yellow-bordered highlight boxes for important notes.
+   ============================================================================= */
+.callout {
+  background: linear-gradient(90deg, rgba(255,255,0,0.15), transparent);
+  padding: 0.5em 0.75em;
+  border-left: 3px solid var(--mb-yellow);
+  margin: 1em 0;
+}
+
+.callout-blue {
+  background: linear-gradient(90deg, rgba(0,141,218,0.15), transparent);
+  padding: 0.5em 0.75em;
+  border-left: 3px solid var(--mb-blue);
+  margin: 1em 0;
+}
+
+/* Italic note style */
+.note {
+  font-size: 8.5pt;
+  color: var(--mb-text-subtle);
+  font-style: italic;
+  padding-left: 0.5em;
+  border-left: 2px solid var(--mb-yellow);
+  background: linear-gradient(90deg, rgba(255,255,0,0.12), transparent);
+}
+
+
+/* =============================================================================
+   APPROACH / FEATURE ITEMS
+   Yellow arrow prefix for key points.
+   ============================================================================= */
+.approach-item {
+  margin-bottom: 0.5em;
+}
+
+.approach-item strong {
+  color: var(--mb-text);
+  font-size: 9.5pt;
+}
+
+.approach-item strong::before {
+  content: '» ';
+  color: var(--mb-yellow);
+  text-shadow: 0 0 1px rgba(0,0,0,0.3);
+}
+
+.approach-item p {
+  font-size: 9pt;
+  color: var(--mb-text-muted);
+  display: inline;
+}
+
+
+/* =============================================================================
+   SECTION ACCENT
+   Blue arrow prefix for info sections.
+   ============================================================================= */
+.section-heading .accent {
+  color: var(--mb-yellow);
+  text-shadow: 0 0 1px rgba(0,0,0,0.3);
+}
+
+/* Usage: <h2 class="section-heading"><span class="accent">»</span> Section Title</h2> */
+
+
+/* =============================================================================
+   HIGHLIGHT
+   Yellow background highlight for key phrases.
+   ============================================================================= */
+.highlight {
+  background: linear-gradient(90deg, rgba(255,255,0,0.3), transparent);
+  padding: 0 0.2em;
+}
+
+
+/* =============================================================================
+   DOCUMENT FOOTER
+   ============================================================================= */
+.doc-footer {
+  margin-top: 1.5em;
+  padding-top: 0.75em;
+  font-size: 8pt;
+  color: var(--mb-text-subtle);
+}
+
+.doc-footer strong {
+  color: var(--mb-text);
+}
+
+.doc-footer .tagline {
+  color: #888;
+}
+
+.doc-footer .tagline .dot {
+  color: var(--mb-yellow);
+}
+
+/* Footer HTML structure:
+   <footer class="doc-footer">
+     <hr class="double-line">
+     <p style="margin-top: 0.5em;"><strong>Valdez Campos</strong> | mediaBrilliance.io</p>
+     <p class="tagline">Digital systems and strategy<span class="dot">.</span> Design<span class="dot">.</span> Code<span class="dot">.</span> Clarity<span class="dot">.</span></p>
+   </footer>
+*/
+
+
+/* =============================================================================
+   TWO-COLUMN LAYOUT
+   For documents with side-by-side content.
+   ============================================================================= */
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5em 1.5em;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75em 1.25em;
+}
+
+
+/* =============================================================================
+   PAGE BREAK CONTROL
+   ============================================================================= */
+.page-break-before {
+  page-break-before: always;
+}
+
+.page-break-after {
+  page-break-after: always;
+}
+
+.no-break {
+  page-break-inside: avoid;
+}
+
+
+/* =============================================================================
+   RESPONSIVE STYLES
+   ============================================================================= */
+@media screen and (max-width: 900px) {
+  .two-column,
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: 1.25rem;
+    font-size: 9.5pt;
+  }
+
+  .brand-name {
+    font-size: 15pt;
+  }
+
+  h1 {
+    font-size: 14pt;
+  }
+
+  h2 {
+    font-size: 10pt;
+  }
+
+  h3 {
+    font-size: 9.5pt;
+  }
+
+  .watermark {
+    width: 70vw;
+    height: 70vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    padding: 1rem;
+    font-size: 9pt;
+  }
+
+  .brand-name {
+    font-size: 13pt;
+  }
+
+  .brand-tagline {
+    font-size: 7.5pt;
+  }
+
+  h1 {
+    font-size: 12pt;
+    margin: 0.6em 0 0.3em;
+  }
+
+  h2 {
+    font-size: 9.5pt;
+  }
+
+  h3 {
+    font-size: 9pt;
+  }
+
+  .intro {
+    font-size: 9pt;
+  }
+
+  p, ul {
+    font-size: 8.5pt;
+  }
+
+  table {
+    font-size: 8.5pt;
+  }
+
+  th, td {
+    padding: 0.4em 0.5em;
+  }
+
+  .watermark {
+    width: 80vw;
+    height: 80vw;
+  }
+}
