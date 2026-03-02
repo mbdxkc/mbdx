@@ -1187,6 +1187,7 @@ button {
   width: 500px;
   height: auto;
   margin: 0 auto;
+  border-radius: var(--radius-lg);
 }
 
 /* --- Gradient Text Effect ---
