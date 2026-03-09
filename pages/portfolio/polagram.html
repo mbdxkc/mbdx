@@ -9,30 +9,30 @@
   @project    mBdx - mediaBrilliance digitalxtudio website
   @version    3.1
   @author     valdez campos <dez@mediabrilliance.io>
-  @date       2026-01-17
-  @file       portfolio/feelsincubator.html
-  @desc       portfolio case study - feelsIncubator website project
+  @date       2026-03-08
+  @file       portfolio/polagram.html
+  @desc       portfolio case study - polaGram iOS app
   @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
   @requires   - /js/header.min.js, /js/footer.min.js, /js/page-transition.min.js
               - rive-app/canvas, /style.css
   @a11y       - skip link, semantic html, wcag 2.1 aa compliant
   ============================================================================
-  mBdx v3.1 | portfolio - feelsincubator
+  mBdx v3.1 | portfolio - polagram
   ============================================================================
   -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="feelsIncubator portfolio case study. a creative design studio website designed and developed by mediaBrilliance." />
-  <title>feelsIncubator | portfolio | mediaBrilliance</title>
-  <link rel="canonical" href="https://www.mediabrilliance.io/pages/portfolio/feelsincubator.html" />
+  <meta name="description" content="polaGram iOS app case study. A privacy-first instant photo app with authentic pola aesthetic, built with SwiftUI." />
+  <title>polagram | portfolio | mediaBrilliance</title>
+  <link rel="canonical" href="https://www.mediabrilliance.io/pages/portfolio/polagram.html" />
   <!-- Social media meta tags -->
-  <meta property="og:title" content="feelsIncubator | portfolio | mediaBrilliance" />
-  <meta property="og:description" content="a creative design studio website designed and developed by mediaBrilliance." />
+  <meta property="og:title" content="polagram | portfolio | mediaBrilliance" />
+  <meta property="og:description" content="privacy-first instant photo app with authentic pola aesthetic." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.mediabrilliance.io/pages/portfolio/feelsincubator.html" />
+  <meta property="og:url" content="https://www.mediabrilliance.io/pages/portfolio/polagram.html" />
   <meta property="og:image" content="https://www.mediabrilliance.io/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="feelsIncubator | portfolio | mediaBrilliance" />
-  <meta name="twitter:description" content="a creative design studio website designed and developed by mediaBrilliance." />
+  <meta name="twitter:title" content="polagram | portfolio | mediaBrilliance" />
+  <meta name="twitter:description" content="privacy-first instant photo app with authentic pola aesthetic." />
   <meta name="twitter:image" content="https://www.mediabrilliance.io/og.png" />
   <!-- Icons -->
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -55,15 +55,12 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/style.min.css?v=56">
 </head>
-
 <body>
   <!-- Page transition overlay + skip link -->
   <div id="page-transition" aria-hidden="true"></div>
   <a class="skip-link" href="#main_container">skip to main content</a>
-
   <!-- Header (injected by /js/header.min.js) -->
   <header id="site-header" class="site-header" role="banner"></header>
-
   <!-- Main content -->
   <main id="main_container">
     <article class="portfolio-page">
@@ -75,10 +72,10 @@
       </a>
 
       <header class="portfolio-hero scroll-reveal-scale">
-        <img src="/images/portfolio/feelsIncubator_logo.svg" alt="feelsIncubator logo">
-        <p class="tagline">creative design studio</p>
-        <a href="https://feelsincubator.mediabrilliance.io" target="_blank" rel="noopener" class="visit-link">
-          visit live site
+        <img src="/images/portfolio/polagram-logo.webp" alt="polaGram logo" style="max-width: 200px;">
+        <p class="tagline">share what matters, beautifully</p>
+        <a href="https://polagram.app" target="_blank" rel="noopener" class="visit-link">
+          visit site
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
             <polyline points="15 3 21 3 21 9"></polyline>
@@ -90,12 +87,10 @@
       <section class="portfolio-section">
         <h2 class="section-label">overview</h2>
         <p>
-          feelsIncubator is a fictional creative design studio blending digital design with
-          underground aesthetics. The portfolio site showcases their work while maintaining
-          a bold presence.
+          polaGram is a privacy-first iOS app that brings the nostalgic charm of instant photography to modern photo sharing. Create beautiful pola-style frames with handwritten captions, watch photos develop authentically and share memories with style.
         </p>
         <p>
-          Dark, cyber-inspired aesthetic with neon accents. Experimental visual communication.
+          No data collection. No analytics. No tracking. All photos stay on device.
         </p>
       </section>
 
@@ -103,64 +98,108 @@
         <h2 class="section-label">tech stack</h2>
         <div class="tech-grid">
           <div class="tech-card">
-            <strong>html5</strong>
-            <span>semantic structure</span>
+            <strong>swiftui</strong>
+            <span>declarative ui</span>
           </div>
           <div class="tech-card">
-            <strong>css3</strong>
-            <span>custom properties</span>
+            <strong>photosui</strong>
+            <span>modern photo picker</span>
           </div>
           <div class="tech-card">
-            <strong>javascript</strong>
-            <span>vanilla es6+</span>
+            <strong>coremotion</strong>
+            <span>shake detection</span>
           </div>
           <div class="tech-card">
-            <strong>github pages</strong>
-            <span>static hosting</span>
+            <strong>vercel</strong>
+            <span>landing page hosting</span>
           </div>
         </div>
       </section>
 
       <section class="portfolio-section">
-        <h2 class="section-label">process</h2>
+        <h2 class="section-label">design process</h2>
         <ol class="process-list">
-          <li><span>discover: brand exploration, moodboard</span></li>
-          <li><span>design: high-fidelity with motion concepts</span></li>
-          <li><span>develop: component-based, vanilla js</span></li>
-          <li><span>document: design system notes</span></li>
-          <li><span>deploy: github pages, social media assets</span></li>
-          <li><span>done: live portfolio site</span></li>
+          <li><span>discover: nostalgic instant film aesthetic, privacy-first values</span></li>
+          <li><span>design: token-based system, authentic handwritten feel</span></li>
+          <li><span>develop: swiftui components, cross-platform support</span></li>
+          <li><span>document: comprehensive dev log and architecture docs</span></li>
+          <li><span>deploy: vercel landing page, app store submission prep</span></li>
+          <li><span>done: polagram.app live, app in review</span></li>
         </ol>
       </section>
 
       <section class="portfolio-section">
-        <h2 class="section-label">screenshots</h2>
-        <div class="screenshot-gallery">
-          <figure class="screenshot-card">
-            <img src="/images/portfolio/feelsincubator-preview.webp" alt="feelsIncubator homepage" />
-            <figcaption>landing page</figcaption>
-          </figure>
+        <h2 class="section-label">key features</h2>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <strong>photo development</strong>
+            <span>20-second authentic reveal</span>
+          </div>
+          <div class="tech-card">
+            <strong>shake to develop</strong>
+            <span>accelerate with motion</span>
+          </div>
+          <div class="tech-card">
+            <strong>haptic feedback</strong>
+            <span>tactile shake response</span>
+          </div>
+          <div class="tech-card">
+            <strong>handwritten captions</strong>
+            <span>42-character limit</span>
+          </div>
         </div>
       </section>
 
       <section class="portfolio-section">
-        <h2 class="section-label">features</h2>
+        <h2 class="section-label">design decisions</h2>
+        <p>
+          Authentic pola aesthetic with cream frames, vintage date stamps and handwritten typography. The 20-second development animation mirrors real instant film, while shake-to-develop adds playful interaction.
+        </p>
+        <p>
+          Token-based design system ensures consistency across iOS, iPadOS and macOS. Champagne bubble particle effects and film grain overlays complete the nostalgic experience.
+        </p>
+      </section>
+
+      <section class="portfolio-section">
+        <h2 class="section-label">architecture</h2>
         <div class="tech-grid">
           <div class="tech-card">
-            <strong>dark mode</strong>
-            <span>native design</span>
+            <strong>component-driven</strong>
+            <span>modular swiftui views</span>
           </div>
           <div class="tech-card">
-            <strong>portfolio</strong>
-            <span>dynamic grid</span>
+            <strong>design tokens</strong>
+            <span>centralized constants</span>
           </div>
           <div class="tech-card">
-            <strong>motion</strong>
-            <span>subtle animations</span>
+            <strong>cross-platform</strong>
+            <span>ios, ipados, macos</span>
           </div>
           <div class="tech-card">
-            <strong>responsive</strong>
-            <span>all devices</span>
+            <strong>accessibility</strong>
+            <span>full voiceover support</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="portfolio-section">
+        <h2 class="section-label">visual effects</h2>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <strong>champagne bubbles</strong>
+            <span>celebratory particles</span>
+          </div>
+          <div class="tech-card">
+            <strong>film grain</strong>
+            <span>vintage texture overlay</span>
+          </div>
+          <div class="tech-card">
+            <strong>animated gradients</strong>
+            <span>moody background tones</span>
+          </div>
+          <div class="tech-card">
+            <strong>vignette</strong>
+            <span>subtle edge darkening</span>
           </div>
         </div>
       </section>
@@ -168,6 +207,10 @@
       <section class="portfolio-section">
         <h2 class="section-label">more projects</h2>
         <div class="tech-grid">
+          <a href="/pages/portfolio/cafecorazon.html" class="tech-card" style="text-decoration: none;">
+            <strong>cafe corazon</strong>
+            <span>indigenous-owned cafe</span>
+          </a>
           <a href="/pages/portfolio/theembers.html" class="tech-card" style="text-decoration: none;">
             <strong>the embers</strong>
             <span>kansas city cover band</span>
@@ -175,10 +218,6 @@
           <a href="/pages/portfolio/kcroastco.html" class="tech-card" style="text-decoration: none;">
             <strong>kc roast co</strong>
             <span>craft coffee roasters</span>
-          </a>
-          <a href="/pages/portfolio/cafeama.html" class="tech-card" style="text-decoration: none;">
-            <strong>café ama</strong>
-            <span>latinx bistro & bar</span>
           </a>
         </div>
       </section>

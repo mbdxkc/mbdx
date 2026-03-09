@@ -3,13 +3,14 @@
  * mBdx (mediaBrilliance digitalxtudio) - Portfolio Slider
  * ============================================================================
  * @project    mBdx - mediaBrilliance digitalxtudio website
- * @version    3.1
+ * @version    3.2
  * @author     valdez campos <dez@mediabrilliance.io>
- * @date       2026-01-15
+ * @date       2026-03-08
  * @file       js/portfolio-slider.js
  *
  * @desc       horizontal scrolling portfolio slider for homepage.
  *             provides prev/next button navigation with smooth scrolling.
+ *             arrows fade when at start/end of slider.
  *             cards are displayed in a horizontal track with overflow scroll.
  *
  * @requires   - .portfolio-track element (scrollable container)
@@ -48,7 +49,37 @@
   }
 
   // -------------------------------------------------------------------------
-  // 3. navigation click handlers
+  // 3. update arrow visibility based on scroll position
+  //    fades left arrow at start, right arrow at end
+  // -------------------------------------------------------------------------
+  function updateArrowVisibility() {
+    var scrollLeft = track.scrollLeft;
+    var maxScroll = track.scrollWidth - track.clientWidth;
+
+    // threshold for "at boundary" (allow small margin for rounding)
+    var threshold = 5;
+
+    // fade left arrow when at start
+    if (scrollLeft <= threshold) {
+      prevBtn.style.opacity = '0.3';
+      prevBtn.style.pointerEvents = 'none';
+    } else {
+      prevBtn.style.opacity = '1';
+      prevBtn.style.pointerEvents = 'auto';
+    }
+
+    // fade right arrow when at end
+    if (scrollLeft >= maxScroll - threshold) {
+      nextBtn.style.opacity = '0.3';
+      nextBtn.style.pointerEvents = 'none';
+    } else {
+      nextBtn.style.opacity = '1';
+      nextBtn.style.pointerEvents = 'auto';
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // 4. navigation click handlers
   //    smooth scroll left/right by one card width
   // -------------------------------------------------------------------------
   prevBtn.addEventListener('click', function () {
@@ -58,4 +89,15 @@
   nextBtn.addEventListener('click', function () {
     track.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
   });
+
+  // -------------------------------------------------------------------------
+  // 5. listen for scroll events to update arrow visibility
+  // -------------------------------------------------------------------------
+  track.addEventListener('scroll', updateArrowVisibility);
+
+  // initial check on load
+  updateArrowVisibility();
+
+  // re-check on window resize (scroll dimensions may change)
+  window.addEventListener('resize', updateArrowVisibility);
 })();
