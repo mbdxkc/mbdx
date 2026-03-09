@@ -495,6 +495,20 @@ a:hover {
   transition: opacity 0.15s ease;
 }
 
+/* --- Social Icon Hover Swap --- */
+.icon-swap .icon-bright {
+  display: none;
+}
+.icon-swap:hover .icon-dark {
+  display: none;
+}
+.icon-swap:hover .icon-bright {
+  display: block;
+}
+.icon-swap:hover img {
+  opacity: 1;
+}
+
 /* --- Visibility Classes --- */
 .desktop-only {
   display: flex;
