@@ -203,7 +203,6 @@ html, body {
    Prevent horizontal scroll, stabilize scrollbar to avoid layout shift */
 html {
   overflow-x: hidden;
-  scrollbar-gutter: stable both-edges;
 }
 
 /* --- Body Defaults ---
