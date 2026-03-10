@@ -1480,6 +1480,7 @@ button {
   .footer-nav {
     gap: 1rem;
     font-size: 0.8rem;
+    padding: 0 1rem;
   }
 
   .footer-info {
