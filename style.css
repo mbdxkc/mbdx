@@ -1482,11 +1482,6 @@ button {
     font-size: 0.8rem;
   }
 
-  .footer-nav a {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
   .footer-info {
     font-size: 0.7rem;
     gap: 0.4rem;
