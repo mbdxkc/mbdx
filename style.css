@@ -384,6 +384,16 @@ a:hover {
   color: rgba(0, 0, 0, .65);
 }
 
+/* --- Tagline ---
+   Prominent intro statement that pops */
+.tagline {
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+}
+
 /* --- Section Card Links ---
    Pink default (softened), yellow on hover (inverted from global).
    Excludes .mb-submit buttons which have their own styling. */
