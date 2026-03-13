@@ -420,6 +420,7 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 9999;
+  min-height: 60px;                         /* Reserve space before JS loads */
   width: 100%;
   height: var(--header-h);
   min-height: var(--header-h);
