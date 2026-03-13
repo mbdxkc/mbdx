@@ -1070,11 +1070,11 @@ button {
 /* --- Portfolio Cards ---
    Individual project preview cards with glass effect */
 .portfolio-card {
-  /* Show 1 card at a time */
-  flex: 0 0 100%;
-  max-width: 500px;
+  /* Show 2 cards at a time on desktop */
+  flex: 0 0 calc((100% - 2rem) / 2);
+  max-width: 450px;
   aspect-ratio: 4 / 3;
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, rgba(0, 141, 218, .2), rgba(255, 45, 241, .15));
   backdrop-filter: blur(8px);
