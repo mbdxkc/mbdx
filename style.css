@@ -1058,8 +1058,7 @@ button {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;       /* Momentum scroll on iOS */
-  /* Padding creates space for centered card with peeks on sides */
-  padding: 1rem calc(50% - 225px);
+  padding: 1rem 1.5rem;
   /* Hide scrollbar but keep functionality */
   scrollbar-width: none;                   /* Firefox */
   -ms-overflow-style: none;                /* IE/Edge */
@@ -1072,10 +1071,11 @@ button {
 /* --- Portfolio Cards ---
    Individual project preview cards with glass effect */
 .portfolio-card {
-  /* Centered card with peeks of adjacent cards */
-  flex: 0 0 450px;
+  /* Card width shows ~80% with peek of next card */
+  flex: 0 0 calc(80% - 1rem);
+  max-width: 500px;
   aspect-ratio: 4 / 3;
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, rgba(0, 141, 218, .2), rgba(255, 45, 241, .15));
   backdrop-filter: blur(8px);
@@ -1411,13 +1411,10 @@ button {
     height: auto;
   }
 
-  /* Centered portfolio card with peeks */
+  /* Portfolio card with peek of next */
   .portfolio-card {
-    flex: 0 0 380px;
-  }
-
-  .portfolio-track {
-    padding: 1rem calc(50% - 190px);
+    flex: 0 0 calc(85% - 1rem);
+    max-width: 450px;
   }
 }
 
@@ -1518,11 +1515,11 @@ button {
 
   .portfolio-track {
     gap: 1rem;
-    padding: 1rem calc(50% - 140px);
+    padding: 1rem;
   }
 
   .portfolio-card {
-    flex: 0 0 280px;
+    flex: 0 0 calc(90% - 0.5rem);
   }
 
   .portfolio-heading {
